@@ -1,0 +1,32 @@
+name: IPTV Guncelleme Botu
+
+on:
+  schedule:
+    - cron: '0 */3 * * *' # Her 3 saatte bir otomatik çalışır
+  workflow_dispatch: # İstediğimizde el ile de başlatabilmek için
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Depoyu Kopyala
+      uses: actions/checkout@v3
+
+    - name: Python Kur
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.x'
+
+    - name: Gerekli Kütüphaneleri Yukle
+      run: pip install requests
+
+    - name: Botu Calistir
+      run: python bot.py
+
+    - name: Degisiklikleri Github'a Kaydet
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add listem.m3u
+        git commit -m "M3U Linki Guncellendi" || exit 0
+        git push
