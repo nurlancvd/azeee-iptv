@@ -62,10 +62,13 @@ aztv_link = f"https://str.yodacdn.net/azertv/tracks-v3a1/mono.ts.m3u8?token={gun
 medeniyyet_link = f"https://str2.yodacdn.net/medeniyyettele/tracks-v3a1/mono.ts.m3u8?token={guncel_token}"
 idman_link = f"https://str2.yodacdn.net/idmantele/tracks-v3a1/mono.ts.m3u8?token={guncel_token}"
 
-# 6. KANAL: Xezer TV (Token istemeyen, sabit resmi CDN linki)
+# 6. KANAL: Xezer TV (Sabit link)
 xezer_link = "https://xezerxeber.az/stream/stream.m3u8"
 
-# M3U Format Yapısı (Xezer TV eklendi)
+# 7. KANAL: Azad Azerbaycan TV (Token istemeyen, sabit resmi CDN linki)
+atv_link = "https://lives.atv.az:5443/ATV_TV_STREAM/streams/atvcanli.m3u8"
+
+# M3U Format Yapısı (ATV eklendi)
 m3u_satirlari = [
     "#EXTM3U",
     f'#EXTINF:-1 tvg-id="ITV" tvg-logo="https://i.ibb.co/dsfZQ0Cq/itv.png" group-title="Azerbaijan",İctimai TV',
@@ -79,7 +82,9 @@ m3u_satirlari = [
     f'#EXTINF:-1 tvg-id="IdmanTV" tvg-logo="https://i.ibb.co/pBNzbCWD/idmanv.jpg" group-title="Azerbaijan",İdman TV',
     f"{idman_link}",
     f'#EXTINF:-1 tvg-id="XezerTV" tvg-logo="https://i.ibb.co/q3BGCK8n/xezer.png" group-title="Azerbaijan",Xezer TV',
-    f"{xezer_link}"
+    f"{xezer_link}",
+    f'#EXTINF:-1 tvg-id="AzadAzerbaycanTV" tvg-logo="https://i.ibb.co/rDHp5Fk/azad.png" group-title="Azerbaijan",Azad Azerbaycan TV',
+    f"{atv_link}"
 ]
 
 m3u_yapisi = "\n".join(m3u_satirlari)
@@ -88,4 +93,4 @@ m3u_yapisi = "\n".join(m3u_satirlari)
 with open("listem.m3u", "w", encoding="utf-8") as f:
     f.write(m3u_yapisi)
 
-print("Listem.m3u dosyası 6 şahane kanalla başarıyla güncellendi!")
+print("Listem.m3u dosyası 7 şahane kanalla başarıyla güncellendi!")
