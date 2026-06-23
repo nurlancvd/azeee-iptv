@@ -37,7 +37,7 @@ def arb_gunes_link_bul():
             return linkler[0]
     except Exception as e:
         print("ARB Güneş linki çekilemedi:", e)
-    return "https://yayin2.canlitv.fun/live/arbgunes.stream/chunklist.m3u8"
+    return "https://yayin2.canlitv.fun/live/arbgunes.stream/chunklist_w1263573850.m3u8"
 
 # Aktif kanalların linklerini çekiyoruz
 itv_link = itv_link_bul()
