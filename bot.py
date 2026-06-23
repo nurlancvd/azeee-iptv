@@ -34,7 +34,7 @@ def atv_link_bul():
             return linkler[0]
     except Exception as e:
         print("ATV linki bulunamadı, yedek link atanıyor:", e)
-    return "https://live.atv.az/atv/index.m3u8"
+    return "https://lives.atv.az:5443/ATV_TV_STREAM/streams/atvcanli.m3u8"
 
 # İki kanalın da en güncel linklerini çekiyoruz
 itv_link = itv_link_bul()
