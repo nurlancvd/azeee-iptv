@@ -36,27 +36,29 @@ def cbc_sport_link_bul():
                     return link
             return linkler[0]
     except Exception as e:
-        print("CBC Sport canlı linki çekilemedi, verdiğiniz m3u linki atanıyor:", e)
-    # Siteden çekemezse senin verdiğin çalışan kesin m3u8 linkini taban alır
+        print("CBC Sport canlı linki çekilemedi, yedek atanıyor:", e)
     return "https://cbcsports-live.lg.mncdn.com/cbcsports_live/cbcsports/chunklist.m3u8"
 
-# Kanalların linklerini topluyoruz
+# Linkleri çekiyoruz
 itv_link = itv_link_bul()
 cbc_link = cbc_sport_link_bul()
 
 print(f"Güncel İTV Linki: {itv_link}")
 print(f"Güncel CBC Sport Linki: {cbc_link}")
 
-# M3U FORMATI (ARB Güneş silindi, CBC Sport yeni logosuyla eklendi)
-m3u_yapisi = f"""#EXTM3U
-#EXTINF:-1 tvg-id="ITV" tvg-logo="https://i.ibb.co/dsfZQ0Cq/itv.png" group-title="Azerbaijan",İctimai TV
-{itv_link}
-#EXTINF:-1 tvg-id="CBCSport" tvg-logo="https://i.ibb.co/pBpdbm2j/cbcs.png" group-title="Azerbaijan",CBC Sport
-{cbc_link}
-"""
+# Boşluk hatasını önlemek için listeyi satır satır ve en başta boşluk olmadan oluşturuyoruz
+m3u_satirlari = [
+    "#EXTM3U",
+    f'#EXTINF:-1 tvg-id="ITV" tvg-logo="https://i.ibb.co/dsfZQ0Cq/itv.png" group-title="Azerbaijan",İctimai TV',
+    f"{itv_link}",
+    f'#EXTINF:-1 tvg-id="CBCSport" tvg-logo="https://i.ibb.co/pBpdbm2j/cbcs.png" group-title="Azerbaijan",CBC Sport',
+    f"{cbc_link}"
+]
+
+m3u_yapisi = "\n".join(m3u_satirlari)
 
 # listem.m3u dosyasına kaydediyoruz
 with open("listem.m3u", "w", encoding="utf-8") as f:
     f.write(m3u_yapisi)
 
-print("Listem.m3u dosyası İTV ve CBC Sport ile başarıyla güncellendi!")
+print("Listem.m3u dosyası boşluksuz ve güvenli şekilde güncellendi!")
