@@ -9,10 +9,12 @@ jobs:
   build:
     runs-on: ubuntu-latest
     permissions:
-      contents: write # Sisteme zorla yazma izni veriyoruz
+      contents: write
     steps:
     - name: Depoyu Kopyala
       uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }} # Yetkiyi doğrudan buraya bağlıyoruz
 
     - name: Python Kur
       uses: actions/setup-python@v5
@@ -26,9 +28,12 @@ jobs:
       run: python bot.py
 
     - name: Degisiklikleri Github'a Kaydet
+      env:
+        HF_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
+        git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
         git add listem.m3u
         git commit -m "M3U Linki Guncellendi" || exit 0
         git push origin HEAD:main
