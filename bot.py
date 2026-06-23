@@ -39,14 +39,13 @@ def cbc_sport_link_bul():
 def yoda_token_bul():
     url = "https://aztv.az/az/live"
     try:
-        # Sitenin bot engeline karşı timeout'u kısa tutuyoruz ki botu kilitlemesin
         response = requests.get(url, headers=headers, timeout=7)
         token_match = re.search(r'token=([A-Za-z0-9%_\-\.\+]+)', response.text)
         if token_match:
             print("Siteden yeni token başarıyla çekildi!")
             return token_match.group(1)
     except Exception as e:
-        print("AzTV sitesi botu engelledi, endişeye gerek yok yedek token devreye giriyor.")
+        print("AzTV sitesi botu engelledi, yedek token devreye giriyor.")
     return None
 
 # Linkleri ve Token'ı topluyoruz
@@ -54,16 +53,19 @@ itv_link = itv_link_bul()
 cbc_link = cbc_sport_link_bul()
 guncel_token = yoda_token_bul()
 
-# EĞER SİTE BOTU ENGELLEDİYSE KODUN ÇÖKMESİNİ ÖNLÜYORUZ: Senin verdiğin uzun token'ı basıyoruz
+# Eğer site botu engellediyse yedek token devreye girer
 if not guncel_token:
     guncel_token = "eyJpcCI6IjE1OC4xODEuNDUuNjciLCJ1YSI6Ik1vemlsbGEvNS4wIChXaW5kb3dzIE5UIDEwLjA7IFdpbjY0OyB4NjQpIEFwcGxlV2ViS2l0LzUzNy4zNiAoS0hUTUwsIGxpa2EgR2Vja28pIENocm9tZS8xNDkuMC4wLjAgU2FmYXJpLzUzNy4zNiIsImV4cCI6MTc4MjI0MzM2MSwianRpIjoiZGRiYTIyZDA5NTI0ZGRjZCJ9.2+7AgtxqqYc7QqKtDL9bO30SLXSmEZ7GjFp3KSK4gPg%3D"
 
-# Kanalları güvenli token ile inşa ediyoruz
+# Kanalları token ile inşa ediyoruz
 aztv_link = f"https://str.yodacdn.net/azertv/tracks-v3a1/mono.ts.m3u8?token={guncel_token}"
 medeniyyet_link = f"https://str2.yodacdn.net/medeniyyettele/tracks-v3a1/mono.ts.m3u8?token={guncel_token}"
 idman_link = f"https://str2.yodacdn.net/idmantele/tracks-v3a1/mono.ts.m3u8?token={guncel_token}"
 
-# M3U Formatı Yapısı
+# 6. KANAL: Xezer TV (Token istemeyen, sabit resmi CDN linki)
+xezer_link = "https://xezerxeber.az/stream/stream.m3u8"
+
+# M3U Format Yapısı (Xezer TV eklendi)
 m3u_satirlari = [
     "#EXTM3U",
     f'#EXTINF:-1 tvg-id="ITV" tvg-logo="https://i.ibb.co/dsfZQ0Cq/itv.png" group-title="Azerbaijan",İctimai TV',
@@ -75,7 +77,9 @@ m3u_satirlari = [
     f'#EXTINF:-1 tvg-id="MedeniyyetTV" tvg-logo="https://i.ibb.co/B5BtPZLd/medeniyyet.jpg" group-title="Azerbaijan",Medeniyyet TV',
     f"{medeniyyet_link}",
     f'#EXTINF:-1 tvg-id="IdmanTV" tvg-logo="https://i.ibb.co/pBNzbCWD/idmanv.jpg" group-title="Azerbaijan",İdman TV',
-    f"{idman_link}"
+    f"{idman_link}",
+    f'#EXTINF:-1 tvg-id="XezerTV" tvg-logo="https://i.ibb.co/q3BGCK8n/xezer.png" group-title="Azerbaijan",Xezer TV',
+    f"{xezer_link}"
 ]
 
 m3u_yapisi = "\n".join(m3u_satirlari)
@@ -84,4 +88,4 @@ m3u_yapisi = "\n".join(m3u_satirlari)
 with open("listem.m3u", "w", encoding="utf-8") as f:
     f.write(m3u_yapisi)
 
-print("Hata korumalı M3U listesi başarıyla oluşturuldu!")
+print("Listem.m3u dosyası 6 şahane kanalla başarıyla güncellendi!")
