@@ -1,13 +1,10 @@
 import requests
 import re
 
-# 1. KANAL: İctimai TV (Dinamik arayıcı)
+# 1. KANAL: İctimai TV
 def itv_link_bul():
     url = "https://live.itv.az/player.php"
-    headers = {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
-        "Referer": "https://live.itv.az/"
-    }
+    headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"}
     try:
         response = requests.get(url, headers=headers, timeout=15)
         linkler = re.findall(r'(https?://[^\s"\']+\.m3u8[^\s"\']*)', response.text)
@@ -17,64 +14,58 @@ def itv_link_bul():
                     return link
             return linkler[0]
     except Exception as e:
-        print("İTV linki çekilemedi, yedek atanıyor:", e)
+        print("İTV hatası:", e)
     return "https://live.itv.az/itv.m3u8"
 
-# 2. KANAL: CBC Sport (Dinamik arayıcı)
+# 2. KANAL: CBC Sport
 def cbc_sport_link_bul():
     url = "https://cbcsport.az/live/"
-    headers = {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
-        "Referer": "https://cbcsport.az/"
-    }
+    headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"}
     try:
         response = requests.get(url, headers=headers, timeout=15)
         linkler = re.findall(r'(https?://[^\s"\']+\.m3u8[^\s"\']*)', response.text)
         if linkler:
-            for link in linkler:
-                if "cbcsports" in link.lower() or "mncdn" in link.lower():
-                    return link
             return linkler[0]
     except Exception as e:
-        print("CBC Sport canlı linki çekilemedi, yedek atanıyor:", e)
+        print("CBC hatası:", e)
     return "https://cbcsports-live.lg.mncdn.com/cbcsports_live/cbcsports/chunklist.m3u8"
 
-# Dinamik kanalların linklerini çekiyoruz
+# YODACDN (AzTV, Medeniyyet, İdman) Ortak Token Çözücü
+def yoda_token_bul():
+    url = "https://aztv.az/az/live"
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+        "Referer": "https://aztv.az/"
+    }
+    try:
+        response = requests.get(url, headers=headers, timeout=15)
+        # Sitedeki canlı yayın linkinin içinden token kısmını cımbızlıyoruz
+        token_match = re.search(r'token=([A-Za-z0-9%_\-\.\+]+)', response.text)
+        if token_match:
+            return token_match.group(1)
+    except Exception as e:
+        print("Token çekilemedi:", e)
+    return None
+
+# Ana Akışı Çalıştırıyoruz
 itv_link = itv_link_bul()
 cbc_link = cbc_sport_link_bul()
+guncel_token = yoda_token_bul()
 
-# SABİT RESMİ CDN LİNKLERİ (Korumaya ve şifreye takılmayanlar)
-aztv_link = "https://str.yodacdn.net/azertv/index.m3u8"
-medeniyyet_link = "https://str2.yodacdn.net/medeniyyettele/index.m3u8"
+# Eğer siteden token çekilemezse listeyi patlatmamak için yedek token'lar (senin verdiklerin) devkeye girer
+if not guncel_token:
+    guncel_token = "eyJpcCI6IjE1OC4xODEuNDUuNjciLCJ1YSI6Ik1vemlsbGEvNS4wIChXaW5kb3dzIE5UIDEwLjA7IFdpbjY0OyB4NjQpIEFwcGxlV2ViS2l0LzUzNy4zNiAoS0hUTUwsIGxpa2UgR2Vja28pIENocm9tZS8xNDkuMC4wLjAgU2FmYXJpLzUzNy4zNiIsImV4cCI6MTc4MjI0MzM2MSwianRpIjoiZGRiYTIyZDA5NTI0ZGRjZCJ9.2+7AgtxqqYc7QqKtDL9bO30SLXSmEZ7GjFp3KSK4gPg%3D"
 
-# 5. KANAL: Idman TV (Şifresiz resmi ana CDN linki)
-idman_link = "https://str2.yodacdn.net/idmantele/index.m3u8"
+# Kanalları güncel dinamik token ile oluşturuyoruz
+aztv_link = f"https://str.yodacdn.net/azertv/tracks-v3a1/mono.ts.m3u8?token={guncel_token}"
+medeniyyet_link = f"https://str2.yodacdn.net/medeniyyettele/tracks-v3a1/mono.ts.m3u8?token={guncel_token}"
+idman_link = f"https://str2.yodacdn.net/idmantele/tracks-v3a1/mono.ts.m3u8?token={guncel_token}"
 
-print(f"Güncel İTV Linki: {itv_link}")
-print(f"Güncel CBC Sport Linki: {cbc_link}")
-print(f"Sabit AzTV Linki: {aztv_link}")
-print(f"Sabit Medeniyyet Linki: {medeniyyet_link}")
-print(f"Sabit İdman TV Linki: {idman_link}")
-
-# M3U Formatı - Satır satır güvenli birleştirme (İdman TV eklendi)
+# M3U Formatı - Satır satır güvenli birleştirme
 m3u_satirlari = [
     "#EXTM3U",
     f'#EXTINF:-1 tvg-id="ITV" tvg-logo="https://i.ibb.co/dsfZQ0Cq/itv.png" group-title="Azerbaijan",İctimai TV',
     f"{itv_link}",
     f'#EXTINF:-1 tvg-id="CBCSport" tvg-logo="https://i.ibb.co/pBpdbm2j/cbcs.png" group-title="Azerbaijan",CBC Sport',
     f"{cbc_link}",
-    f'#EXTINF:-1 tvg-id="AzTV" tvg-logo="https://i.ibb.co/dwNh0pyg/aztv.jpg" group-title="Azerbaijan",AzTV',
-    f"{aztv_link}",
-    f'#EXTINF:-1 tvg-id="MedeniyyetTV" tvg-logo="https://i.ibb.co/B5BtPZLd/medeniyyet.jpg" group-title="Azerbaijan",Medeniyyet TV',
-    f"{medeniyyet_link}",
-    f'#EXTINF:-1 tvg-id="IdmanTV" tvg-logo="https://i.ibb.co/pBNzbCWD/idmanv.jpg" group-title="Azerbaijan",İdman TV',
-    f"{idman_link}"
-]
-
-m3u_yapisi = "\n".join(m3u_satirlari)
-
-# listem.m3u dosyasına kaydediyoruz
-with open("listem.m3u", "w", encoding="utf-8") as f:
-    f.write(m3u_yapisi)
-
-print("Listem.m3u dosyası 5 şahane kanalla başarıyla güncellendi!")
+    f'#EXTINF:-1 tvg-id="AzTV" tvg-
