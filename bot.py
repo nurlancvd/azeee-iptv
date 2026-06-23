@@ -1,7 +1,7 @@
 import requests
 import re
 
-# 1. KANAL: İctimai TV (Dinamik arayıcı - Sorunsuz çalışıyor)
+# 1. KANAL: İctimai TV (Dinamik arayıcı)
 def itv_link_bul():
     url = "https://live.itv.az/player.php"
     headers = {
@@ -20,7 +20,7 @@ def itv_link_bul():
         print("İTV linki çekilemedi, yedek atanıyor:", e)
     return "https://live.itv.az/itv.m3u8"
 
-# 2. KANAL: CBC Sport (Dinamik arayıcı - Sorunsuz çalışıyor)
+# 2. KANAL: CBC Sport (Dinamik arayıcı)
 def cbc_sport_link_bul():
     url = "https://cbcsport.az/live/"
     headers = {
@@ -43,14 +43,20 @@ def cbc_sport_link_bul():
 itv_link = itv_link_bul()
 cbc_link = cbc_sport_link_bul()
 
-# 3. KANAL: AzTV (Web sitesi botu engellediği için doğrudan korumasız ve şifresiz ana CDN linkini gömüyoruz)
+# SABİT RESMİ CDN LİNKLERİ (Korumaya ve şifreye takılmayanlar)
 aztv_link = "https://str.yodacdn.net/azertv/index.m3u8"
+medeniyyet_link = "https://str2.yodacdn.net/medeniyyettele/index.m3u8"
+
+# 5. KANAL: Idman TV (Şifresiz resmi ana CDN linki)
+idman_link = "https://str2.yodacdn.net/idmantele/index.m3u8"
 
 print(f"Güncel İTV Linki: {itv_link}")
 print(f"Güncel CBC Sport Linki: {cbc_link}")
 print(f"Sabit AzTV Linki: {aztv_link}")
+print(f"Sabit Medeniyyet Linki: {medeniyyet_link}")
+print(f"Sabit İdman TV Linki: {idman_link}")
 
-# M3U Formatı - Satır satır güvenli birleştirme (Yeni AzTV logosu dahil)
+# M3U Formatı - Satır satır güvenli birleştirme (İdman TV eklendi)
 m3u_satirlari = [
     "#EXTM3U",
     f'#EXTINF:-1 tvg-id="ITV" tvg-logo="https://i.ibb.co/dsfZQ0Cq/itv.png" group-title="Azerbaijan",İctimai TV',
@@ -58,7 +64,11 @@ m3u_satirlari = [
     f'#EXTINF:-1 tvg-id="CBCSport" tvg-logo="https://i.ibb.co/pBpdbm2j/cbcs.png" group-title="Azerbaijan",CBC Sport',
     f"{cbc_link}",
     f'#EXTINF:-1 tvg-id="AzTV" tvg-logo="https://i.ibb.co/dwNh0pyg/aztv.jpg" group-title="Azerbaijan",AzTV',
-    f"{aztv_link}"
+    f"{aztv_link}",
+    f'#EXTINF:-1 tvg-id="MedeniyyetTV" tvg-logo="https://i.ibb.co/B5BtPZLd/medeniyyet.jpg" group-title="Azerbaijan",Medeniyyet TV',
+    f"{medeniyyet_link}",
+    f'#EXTINF:-1 tvg-id="IdmanTV" tvg-logo="https://i.ibb.co/pBNzbCWD/idmanv.jpg" group-title="Azerbaijan",İdman TV',
+    f"{idman_link}"
 ]
 
 m3u_yapisi = "\n".join(m3u_satirlari)
@@ -67,4 +77,4 @@ m3u_yapisi = "\n".join(m3u_satirlari)
 with open("listem.m3u", "w", encoding="utf-8") as f:
     f.write(m3u_yapisi)
 
-print("Listem.m3u dosyası engellere takılmayacak şekilde kalıcı olarak güncellendi!")
+print("Listem.m3u dosyası 5 şahane kanalla başarıyla güncellendi!")
