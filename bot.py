@@ -1,7 +1,7 @@
 import requests
 import re
 
-# 1. KANAL: İctimai TV (Dinamik link arayıcı)
+# 1. KANAL: İctimai TV (Dinamik arayıcı)
 def itv_link_bul():
     url = "https://live.itv.az/player.php"
     headers = {
@@ -17,45 +17,46 @@ def itv_link_bul():
                     return link
             return linkler[0]
     except Exception as e:
-        print("İTV linki çekilemedi:", e)
+        print("İTV linki çekilemedi, yedek atanıyor:", e)
     return "https://live.itv.az/itv.m3u8"
 
-# 2. KANAL: ARB Güneş TV (Dinamik hash arayıcı)
-def arb_gunes_link_bul():
-    url = "https://canlitv.com/arb-gunes-tv?ulke=az"
+# 2. KANAL: CBC Sport (Dinamik arayıcı ve kaynak korumalı)
+def cbc_sport_link_bul():
+    url = "https://cbcsport.az/live/"
     headers = {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
-        "Referer": "https://canlitv.com/"
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+        "Referer": "https://cbcsport.az/"
     }
     try:
         response = requests.get(url, headers=headers, timeout=15)
         linkler = re.findall(r'(https?://[^\s"\']+\.m3u8[^\s"\']*)', response.text)
         if linkler:
             for link in linkler:
-                if "arbgunes" in link.lower() or "canlitv" in link.lower():
+                if "cbcsports" in link.lower() or "mncdn" in link.lower():
                     return link
             return linkler[0]
     except Exception as e:
-        print("ARB Güneş linki çekilemedi:", e)
-    return "https://yayin2.canlitv.fun/live/arbgunes.stream/chunklist_w1263573850.m3u8"
+        print("CBC Sport canlı linki çekilemedi, verdiğiniz m3u linki atanıyor:", e)
+    # Siteden çekemezse senin verdiğin çalışan kesin m3u8 linkini taban alır
+    return "https://cbcsports-live.lg.mncdn.com/cbcsports_live/cbcsports/chunklist.m3u8"
 
-# Aktif kanalların linklerini çekiyoruz
+# Kanalların linklerini topluyoruz
 itv_link = itv_link_bul()
-arb_gunes_link = arb_gunes_link_bul()
+cbc_link = cbc_sport_link_bul()
 
-print(f"İTV Güncel Linki: {itv_link}")
-print(f"ARB Güneş Anlık Linki: {arb_gunes_link}")
+print(f"Güncel İTV Linki: {itv_link}")
+print(f"Güncel CBC Sport Linki: {cbc_link}")
 
-# YENİ İKİ KANALLI M3U FORMATI (ATV kaldırıldı, yeni ARB Güneş logosu eklendi)
+# M3U FORMATI (ARB Güneş silindi, CBC Sport yeni logosuyla eklendi)
 m3u_yapisi = f"""#EXTM3U
 #EXTINF:-1 tvg-id="ITV" tvg-logo="https://i.ibb.co/dsfZQ0Cq/itv.png" group-title="Azerbaijan",İctimai TV
 {itv_link}
-#EXTINF:-1 tvg-id="ARBGunes" tvg-logo="https://i.ibb.co/B5PVstQJ/gunes.jpg" group-title="Azerbaijan",ARB Güneş TV
-{arb_gunes_link}
+#EXTINF:-1 tvg-id="CBCSport" tvg-logo="https://i.ibb.co/pBpdbm2j/cbcs.png" group-title="Azerbaijan",CBC Sport
+{cbc_link}
 """
 
-# Ortak listem.m3u dosyasına kaydet
+# listem.m3u dosyasına kaydediyoruz
 with open("listem.m3u", "w", encoding="utf-8") as f:
     f.write(m3u_yapisi)
 
-print("Listem.m3u dosyası güncellendi: ATV silindi, ARB Güneş logosu yenilendi!")
+print("Listem.m3u dosyası İTV ve CBC Sport ile başarıyla güncellendi!")
