@@ -1,5 +1,5 @@
 #EXTM3U
 #EXTINF:-1 tvg-id="ITV" tvg-logo="https://i.ibb.co/dsfZQ0Cq/itv.png" group-title="Azerbaijan",İctimai TV
 https://live.itv.az/itv.m3u8
-#EXTINF:-1 tvg-id="ATV" tvg-logo="https://i.ibb.co/JRy9jg98/atv.png" group-title="Azerbaijan",ATV Azerbaijan
-https://lives.atv.az:5443/ATV_TV_STREAM/streams/atvcanli.m3u8
+#EXTINF:-1 tvg-id="ARBGunes" tvg-logo="https://i.ibb.co/B5PVstQJ/gunes.jpg" group-title="Azerbaijan",ARB Güneş TV
+https://yayin2.canlitv.fun/live/arbgunes.stream/chunklist.m3u8
