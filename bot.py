@@ -20,7 +20,7 @@ def itv_link_bul():
         print("İTV linki çekilemedi, yedek atanıyor:", e)
     return "https://live.itv.az/itv.m3u8"
 
-# 2. KANAL: CBC Sport (Dinamik arayıcı ve kaynak korumalı)
+# 2. KANAL: CBC Sport (Dinamik arayıcı)
 def cbc_sport_link_bul():
     url = "https://cbcsport.az/live/"
     headers = {
@@ -39,20 +39,43 @@ def cbc_sport_link_bul():
         print("CBC Sport canlı linki çekilemedi, yedek atanıyor:", e)
     return "https://cbcsports-live.lg.mncdn.com/cbcsports_live/cbcsports/chunklist.m3u8"
 
-# Linkleri çekiyoruz
+# 3. KANAL: AzTV (Dinamik token arayıcı)
+def aztv_link_bul():
+    url = "https://aztv.az/az/live"
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+        "Referer": "https://aztv.az/"
+    }
+    try:
+        response = requests.get(url, headers=headers, timeout=15)
+        linkler = re.findall(r'(https?://[^\s"\']+\.m3u8[^\s"\']*)', response.text)
+        if linkler:
+            for link in linkler:
+                if "azertv" in link.lower() or "yodacdn" in link.lower():
+                    return link
+            return linkler[0]
+    except Exception as e:
+        print("AzTV linki çekilemedi, verdiğiniz m3u linki yedek atanıyor:", e)
+    return "https://str.yodacdn.net/azertv/tracks-v3a1/mono.ts.m3u8"
+
+# Bütün canlı yayın linklerini topluyoruz
 itv_link = itv_link_bul()
 cbc_link = cbc_sport_link_bul()
+aztv_link = aztv_link_bul()
 
 print(f"Güncel İTV Linki: {itv_link}")
 print(f"Güncel CBC Sport Linki: {cbc_link}")
+print(f"Güncel AzTV Linki: {aztv_link}")
 
-# Boşluk hatasını önlemek için listeyi satır satır ve en başta boşluk olmadan oluşturuyoruz
+# Listeyi güvenli formatta satır satır birleştiriyoruz (AzTV logosu güncellendi)
 m3u_satirlari = [
     "#EXTM3U",
     f'#EXTINF:-1 tvg-id="ITV" tvg-logo="https://i.ibb.co/dsfZQ0Cq/itv.png" group-title="Azerbaijan",İctimai TV',
     f"{itv_link}",
     f'#EXTINF:-1 tvg-id="CBCSport" tvg-logo="https://i.ibb.co/pBpdbm2j/cbcs.png" group-title="Azerbaijan",CBC Sport',
-    f"{cbc_link}"
+    f"{cbc_link}",
+    f'#EXTINF:-1 tvg-id="AzTV" tvg-logo="https://i.ibb.co/dwNh0pyg/aztv.jpg" group-title="Azerbaijan",AzTV',
+    f"{aztv_link}"
 ]
 
 m3u_yapisi = "\n".join(m3u_satirlari)
@@ -61,4 +84,4 @@ m3u_yapisi = "\n".join(m3u_satirlari)
 with open("listem.m3u", "w", encoding="utf-8") as f:
     f.write(m3u_yapisi)
 
-print("Listem.m3u dosyası boşluksuz ve güvenli şekilde güncellendi!")
+print("Listem.m3u dosyası AzTV'nin yeni logosuyla başarıyla güncellendi!")
