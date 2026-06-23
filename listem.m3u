@@ -1,2 +1,3 @@
 #EXTM3U
-# 
+#EXTINF:-1 tvg-id="ITV" tvg-logo="https://i.ibb.co/dsfZQ0Cq/itv.png" group-title="Azerbaijan",İctimai TV
+https://live.itv.az/itv.m3u8
