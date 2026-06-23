@@ -1,7 +1,7 @@
 import requests
 import re
 
-# 1. KANAL: İctimai TV (Dinamik arayıcı)
+# 1. KANAL: İctimai TV (Dinamik arayıcı - Sorunsuz çalışıyor)
 def itv_link_bul():
     url = "https://live.itv.az/player.php"
     headers = {
@@ -20,7 +20,7 @@ def itv_link_bul():
         print("İTV linki çekilemedi, yedek atanıyor:", e)
     return "https://live.itv.az/itv.m3u8"
 
-# 2. KANAL: CBC Sport (Dinamik arayıcı)
+# 2. KANAL: CBC Sport (Dinamik arayıcı - Sorunsuz çalışıyor)
 def cbc_sport_link_bul():
     url = "https://cbcsport.az/live/"
     headers = {
@@ -39,35 +39,18 @@ def cbc_sport_link_bul():
         print("CBC Sport canlı linki çekilemedi, yedek atanıyor:", e)
     return "https://cbcsports-live.lg.mncdn.com/cbcsports_live/cbcsports/chunklist.m3u8"
 
-# 3. KANAL: AzTV (Dinamik token arayıcı)
-def aztv_link_bul():
-    url = "https://aztv.az/az/live"
-    headers = {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
-        "Referer": "https://aztv.az/"
-    }
-    try:
-        response = requests.get(url, headers=headers, timeout=15)
-        linkler = re.findall(r'(https?://[^\s"\']+\.m3u8[^\s"\']*)', response.text)
-        if linkler:
-            for link in linkler:
-                if "azertv" in link.lower() or "yodacdn" in link.lower():
-                    return link
-            return linkler[0]
-    except Exception as e:
-        print("AzTV linki çekilemedi, verdiğiniz m3u linki yedek atanıyor:", e)
-    return "https://str.yodacdn.net/azertv/tracks-v3a1/mono.ts.m3u8"
-
-# Bütün canlı yayın linklerini topluyoruz
+# Dinamik kanalların linklerini çekiyoruz
 itv_link = itv_link_bul()
 cbc_link = cbc_sport_link_bul()
-aztv_link = aztv_link_bul()
+
+# 3. KANAL: AzTV (Web sitesi botu engellediği için doğrudan korumasız ve şifresiz ana CDN linkini gömüyoruz)
+aztv_link = "https://str.yodacdn.net/azertv/index.m3u8"
 
 print(f"Güncel İTV Linki: {itv_link}")
 print(f"Güncel CBC Sport Linki: {cbc_link}")
-print(f"Güncel AzTV Linki: {aztv_link}")
+print(f"Sabit AzTV Linki: {aztv_link}")
 
-# Listeyi güvenli formatta satır satır birleştiriyoruz (AzTV logosu güncellendi)
+# M3U Formatı - Satır satır güvenli birleştirme (Yeni AzTV logosu dahil)
 m3u_satirlari = [
     "#EXTM3U",
     f'#EXTINF:-1 tvg-id="ITV" tvg-logo="https://i.ibb.co/dsfZQ0Cq/itv.png" group-title="Azerbaijan",İctimai TV',
@@ -84,4 +67,4 @@ m3u_yapisi = "\n".join(m3u_satirlari)
 with open("listem.m3u", "w", encoding="utf-8") as f:
     f.write(m3u_yapisi)
 
-print("Listem.m3u dosyası AzTV'nin yeni logosuyla başarıyla güncellendi!")
+print("Listem.m3u dosyası engellere takılmayacak şekilde kalıcı olarak güncellendi!")
