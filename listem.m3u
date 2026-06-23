@@ -1,3 +1,5 @@
 #EXTM3U
 #EXTINF:-1 tvg-id="ITV" tvg-logo="https://i.ibb.co/dsfZQ0Cq/itv.png" group-title="Azerbaijan",İctimai TV
 https://live.itv.az/itv.m3u8
+#EXTINF:-1 tvg-id="ATV" tvg-logo="https://i.ibb.co/JRy9jg98/atv.png" group-title="Azerbaijan",ATV Azerbaijan
+https://live.atv.az/atv/index.m3u8
