@@ -18,10 +18,12 @@ https://lives.atv.az:5443/ATV_TV_STREAM/streams/atvcanli.m3u8
 #EXTINF:-1 tvg-id="BakuTV" tvg-logo="https://i.ibb.co/23N9F7s8/bakutvv.png" group-title="Azerbaijan",Baku TV
 https://rtmp.baku.tv/hls/bakutv_1080p.m3u8
 #EXTINF:-1 tvg-id="SpaceTV" tvg-logo="https://i.ibb.co/v49CGvL2/spacetv.jpg" group-title="Azerbaijan",Space TV
-http://149.255.152.199/space.m3u8?bandwidth=6096&e=1782397125&playlistlength=5&shift=0&sid=coder_75&token=fcbbb04a78ce3d7a2ba6b1decb89552a&user=37076
+http://149.255.152.199/space.m3u8?bandwidth=6096&e=1782397799&playlistlength=5&shift=0&sid=coder_75&token=ec2ae9a01658f04366c4636b1838b717&user=37076
 #EXTINF:-1 tvg-id="ARBHD" tvg-logo="https://i.ibb.co/fY05FcdF/arbhd.jpg" group-title="Azerbaijan",ARB HD
-http://149.255.152.199/arbhd.m3u8?bandwidth=6096&e=1782397127&playlistlength=5&shift=0&sid=coder_62&token=6bf364d8108a90dd632e8882dbe5cac6&user=37076
+http://149.255.152.199/arbhd.m3u8?bandwidth=6096&e=1782397801&playlistlength=5&shift=0&sid=coder_62&token=b3d5d509e1f8c91d2e05761a2c090322&user=37076
 #EXTINF:-1 tvg-id="DunyaTV" tvg-logo="https://i.ibb.co/whNG1qY9/dunyatv.jpg" group-title="Azerbaijan",Dunya TV
-http://149.255.152.199/dunya.m3u8?bandwidth=2096&e=1782397129&playlistlength=5&shift=0&sid=coder_53&token=20a51bea3597db14af95d9ba1957cad0&user=37076
+http://149.255.152.199/dunya.m3u8?bandwidth=2096&e=1782397802&playlistlength=5&shift=0&sid=coder_53&token=16079a07b5e8615094d315838dd7bd3e&user=37076
 #EXTINF:-1 tvg-id="CBCTV" tvg-logo="https://i.ibb.co/mVjVMH0J/cbcaz.png" group-title="Azerbaijan",CBC TV
-http://149.255.152.199/cbcaz.m3u8?bandwidth=2096&e=1782397131&playlistlength=5&shift=0&sid=coder_52&token=d32061b6af41b8279181e1a687f0e102&user=37076
+http://149.255.152.199/cbcaz.m3u8?bandwidth=2096&e=1782397804&playlistlength=5&shift=0&sid=coder_52&token=2c681b414c9e90d22ad20affc8ad61d2&user=37076
+#EXTINF:-1 tvg-id="NaxcivanTV" tvg-logo="https://i.ibb.co/bgyrK5r2/NTV.png" group-title="Azerbaijan",Naxçıvan TV
+https://str.yodacdn.net/ntv/mono.m3u8?token=eyJpcCI6IjE1OC4xODEuNDUuNjciLCJ1YSI6Ik1vemlsbGEvNS4wIChXaW5kb3dzIE5UIDEwLjA7IFdpbjY0OyB4NjQpIEFwcGxlV2ViS2l0LzUzNy4zNiAoS0hUTUwsIGxpa2EgR2Vja28pIENocm9tZS8xNDkuMC4wLjAgU2FmYXJpLzUzNy4zNiIsImV4cCI6MTc4MjI0MzM2MSwianRpIjoiZGRiYTIyZDA5NTI0ZGRjZCJ9.2+7AgtxqqYc7QqKtDL9bO30SLXSmEZ7GjFp3KSK4gPg%3D
