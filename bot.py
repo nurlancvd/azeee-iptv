@@ -76,12 +76,28 @@ def arb_link_bul():
         print("ARB HD token çekilemedi:", e)
     return "http://149.255.152.199/arbhd.m3u8?bandwidth=6096&e=1782390335&playlistlength=5&shift=0&sid=coder_62&token=1f22fc47e451e32d285081f4423f5132&user=37076"
 
+# 12. KANAL: Dunya TV Dinamik Çözücü
+def dunya_link_bul():
+    # Diğer coder kanalları gibi ana stream kontrol paneline istek atıyoruz
+    url = "http://149.255.152.218/channels.aspx?channel=dunya.m3u8"
+    try:
+        response = requests.get(url, headers=headers, timeout=10)
+        token_match = re.search(r'token=([a-f0-9]+)', response.text)
+        e_match = re.search(r'e=([0-9]+)', response.text)
+        token = token_match.group(1) if token_match else "27ec3d0239833be43b818aa00fa9995d"
+        e_val = e_match.group(1) if e_match else "1782391302"
+        return f"http://149.255.152.199/dunya.m3u8?bandwidth=2096&e={e_val}&playlistlength=5&shift=0&sid=coder_53&token={token}&user=37076"
+    except Exception as e:
+        print("Dunya TV token çekilemedi:", e)
+    return "http://149.255.152.199/dunya.m3u8?bandwidth=2096&e=1782391302&playlistlength=5&shift=0&sid=coder_53&token=27ec3d0239833be43b818aa00fa9995d&user=37076"
+
 # Linkleri ve Ortak Token'ı topluyoruz
 itv_link = itv_link_bul()
 cbc_link = cbc_sport_link_bul()
 guncel_token = yoda_token_bul()
 space_link = space_link_bul()
 arb_link = arb_link_bul()
+dunya_link = dunya_link_bul()
 
 # Eğer site botu o an engellediyse yoda grubu için yedek token devreye girer
 if not guncel_token:
@@ -122,7 +138,9 @@ m3u_satirlari = [
     f'#EXTINF:-1 tvg-id="SpaceTV" tvg-logo="https://i.ibb.co/v49CGvL2/spacetv.jpg" group-title="Azerbaijan",Space TV',
     f"{space_link}",
     f'#EXTINF:-1 tvg-id="ARBHD" tvg-logo="https://i.ibb.co/fY05FcdF/arbhd.jpg" group-title="Azerbaijan",ARB HD',
-    f"{arb_link}"
+    f"{arb_link}",
+    f'#EXTINF:-1 tvg-id="DunyaTV" tvg-logo="https://i.ibb.co/whNG1qY9/dunyatv.jpg" group-title="Azerbaijan",Dunya TV',
+    f"{dunya_link}"
 ]
 
 m3u_yapisi = "\n".join(m3u_satirlari)
@@ -131,4 +149,4 @@ m3u_yapisi = "\n".join(m3u_satirlari)
 with open("listem.m3u", "w", encoding="utf-8") as f:
     f.write(m3u_yapisi)
 
-print("Listem.m3u dosyası ARB HD dahil 11 kanalla başarıyla güncellendi!")
+print("Listem.m3u dosyası Dunya TV dahil 12 kanalla başarıyla güncellendi!")
