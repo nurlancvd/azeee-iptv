@@ -61,15 +61,16 @@ if not guncel_token:
 aztv_link = f"https://str.yodacdn.net/azertv/tracks-v3a1/mono.ts.m3u8?token={guncel_token}"
 medeniyyet_link = f"https://str2.yodacdn.net/medeniyyettele/tracks-v3a1/mono.ts.m3u8?token={guncel_token}"
 idman_link = f"https://str2.yodacdn.net/idmantele/tracks-v3a1/mono.ts.m3u8?token={guncel_token}"
-
-# 8. KANAL: Real TV (Dinamik token havuzuna dahil edildi)
 real_link = f"https://str.yodacdn.net/real/tracks-v1a1/mono.ts.m3u8?token={guncel_token}"
 
-# Sabit CDN Kanalları
+# Sabit CDN Kanalları (Token istemeyenler)
 xezer_link = "https://xezerxeber.az/stream/stream.m3u8"
 atv_link = "https://lives.atv.az:5443/ATV_TV_STREAM/streams/atvcanli.m3u8"
 
-# M3U Format Yapısı (Real TV eklendi)
+# 9. KANAL: Baku TV (1080p Sabit CDN linki)
+baku_link = "https://rtmp.baku.tv/hls/bakutv_1080p.m3u8"
+
+# M3U Format Yapısı (Baku TV eklendi)
 m3u_satirlari = [
     "#EXTM3U",
     f'#EXTINF:-1 tvg-id="ITV" tvg-logo="https://i.ibb.co/dsfZQ0Cq/itv.png" group-title="Azerbaijan",İctimai TV',
@@ -87,7 +88,9 @@ m3u_satirlari = [
     f'#EXTINF:-1 tvg-id="XezerTV" tvg-logo="https://i.ibb.co/q3BGCK8n/xezer.png" group-title="Azerbaijan",Xezer TV',
     f"{xezer_link}",
     f'#EXTINF:-1 tvg-id="AzadAzerbaycanTV" tvg-logo="https://i.ibb.co/rDHp5Fk/azad.png" group-title="Azerbaijan",Azad Azerbaycan TV',
-    f"{atv_link}"
+    f"{atv_link}",
+    f'#EXTINF:-1 tvg-id="BakuTV" tvg-logo="https://i.ibb.co/23N9F7s8/bakutvv.png" group-title="Azerbaijan",Baku TV',
+    f"{baku_link}"
 ]
 
 m3u_yapisi = "\n".join(m3u_satirlari)
@@ -96,4 +99,4 @@ m3u_yapisi = "\n".join(m3u_satirlari)
 with open("listem.m3u", "w", encoding="utf-8") as f:
     f.write(m3u_yapisi)
 
-print("Listem.m3u dosyası Real TV dahil 8 kanalla başarıyla güncellendi!")
+print("Listem.m3u dosyası Baku TV dahil 9 kanalla başarıyla güncellendi!")
