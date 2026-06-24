@@ -35,7 +35,7 @@ def cbc_sport_link_bul():
         print("CBC Sport çekilemedi, yedek atanıyor:", e)
     return "https://cbcsports-live.lg.mncdn.com/cbcsports_live/cbcsports/chunklist.m3u8"
 
-# YODACDN (AzTV, Medeniyyet, İdman, Real TV) Ortak Token Çözücü
+# YODACDN (AzTV, Medeniyyet, İdman, Real TV, Naxçıvan TV) Ortak Token Çözücü
 def yoda_token_bul():
     url = "https://aztv.az/az/live"
     try:
@@ -117,11 +117,14 @@ cbc_az_link = cbc_az_link_bul()
 if not guncel_token:
     guncel_token = "eyJpcCI6IjE1OC4xODEuNDUuNjciLCJ1YSI6Ik1vemlsbGEvNS4wIChXaW5kb3dzIE5UIDEwLjA7IFdpbjY0OyB4NjQpIEFwcGxlV2ViS2l0LzUzNy4zNiAoS0hUTUwsIGxpa2EgR2Vja28pIENocm9tZS8xNDkuMC4wLjAgU2FmYXJpLzUzNy4zNiIsImV4cCI6MTc4MjI0MzM2MSwianRpIjoiZGRiYTIyZDA5NTI0ZGRjZCJ9.2+7AgtxqqYc7QqKtDL9bO30SLXSmEZ7GjFp3KSK4gPg%3D"
 
-# Kanalları güncel dinamik token ile inşa ediyoruz
+# Kanalları güncel dinamik token ile inşa ediyoruz (Yoda Havuzu)
 aztv_link = f"https://str.yodacdn.net/azertv/tracks-v3a1/mono.ts.m3u8?token={guncel_token}"
 medeniyyet_link = f"https://str2.yodacdn.net/medeniyyettele/tracks-v3a1/mono.ts.m3u8?token={guncel_token}"
 idman_link = f"https://str2.yodacdn.net/idmantele/tracks-v3a1/mono.ts.m3u8?token={guncel_token}"
 real_link = f"https://str.yodacdn.net/real/tracks-v1a1/mono.ts.m3u8?token={guncel_token}"
+
+# 14. KANAL: Naxçıvan TV (Yoda havuzuna eklendi)
+ntv_link = f"https://str.yodacdn.net/ntv/mono.m3u8?token={guncel_token}"
 
 # Sabit CDN Kanalları (Token istemeyenler)
 xezer_link = "https://xezerxeber.az/stream/stream.m3u8"
@@ -156,7 +159,9 @@ m3u_satirlari = [
     f'#EXTINF:-1 tvg-id="DunyaTV" tvg-logo="https://i.ibb.co/whNG1qY9/dunyatv.jpg" group-title="Azerbaijan",Dunya TV',
     f"{dunya_link}",
     f'#EXTINF:-1 tvg-id="CBCTV" tvg-logo="https://i.ibb.co/mVjVMH0J/cbcaz.png" group-title="Azerbaijan",CBC TV',
-    f"{cbc_az_link}"
+    f"{cbc_az_link}",
+    f'#EXTINF:-1 tvg-id="NaxcivanTV" tvg-logo="https://i.ibb.co/bgyrK5r2/NTV.png" group-title="Azerbaijan",Naxçıvan TV',
+    f"{ntv_link}"
 ]
 
 m3u_yapisi = "\n".join(m3u_satirlari)
@@ -165,4 +170,4 @@ m3u_yapisi = "\n".join(m3u_satirlari)
 with open("listem.m3u", "w", encoding="utf-8") as f:
     f.write(m3u_yapisi)
 
-print("Listem.m3u dosyası CBC TV dahil 13 kanalla başarıyla güncellendi!")
+print("Listem.m3u dosyası Naxçıvan TV dahil 14 kanalla başarıyla güncellendi!")
