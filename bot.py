@@ -48,6 +48,20 @@ def yoda_token_bul():
         print("AzTV sitesi botu engelledi, yedek token devreye giriyor.")
     return None
 
+# 7. KANAL: Xezer TV Dinamik Çözücü (Yeni eklenen dinamik fonksiyon)
+def xezer_link_bul():
+    url = "http://149.255.152.218/channels.aspx?channel=xazer.m3u8"
+    try:
+        response = requests.get(url, headers=headers, timeout=10)
+        token_match = re.search(r'token=([a-f0-9]+)', response.text)
+        e_match = re.search(r'e=([0-9]+)', response.text)
+        token = token_match.group(1) if token_match else "a4e6bcd7297a4cd917ce916ef9665bdb"
+        e_val = e_match.group(1) if e_match else "1782410890"
+        return f"http://149.255.152.199/xazer.m3u8?bandwidth=2096&e={e_val}&playlistlength=5&shift=0&sid=coder_53&token={token}&user=37076"
+    except Exception as e:
+        print("Xezer TV token çekilemedi:", e)
+    return "http://149.255.152.199/xazer.m3u8?bandwidth=2096&e=1782410890&playlistlength=5&shift=0&sid=coder_53&token=a4e6bcd7297a4cd917ce916ef9665bdb&user=37076"
+
 # 10. KANAL: Space TV Dinamik Çözücü
 def space_link_bul():
     url = "http://149.255.152.218/channels.aspx?channel=space.m3u8"
@@ -122,6 +136,7 @@ def arb_gunes_link_bul():
 itv_link = itv_link_bul()
 cbc_link = cbc_sport_link_bul()
 guncel_token = yoda_token_bul()
+xezer_link = xezer_link_bul() # Dinamik link çağrılıyor
 space_link = space_link_bul()
 arb_link = arb_link_bul()
 dunya_link = dunya_link_bul()
@@ -138,12 +153,9 @@ medeniyyet_link = f"https://str2.yodacdn.net/medeniyyettele/tracks-v3a1/mono.ts.
 idman_link = f"https://str2.yodacdn.net/idmantele/tracks-v3a1/mono.ts.m3u8?token={guncel_token}"
 real_link = f"https://str.yodacdn.net/real/tracks-v1a1/mono.ts.m3u8?token={guncel_token}"
 ntv_link = f"https://str.yodacdn.net/ntv/mono.m3u8?token={guncel_token}"
-
-# 16. KANAL: Biznes TV (Yoda havuzuna dinamik olarak eklendi)
 biznes_link = f"https://str.yodacdn.net/biznestv/tracks-v1a1/mono.ts.m3u8?token={guncel_token}"
 
 # Sabit CDN Kanalları (Token istemeyenler)
-xezer_link = "https://xezerxeber.az/stream/stream.m3u8"
 atv_link = "https://lives.atv.az:5443/ATV_TV_STREAM/streams/atvcanli.m3u8"
 baku_link = "https://rtmp.baku.tv/hls/bakutv_1080p.m3u8"
 
@@ -190,4 +202,4 @@ m3u_yapisi = "\n".join(m3u_satirlari)
 with open("listem.m3u", "w", encoding="utf-8") as f:
     f.write(m3u_yapisi)
 
-print("Listem.m3u dosyası Biznes TV dahil 16 kanalla başarıyla güncellendi!")
+print("Xezer TV dinamik hale getirilerek listem.m3u başarıyla güncellendi!")
