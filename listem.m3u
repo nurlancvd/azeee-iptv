@@ -18,4 +18,6 @@ https://lives.atv.az:5443/ATV_TV_STREAM/streams/atvcanli.m3u8
 #EXTINF:-1 tvg-id="BakuTV" tvg-logo="https://i.ibb.co/23N9F7s8/bakutvv.png" group-title="Azerbaijan",Baku TV
 https://rtmp.baku.tv/hls/bakutv_1080p.m3u8
 #EXTINF:-1 tvg-id="SpaceTV" tvg-logo="https://i.ibb.co/v49CGvL2/spacetv.jpg" group-title="Azerbaijan",Space TV
-http://149.255.152.199/space.m3u8?bandwidth=6096&e=1782390056&playlistlength=5&shift=0&sid=coder_75&token=0759e76e91d9f5d566b8ac8f2d661ac8&user=37076
+http://149.255.152.199/space.m3u8?bandwidth=6096&e=1782390846&playlistlength=5&shift=0&sid=coder_75&token=ef7b1ba0be0e32ad8ccd43716922e145&user=37076
+#EXTINF:-1 tvg-id="ARBHD" tvg-logo="https://i.ibb.co/fY05FcdF/arbhd.jpg" group-title="Azerbaijan",ARB HD
+http://149.255.152.199/arbhd.m3u8?bandwidth=6096&e=1782390847&playlistlength=5&shift=0&sid=coder_62&token=4acca7c5eee9fb6b876b07732c24fbec&user=37076
