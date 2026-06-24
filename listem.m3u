@@ -18,8 +18,8 @@ https://lives.atv.az:5443/ATV_TV_STREAM/streams/atvcanli.m3u8
 #EXTINF:-1 tvg-id="BakuTV" tvg-logo="https://i.ibb.co/23N9F7s8/bakutvv.png" group-title="Azerbaijan",Baku TV
 https://rtmp.baku.tv/hls/bakutv_1080p.m3u8
 #EXTINF:-1 tvg-id="SpaceTV" tvg-logo="https://i.ibb.co/v49CGvL2/spacetv.jpg" group-title="Azerbaijan",Space TV
-http://149.255.152.199/space.m3u8?bandwidth=6096&e=1782391535&playlistlength=5&shift=0&sid=coder_75&token=168b1be2f3d56760c8999ceda0cf22b5&user=37076
+http://149.255.152.199/space.m3u8?bandwidth=6096&e=1782396068&playlistlength=5&shift=0&sid=coder_75&token=0a2a39080f804bcdc9f7f13a0cc7cb2c&user=37076
 #EXTINF:-1 tvg-id="ARBHD" tvg-logo="https://i.ibb.co/fY05FcdF/arbhd.jpg" group-title="Azerbaijan",ARB HD
-http://149.255.152.199/arbhd.m3u8?bandwidth=6096&e=1782391537&playlistlength=5&shift=0&sid=coder_62&token=d9413374fa28f22e6796f599bb3ac374&user=37076
+http://149.255.152.199/arbhd.m3u8?bandwidth=6096&e=1782396070&playlistlength=5&shift=0&sid=coder_62&token=ab139b0de785787c76fba89bebd2f260&user=37076
 #EXTINF:-1 tvg-id="DunyaTV" tvg-logo="https://i.ibb.co/whNG1qY9/dunyatv.jpg" group-title="Azerbaijan",Dunya TV
-http://149.255.152.199/dunya.m3u8?bandwidth=2096&e=1782391539&playlistlength=5&shift=0&sid=coder_53&token=2592f0ac5e01bcf3185c3f52b7e489b0&user=37076
+http://149.255.152.199/dunya.m3u8?bandwidth=2096&e=1782396072&playlistlength=5&shift=0&sid=coder_53&token=87e6fab0fd9744edca0e6efcb31c2986&user=37076
