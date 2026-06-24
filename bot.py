@@ -48,30 +48,40 @@ def yoda_token_bul():
         print("AzTV sitesi botu engelledi, yedek token devreye giriyor.")
     return None
 
-# CODER HLS SUNUCUSU (Space TV & ARB HD) Token Çözücü
-def coder_token_bul(channel_name, default_token, default_e, sid):
-    url = f"http://149.255.152.218/channels.aspx?channel={channel_name}.m3u8"
+# 10. KANAL: Space TV Dinamik Çözücü
+def space_link_bul():
+    url = "http://149.255.152.218/channels.aspx?channel=space.m3u8"
     try:
         response = requests.get(url, headers=headers, timeout=10)
         token_match = re.search(r'token=([a-f0-9]+)', response.text)
         e_match = re.search(r'e=([0-9]+)', response.text)
-        
-        token = token_match.group(1) if token_match else default_token
-        e_val = e_match.group(1) if e_match else default_e
-        
-        return f"http://149.255.152.199/{channel_name}.m3u8?bandwidth=6096&e={e_val}&playlistlength=5&shift=0&sid={sid}&token={token}&user=37076"
+        token = token_match.group(1) if token_match else "0ed5c63f2d6189a7198b3c7e0b330f40"
+        e_val = e_match.group(1) if e_match else "1782389870"
+        return f"http://149.255.152.199/space.m3u8?bandwidth=6096&e={e_val}&playlistlength=5&shift=0&sid=coder_75&token={token}&user=37076"
     except Exception as e:
-        print(f"{channel_name} token çekilemedi, yedek link atanıyor:", e)
-    return f"http://149.255.152.199/{channel_name}.m3u8?bandwidth=6096&e={default_e}&playlistlength=5&shift=0&sid={sid}&token={default_token}&user=37076"
+        print("Space TV token çekilemedi:", e)
+    return "http://149.255.152.199/space.m3u8?bandwidth=6096&e=1782389870&playlistlength=5&shift=0&sid=coder_75&token=0ed5c63f2d6189a7198b3c7e0b330f40&user=37076"
 
-# Linkleri ve Token'ları topluyoruz
+# 11. KANAL: ARB HD Dinamik Çözücü
+def arb_link_bul():
+    url = "http://149.255.152.218/channels.aspx?channel=arbhd.m3u8"
+    try:
+        response = requests.get(url, headers=headers, timeout=10)
+        token_match = re.search(r'token=([a-f0-9]+)', response.text)
+        e_match = re.search(r'e=([0-9]+)', response.text)
+        token = token_match.group(1) if token_match else "1f22fc47e451e32d285081f4423f5132"
+        e_val = e_match.group(1) if e_match else "1782390335"
+        return f"http://149.255.152.199/arbhd.m3u8?bandwidth=6096&e={e_val}&playlistlength=5&shift=0&sid=coder_62&token={token}&user=37076"
+    except Exception as e:
+        print("ARB HD token çekilemedi:", e)
+    return "http://149.255.152.199/arbhd.m3u8?bandwidth=6096&e=1782390335&playlistlength=5&shift=0&sid=coder_62&token=1f22fc47e451e32d285081f4423f5132&user=37076"
+
+# Linkleri ve Ortak Token'ı topluyoruz
 itv_link = itv_link_bul()
 cbc_link = cbc_sport_link_bul()
 guncel_token = yoda_token_bul()
-
-# Space TV ve ARB HD linklerini dinamik tarayıcıyla alıyoruz
-space_link = coder_token_bul("space", "0ed5c63f2d6189a7198b3c7e0b330f40", "1782389870", "coder_75")
-arb_link = coder_token_bul("arbhd", "1f22fc47e451e32d285081f4423f5132", "1782390335", "coder_62")
+space_link = space_link_bul()
+arb_link = arb_link_bul()
 
 # Eğer site botu o an engellediyse yoda grubu için yedek token devreye girer
 if not guncel_token:
@@ -88,7 +98,7 @@ xezer_link = "https://xezerxeber.az/stream/stream.m3u8"
 atv_link = "https://lives.atv.az:5443/ATV_TV_STREAM/streams/atvcanli.m3u8"
 baku_link = "https://rtmp.baku.tv/hls/bakutv_1080p.m3u8"
 
-# M3U Format Yapısı (ARB HD eklendi)
+# M3U Format Yapısı
 m3u_satirlari = [
     "#EXTM3U",
     f'#EXTINF:-1 tvg-id="ITV" tvg-logo="https://i.ibb.co/dsfZQ0Cq/itv.png" group-title="Azerbaijan",İctimai TV',
@@ -103,4 +113,22 @@ m3u_satirlari = [
     f"{idman_link}",
     f'#EXTINF:-1 tvg-id="RealTV" tvg-logo="https://i.ibb.co/Rpk9CspD/realtv.jpg" group-title="Azerbaijan",Real TV',
     f"{real_link}",
-    f'#EXTINF:-1 tvg-id="XezerTV" tvg-logo="
+    f'#EXTINF:-1 tvg-id="XezerTV" tvg-logo="https://i.ibb.co/q3BGCK8n/xezer.png" group-title="Azerbaijan",Xezer TV',
+    f"{xezer_link}",
+    f'#EXTINF:-1 tvg-id="AzadAzerbaycanTV" tvg-logo="https://i.ibb.co/rDHp5Fk/azad.png" group-title="Azerbaijan",Azad Azerbaycan TV',
+    f"{atv_link}",
+    f'#EXTINF:-1 tvg-id="BakuTV" tvg-logo="https://i.ibb.co/23N9F7s8/bakutvv.png" group-title="Azerbaijan",Baku TV',
+    f"{baku_link}",
+    f'#EXTINF:-1 tvg-id="SpaceTV" tvg-logo="https://i.ibb.co/v49CGvL2/spacetv.jpg" group-title="Azerbaijan",Space TV',
+    f"{space_link}",
+    f'#EXTINF:-1 tvg-id="ARBHD" tvg-logo="https://i.ibb.co/fY05FcdF/arbhd.jpg" group-title="Azerbaijan",ARB HD',
+    f"{arb_link}"
+]
+
+m3u_yapisi = "\n".join(m3u_satirlari)
+
+# listem.m3u dosyasına kaydetme
+with open("listem.m3u", "w", encoding="utf-8") as f:
+    f.write(m3u_yapisi)
+
+print("Listem.m3u dosyası ARB HD dahil 11 kanalla başarıyla güncellendi!")
