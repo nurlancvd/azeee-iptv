@@ -35,7 +35,7 @@ def cbc_sport_link_bul():
         print("CBC Sport çekilemedi, yedek atanıyor:", e)
     return "https://cbcsports-live.lg.mncdn.com/cbcsports_live/cbcsports/chunklist.m3u8"
 
-# YODACDN (AzTV, Medeniyyet, İdman, Real TV, Naxçıvan TV, Biznes TV) Ortak Token Çözücü
+# YODACDN Ortak Token Çözücü
 def yoda_token_bul():
     url = "https://aztv.az/az/live"
     try:
@@ -48,7 +48,7 @@ def yoda_token_bul():
         print("AzTV sitesi botu engelledi, yedek token devreye giriyor.")
     return None
 
-# 7. KANAL: Xezer TV Dinamik Çözücü (Yeni eklenen dinamik fonksiyon)
+# 7. KANAL: Xezer TV Dinamik Çözücü
 def xezer_link_bul():
     url = "http://149.255.152.218/channels.aspx?channel=xazer.m3u8"
     try:
@@ -136,7 +136,7 @@ def arb_gunes_link_bul():
 itv_link = itv_link_bul()
 cbc_link = cbc_sport_link_bul()
 guncel_token = yoda_token_bul()
-xezer_link = xezer_link_bul() # Dinamik link çağrılıyor
+xezer_link = xezer_link_bul()
 space_link = space_link_bul()
 arb_link = arb_link_bul()
 dunya_link = dunya_link_bul()
@@ -154,6 +154,9 @@ idman_link = f"https://str2.yodacdn.net/idmantele/tracks-v3a1/mono.ts.m3u8?token
 real_link = f"https://str.yodacdn.net/real/tracks-v1a1/mono.ts.m3u8?token={guncel_token}"
 ntv_link = f"https://str.yodacdn.net/ntv/mono.m3u8?token={guncel_token}"
 biznes_link = f"https://str.yodacdn.net/biznestv/tracks-v1a1/mono.ts.m3u8?token={guncel_token}"
+
+# 17. KANAL: ARB 24 (Yoda havuzuna akıllıca eklendi)
+arb24_link = f"https://str.yodacdn.net/arb24/tracks-v1a1/mono.ts.m3u8?token={guncel_token}"
 
 # Sabit CDN Kanalları (Token istemeyenler)
 atv_link = "https://lives.atv.az:5443/ATV_TV_STREAM/streams/atvcanli.m3u8"
@@ -193,7 +196,9 @@ m3u_satirlari = [
     f'#EXTINF:-1 tvg-id="ARBGunes" tvg-logo="https://i.ibb.co/1GG5X2mb/gunestv.png" group-title="Azerbaijan",ARB Güneş',
     f"{arb_gunes_link}",
     f'#EXTINF:-1 tvg-id="BiznesTV" tvg-logo="https://i.ibb.co/k60QQDpX/biznestv.png" group-title="Azerbaijan",Biznes TV',
-    f"{biznes_link}"
+    f"{biznes_link}",
+    f'#EXTINF:-1 tvg-id="ARB24" tvg-logo="https://i.ibb.co/3mJSN4yT/arb24.png" group-title="Azerbaijan",ARB 24',
+    f"{arb24_link}"
 ]
 
 m3u_yapisi = "\n".join(m3u_satirlari)
@@ -202,4 +207,4 @@ m3u_yapisi = "\n".join(m3u_satirlari)
 with open("listem.m3u", "w", encoding="utf-8") as f:
     f.write(m3u_yapisi)
 
-print("Xezer TV dinamik hale getirilerek listem.m3u başarıyla güncellendi!")
+print("Listem.m3u dosyası ARB 24 dahil 17 kanalla başarıyla güncellendi!")
