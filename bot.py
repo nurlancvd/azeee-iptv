@@ -145,7 +145,7 @@ arb_gunes_link = arb_gunes_link_bul()
 
 # Eğer site botu o an engellediyse yoda grubu için yedek token devreye girer
 if not guncel_token:
-    guncel_token = "eyJpcCI6IjE1OC4xODEuNDUuNjciLCJ1YSI6Ik1vemlsbGEvNS4wIChXaW5kb3dzIE5UIDEwLjA7IFdpbjY0OyB4NjQpIEFwcGxlV2ViS2l0LzUzNy4zNiAoS0hUTUwsIGxpa2EgR2Vja28pIENocm9tZS8xNDkuMC4wLjAgU2FmYXJpLzUzNy4zNiIsImV4cCI6MTc4MjI0MzM2MSwianRpIjoiZGRiYTIyZDA5NTI0ZGRjZCJ9.2+7AgtxqqYc7QqKtDL9bO30SLXSmEZ7GjFp3KSK4gPg%3D"
+    guncel_token = "eyJpcCI6IjE1OC4xODEuNDUuNjciLCJ1YSI6Ik1vemlsbGEvNS4wIChXaW5kb3dzIE5UIDEwLjA7IFdpbjY0OyB4NjQpIEFwcGxlV2ViS2l0LzUzNy4zNiAoS0hUTUwsIGxpa2EgR2Vja28pIENocm9tZS8xNDkuMC4wLjAgU2FmYXJpLzUzNy4zNiIsImV4cCI6MTg4MjI0MzM2MSwianRpIjoiZGRiYTIyZDA5NTI0ZGRjZCJ9.2+7AgtxqqYc7QqKtDL9bO30SLXSmEZ7GjFp3KSK4gPg%3D"
 
 # Kanalları güncel dinamik token ile inşa ediyoruz (Yoda Havuzu)
 aztv_link = f"https://str.yodacdn.net/azertv/tracks-v3a1/mono.ts.m3u8?token={guncel_token}"
@@ -155,9 +155,10 @@ real_link = f"https://str.yodacdn.net/real/tracks-v1a1/mono.ts.m3u8?token={gunce
 ntv_link = f"https://str.yodacdn.net/ntv/mono.m3u8?token={guncel_token}"
 biznes_link = f"https://str.yodacdn.net/biznestv/tracks-v1a1/mono.ts.m3u8?token={guncel_token}"
 arb24_link = f"https://str.yodacdn.net/arb24/tracks-v1a1/mono.ts.m3u8?token={guncel_token}"
-
-# 18. KANAL: Qafqaz TV (İstediğin net m3u8 yapısına göre dinamik token eklenerek güncellendi)
 qafqaz_link = f"https://str.yodacdn.net/qafkaz/tracks-v1a1/mono.ts.m3u8?token={guncel_token}"
+
+# 19. KANAL: APA TV (Yoda Akıllı Havuzuna dahil edildi)
+apatv_link = f"https://str.yodacdn.net/apatv/tracks-v1a1/mono.ts.m3u8?token={guncel_token}"
 
 # Sabit CDN Kanalları (Token istemeyenler)
 atv_link = "https://lives.atv.az:5443/ATV_TV_STREAM/streams/atvcanli.m3u8"
@@ -201,7 +202,9 @@ m3u_satirlari = [
     f'#EXTINF:-1 tvg-id="ARB24" tvg-logo="https://i.ibb.co/3mJSN4yT/arb24.png" group-title="Azerbaijan",ARB 24',
     f"{arb24_link}",
     f'#EXTINF:-1 tvg-id="QafqazTV" tvg-logo="https://i.ibb.co/dsn5NM67/qafqaz-tv.png" group-title="Azerbaijan",Qafqaz TV',
-    f"{qafqaz_link}"
+    f"{qafqaz_link}",
+    f'#EXTINF:-1 tvg-id="APATV" tvg-logo="https://i.ibb.co/WNnQ0fw9/apatv.jpg" group-title="Azerbaijan",APA TV',
+    f"{apatv_link}"
 ]
 
 m3u_yapisi = "\n".join(m3u_satirlari)
@@ -210,4 +213,4 @@ m3u_yapisi = "\n".join(m3u_satirlari)
 with open("listem.m3u", "w", encoding="utf-8") as f:
     f.write(m3u_yapisi)
 
-print("Qafqaz TV net m3u8 şablonuyla listem.m3u dosyasına başarıyla işlendi!")
+print("Listem.m3u dosyası APA TV dahil 19 kanalla başarıyla güncellendi!")
