@@ -12,23 +12,23 @@ https://str2.yodacdn.net/idmantele/tracks-v3a1/mono.ts.m3u8?token=eyJpcCI6IjE1OC
 #EXTINF:-1 tvg-id="RealTV" tvg-logo="https://i.ibb.co/Rpk9CspD/realtv.jpg" group-title="Azerbaijan",Real TV
 https://str.yodacdn.net/real/tracks-v1a1/mono.ts.m3u8?token=eyJpcCI6IjE1OC4xODEuNDUuNjciLCJ1YSI6Ik1vemlsbGEvNS4wIChXaW5kb3dzIE5UIDEwLjA7IFdpbjY0OyB4NjQpIEFwcGxlV2ViS2l0LzUzNy4zNiAoS0hUTUwsIGxpa2EgR2Vja28pIENocm9tZS8xNDkuMC4wLjAgU2FmYXJpLzUzNy4zNiIsImV4cCI6MTg4MjI0MzM2MSwianRpIjoiZGRiYTIyZDA5NTI0ZGRjZCJ9.2+7AgtxqqYc7QqKtDL9bO30SLXSmEZ7GjFp3KSK4gPg%3D
 #EXTINF:-1 tvg-id="XezerTV" tvg-logo="https://i.ibb.co/q3BGCK8n/xezer.png" group-title="Azerbaijan",Xezer TV
-http://149.255.152.199/xazer.m3u8?bandwidth=2096&e=1782683461&playlistlength=5&shift=0&sid=coder_53&token=5c93b9f112a9352cebfef8d6b326f6df&user=37076
+http://149.255.152.199/xazer.m3u8?bandwidth=2096&e=1782698772&playlistlength=5&shift=0&sid=coder_53&token=6656d5cfdf0b65be81f1a7ed0773b817&user=37076
 #EXTINF:-1 tvg-id="AzadAzerbaycanTV" tvg-logo="https://i.ibb.co/rDHp5Fk/azad.png" group-title="Azerbaijan",Azad Azerbaycan TV
 https://lives.atv.az:5443/ATV_TV_STREAM/streams/atvcanli.m3u8
 #EXTINF:-1 tvg-id="BakuTV" tvg-logo="https://i.ibb.co/23N9F7s8/bakutvv.png" group-title="Azerbaijan",Baku TV
 https://rtmp.baku.tv/hls/bakutv_1080p.m3u8
 #EXTINF:-1 tvg-id="SpaceTV" tvg-logo="https://i.ibb.co/v49CGvL2/spacetv.jpg" group-title="Azerbaijan",Space TV
-http://149.255.152.199/space.m3u8?bandwidth=6096&e=1782683463&playlistlength=5&shift=0&sid=coder_75&token=9f672921651fd177beea40ee4eace1d5&user=37076
+http://149.255.152.199/space.m3u8?bandwidth=6096&e=1782698773&playlistlength=5&shift=0&sid=coder_75&token=bf2e8d089e9a44caca7473f6f5d621de&user=37076
 #EXTINF:-1 tvg-id="ARBHD" tvg-logo="https://i.ibb.co/fY05FcdF/arbhd.jpg" group-title="Azerbaijan",ARB HD
-http://149.255.152.199/arbhd.m3u8?bandwidth=6096&e=1782683465&playlistlength=5&shift=0&sid=coder_62&token=ad668c519cff9619f49700a36a2efc66&user=37076
+http://149.255.152.199/arbhd.m3u8?bandwidth=6096&e=1782698775&playlistlength=5&shift=0&sid=coder_62&token=fc5b1187a5b0d51fe4dbac942d8e7dff&user=37076
 #EXTINF:-1 tvg-id="DunyaTV" tvg-logo="https://i.ibb.co/whNG1qY9/dunyatv.jpg" group-title="Azerbaijan",Dunya TV
-http://149.255.152.199/dunya.m3u8?bandwidth=2096&e=1782683466&playlistlength=5&shift=0&sid=coder_53&token=a07f851bcec3d88851bf2bb5f27abeb9&user=37076
+http://149.255.152.199/dunya.m3u8?bandwidth=2096&e=1782391302&playlistlength=5&shift=0&sid=coder_53&token=27ec3d0239833be43b818aa00fa9995d&user=37076
 #EXTINF:-1 tvg-id="CBCTV" tvg-logo="https://i.ibb.co/mVjVMH0J/cbcaz.png" group-title="Azerbaijan",CBC TV
-http://149.255.152.199/cbcaz.m3u8?bandwidth=2096&e=1782683468&playlistlength=5&shift=0&sid=coder_52&token=187668c341c7fc3a037614d9b9eef99f&user=37076
+http://149.255.152.199/cbcaz.m3u8?bandwidth=2096&e=1782698778&playlistlength=5&shift=0&sid=coder_52&token=c780643ae539286fde5984631167c9c5&user=37076
 #EXTINF:-1 tvg-id="NaxcivanTV" tvg-logo="https://i.ibb.co/bgyrK5r2/NTV.png" group-title="Azerbaijan",Naxçıvan TV
 https://str.yodacdn.net/ntv/mono.m3u8?token=eyJpcCI6IjE1OC4xODEuNDUuNjciLCJ1YSI6Ik1vemlsbGEvNS4wIChXaW5kb3dzIE5UIDEwLjA7IFdpbjY0OyB4NjQpIEFwcGxlV2ViS2l0LzUzNy4zNiAoS0hUTUwsIGxpa2EgR2Vja28pIENocm9tZS8xNDkuMC4wLjAgU2FmYXJpLzUzNy4zNiIsImV4cCI6MTg4MjI0MzM2MSwianRpIjoiZGRiYTIyZDA5NTI0ZGRjZCJ9.2+7AgtxqqYc7QqKtDL9bO30SLXSmEZ7GjFp3KSK4gPg%3D
 #EXTINF:-1 tvg-id="ARBGunes" tvg-logo="https://i.ibb.co/1GG5X2mb/gunestv.png" group-title="Azerbaijan",ARB Güneş
-http://149.255.152.199/arbgunes.m3u8?bandwidth=2096&e=1782683470&playlistlength=5&shift=0&sid=coder_52&token=59e1154b85b2bca894e02f16408a4d56&user=37076
+http://149.255.152.199/arbgunes.m3u8?bandwidth=2096&e=1782698780&playlistlength=5&shift=0&sid=coder_52&token=41470dcce3fcfcc6534a5c6ec80f42c6&user=37076
 #EXTINF:-1 tvg-id="BiznesTV" tvg-logo="https://i.ibb.co/k60QQDpX/biznestv.png" group-title="Azerbaijan",Biznes TV
 https://str.yodacdn.net/biznestv/tracks-v1a1/mono.ts.m3u8?token=eyJpcCI6IjE1OC4xODEuNDUuNjciLCJ1YSI6Ik1vemlsbGEvNS4wIChXaW5kb3dzIE5UIDEwLjA7IFdpbjY0OyB4NjQpIEFwcGxlV2ViS2l0LzUzNy4zNiAoS0hUTUwsIGxpa2EgR2Vja28pIENocm9tZS8xNDkuMC4wLjAgU2FmYXJpLzUzNy4zNiIsImV4cCI6MTg4MjI0MzM2MSwianRpIjoiZGRiYTIyZDA5NTI0ZGRjZCJ9.2+7AgtxqqYc7QqKtDL9bO30SLXSmEZ7GjFp3KSK4gPg%3D
 #EXTINF:-1 tvg-id="ARB24" tvg-logo="https://i.ibb.co/3mJSN4yT/arb24.png" group-title="Azerbaijan",ARB 24
