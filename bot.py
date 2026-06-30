@@ -156,9 +156,10 @@ ntv_link = f"https://str.yodacdn.net/ntv/mono.m3u8?token={guncel_token}"
 biznes_link = f"https://str.yodacdn.net/biznestv/tracks-v1a1/mono.ts.m3u8?token={guncel_token}"
 arb24_link = f"https://str.yodacdn.net/arb24/tracks-v1a1/mono.ts.m3u8?token={guncel_token}"
 qafqaz_link = f"https://str.yodacdn.net/qafkaz/tracks-v1a1/mono.ts.m3u8?token={guncel_token}"
-
-# 19. KANAL: APA TV (Yoda Akıllı Havuzuna dahil edildi)
 apatv_link = f"https://str.yodacdn.net/apatv/tracks-v1a1/mono.ts.m3u8?token={guncel_token}"
+
+# 20. KANAL: Kanal S (Yoda akıllı havuzuna başarıyla entegre edildi)
+kanals_link = f"https://str.yodacdn.net/start/tracks-v1a1/mono.ts.m3u8?token={guncel_token}"
 
 # Sabit CDN Kanalları (Token istemeyenler)
 atv_link = "https://lives.atv.az:5443/ATV_TV_STREAM/streams/atvcanli.m3u8"
@@ -204,7 +205,9 @@ m3u_satirlari = [
     f'#EXTINF:-1 tvg-id="QafqazTV" tvg-logo="https://i.ibb.co/dsn5NM67/qafqaz-tv.png" group-title="Azerbaijan",Qafqaz TV',
     f"{qafqaz_link}",
     f'#EXTINF:-1 tvg-id="APATV" tvg-logo="https://i.ibb.co/WNnQ0fw9/apatv.jpg" group-title="Azerbaijan",APA TV',
-    f"{apatv_link}"
+    f"{apatv_link}",
+    f'#EXTINF:-1 tvg-id="KanalS" tvg-logo="https://i.ibb.co/RpgqMMct/Kanal-S.png" group-title="Azerbaijan",Kanal S',
+    f"{kanals_link}"
 ]
 
 m3u_yapisi = "\n".join(m3u_satirlari)
@@ -213,4 +216,4 @@ m3u_yapisi = "\n".join(m3u_satirlari)
 with open("listem.m3u", "w", encoding="utf-8") as f:
     f.write(m3u_yapisi)
 
-print("Listem.m3u dosyası APA TV dahil 19 kanalla başarıyla güncellendi!")
+print("Listem.m3u dosyası Kanal S dahil 20 kanalla başarıyla güncellendi!")
