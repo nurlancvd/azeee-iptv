@@ -157,9 +157,10 @@ biznes_link = f"https://str.yodacdn.net/biznestv/tracks-v1a1/mono.ts.m3u8?token=
 arb24_link = f"https://str.yodacdn.net/arb24/tracks-v1a1/mono.ts.m3u8?token={guncel_token}"
 qafqaz_link = f"https://str.yodacdn.net/qafkaz/tracks-v1a1/mono.ts.m3u8?token={guncel_token}"
 apatv_link = f"https://str.yodacdn.net/apatv/tracks-v1a1/mono.ts.m3u8?token={guncel_token}"
-
-# 20. KANAL: Kanal S (Yoda akıllı havuzuna başarıyla entegre edildi)
 kanals_link = f"https://str.yodacdn.net/start/tracks-v1a1/mono.ts.m3u8?token={guncel_token}"
+
+# 21. KANAL: MTV Azerbaijan (Yoda akıllı havuzuna başarıyla entegre edildi)
+mtvaz_link = f"https://str.yodacdn.net/mtvaz/tracks-v1a1/mono.ts.m3u8?token={guncel_token}"
 
 # Sabit CDN Kanalları (Token istemeyenler)
 atv_link = "https://lives.atv.az:5443/ATV_TV_STREAM/streams/atvcanli.m3u8"
@@ -207,7 +208,9 @@ m3u_satirlari = [
     f'#EXTINF:-1 tvg-id="APATV" tvg-logo="https://i.ibb.co/WNnQ0fw9/apatv.jpg" group-title="Azerbaijan",APA TV',
     f"{apatv_link}",
     f'#EXTINF:-1 tvg-id="KanalS" tvg-logo="https://i.ibb.co/RpgqMMct/Kanal-S.png" group-title="Azerbaijan",Kanal S',
-    f"{kanals_link}"
+    f"{kanals_link}",
+    f'#EXTINF:-1 tvg-id="MTVAzerbaijan" tvg-logo="https://i.ibb.co/60Q8b9Q6/MTV.jpg" group-title="Azerbaijan",MTV Azerbaijan',
+    f"{mtvaz_link}"
 ]
 
 m3u_yapisi = "\n".join(m3u_satirlari)
@@ -216,4 +219,4 @@ m3u_yapisi = "\n".join(m3u_satirlari)
 with open("listem.m3u", "w", encoding="utf-8") as f:
     f.write(m3u_yapisi)
 
-print("Listem.m3u dosyası Kanal S dahil 20 kanalla başarıyla güncellendi!")
+print("Listem.m3u dosyası MTV Azerbaijan dahil 21 kanalla başarıyla güncellendi!")
