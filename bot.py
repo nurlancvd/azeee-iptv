@@ -157,14 +157,12 @@ biznes_link = f"https://str.yodacdn.net/biznestv/tracks-v1a1/mono.ts.m3u8?token=
 arb24_link = f"https://str.yodacdn.net/arb24/tracks-v1a1/mono.ts.m3u8?token={guncel_token}"
 qafqaz_link = f"https://str.yodacdn.net/qafkaz/tracks-v1a1/mono.ts.m3u8?token={guncel_token}"
 apatv_link = f"https://str.yodacdn.net/apatv/tracks-v1a1/mono.ts.m3u8?token={guncel_token}"
-kanals_link = f"https://str.yodacdn.net/start/tracks-v1a1/mono.ts.m3u8?token={guncel_token}"
-
-# 21. KANAL: MTV Azerbaijan (Yoda akıllı havuzuna başarıyla entegre edildi)
 mtvaz_link = f"https://str.yodacdn.net/mtvaz/tracks-v1a1/mono.ts.m3u8?token={guncel_token}"
 
-# Sabit CDN Kanalları (Token istemeyenler)
+# Sabit CDN Kanalları (Token istemeyen, kalıcı linkler)
 atv_link = "https://lives.atv.az:5443/ATV_TV_STREAM/streams/atvcanli.m3u8"
 baku_link = "https://rtmp.baku.tv/hls/bakutv_1080p.m3u8"
+kanals_link = "https://lives.atv.az:5443/KANAL-S/streams/kanals.m3u8"
 
 # M3U Format Yapısı
 m3u_satirlari = [
@@ -219,4 +217,4 @@ m3u_yapisi = "\n".join(m3u_satirlari)
 with open("listem.m3u", "w", encoding="utf-8") as f:
     f.write(m3u_yapisi)
 
-print("Listem.m3u dosyası MTV Azerbaijan dahil 21 kanalla başarıyla güncellendi!")
+print("Kanal S kalıcı resmi CDN linkiyle başarıyla güncellendi!")
