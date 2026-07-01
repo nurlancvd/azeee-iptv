@@ -8,22 +8,7 @@ headers = {
     "Accept-Language": "en-US,en;q=0.5"
 }
 
-# 1. KANAL: İctimai TV
-def itv_link_bul():
-    url = "https://live.itv.az/player.php"
-    try:
-        response = requests.get(url, headers=headers, timeout=10)
-        linkler = re.findall(r'(https?://[^\s"\']+\.m3u8[^\s"\']*)', response.text)
-        if linkler:
-            for link in linkler:
-                if "itv" in link.lower() and "player.php" not in link:
-                    return link
-            return linkler[0]
-    except Exception as e:
-        print("İTV çekilemedi, yedek atanıyor:", e)
-    return "https://live.itv.az/itv.m3u8"
-
-# 2. KANAL: CBC Sport
+# 1. KANAL: CBC Sport (Dinamik Çözücü)
 def cbc_sport_link_bul():
     url = "https://cbcsport.az/live/"
     try:
@@ -132,8 +117,7 @@ def arb_gunes_link_bul():
         print("ARB Güneş token çekilemedi:", e)
     return "http://149.255.152.199/arbgunes.m3u8?bandwidth=2096&e=1782397933&playlistlength=5&shift=0&sid=coder_52&token=fb5b7d89ffefef249100cbac9aa3d98c&user=37076"
 
-# Linkleri ve Ortak Token'ı topluyoruz
-itv_link = itv_link_bul()
+# Dinamik Linkleri ve Ortak Token'ı topluyoruz
 cbc_link = cbc_sport_link_bul()
 guncel_token = yoda_token_bul()
 xezer_link = xezer_link_bul()
@@ -159,7 +143,8 @@ qafqaz_link = f"https://str.yodacdn.net/qafkaz/tracks-v1a1/mono.ts.m3u8?token={g
 apatv_link = f"https://str.yodacdn.net/apatv/tracks-v1a1/mono.ts.m3u8?token={guncel_token}"
 mtvaz_link = f"https://str.yodacdn.net/mtvaz/tracks-v1a1/mono.ts.m3u8?token={guncel_token}"
 
-# Sabit CDN Kanalları (Token istemeyen, kalıcı linkler)
+# Sabit CDN Kanalları (Token istemeyen, kaya gibi sağlam kalıcı linkler)
+itv_link = "https://ikolive-fwc.akamaized.net/fwc/fifa/fwc_1080ph/chunks.m3u8"
 atv_link = "https://lives.atv.az:5443/ATV_TV_STREAM/streams/atvcanli.m3u8"
 baku_link = "https://rtmp.baku.tv/hls/bakutv_1080p.m3u8"
 kanals_link = "https://lives.atv.az:5443/KANAL-S/streams/kanals.m3u8"
@@ -217,4 +202,4 @@ m3u_yapisi = "\n".join(m3u_satirlari)
 with open("listem.m3u", "w", encoding="utf-8") as f:
     f.write(m3u_yapisi)
 
-print("Kanal S kalıcı resmi CDN linkiyle başarıyla güncellendi!")
+print("İctimai TV Akamai CDN altyapısıyla listeye başarıyla sabitlendi!")
