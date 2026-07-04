@@ -12,23 +12,23 @@ https://str2.yodacdn.net/idmantele/tracks-v3a1/mono.ts.m3u8?token=eyJpcCI6IjE1OC
 #EXTINF:-1 tvg-id="RealTV" tvg-logo="https://i.ibb.co/Rpk9CspD/realtv.jpg" group-title="Azerbaijan",Real TV
 https://str.yodacdn.net/real/tracks-v1a1/mono.ts.m3u8?token=eyJpcCI6IjE1OC4xODEuNDUuNjciLCJ1YSI6Ik1vemlsbGEvNS4wIChXaW5kb3dzIE5UIDEwLjA7IFdpbjY0OyB4NjQpIEFwcGxlV2ViS2l0LzUzNy4zNiAoS0hUTUwsIGxpa2EgR2Vja28pIENocm9tZS8xNDkuMC4wLjAgU2FmYXJpLzUzNy4zNiIsImV4cCI6MTg8MjI0MzM2MSwianRpIjoiZGRiYTIyZDA5NTI0ZGRjZCJ9.2+7AgtxqqYc7QqKtDL9bO30SLXSmEZ7GjFp3KSK4gPg%3D
 #EXTINF:-1 tvg-id="XezerTV" tvg-logo="https://i.ibb.co/q3BGCK8n/xezer.png" group-title="Azerbaijan",Xezer TV
-http://149.255.152.199/xazer.m3u8?bandwidth=2096&e=1783266745&playlistlength=5&shift=0&sid=coder_53&token=e403518c96811004cf2f6edc53302c71&user=37076
+http://149.255.152.199/xazer.m3u8?bandwidth=2096&e=1783277465&playlistlength=5&shift=0&sid=coder_53&token=5bf5dba6dd259ee6d4657192e46326b2&user=37076
 #EXTINF:-1 tvg-id="AzadAzerbaycanTV" tvg-logo="https://i.ibb.co/rDHp5Fk/azad.png" group-title="Azerbaijan",Azad Azerbaycan TV
 https://lives.atv.az:5443/ATV_TV_STREAM/streams/atvcanli.m3u8
 #EXTINF:-1 tvg-id="BakuTV" tvg-logo="https://i.ibb.co/23N9F7s8/bakutvv.png" group-title="Azerbaijan",Baku TV
 https://rtmp.baku.tv/hls/bakutv_1080p.m3u8
 #EXTINF:-1 tvg-id="SpaceTV" tvg-logo="https://i.ibb.co/v49CGvL2/spacetv.jpg" group-title="Azerbaijan",Space TV
-http://149.255.152.199/space.m3u8?bandwidth=6096&e=1783266747&playlistlength=5&shift=0&sid=coder_75&token=8a25343e6bc5c90e2662c10ac6eebcaf&user=37076
+http://149.255.152.199/space.m3u8?bandwidth=6096&e=1783277467&playlistlength=5&shift=0&sid=coder_75&token=3c99573c4826eee00bbe4175b83eb87f&user=37076
 #EXTINF:-1 tvg-id="ARBHD" tvg-logo="https://i.ibb.co/fY05FcdF/arbhd.jpg" group-title="Azerbaijan",ARB HD
-http://149.255.152.199/arbhd.m3u8?bandwidth=6096&e=1783266749&playlistlength=5&shift=0&sid=coder_62&token=036d8cc183c069fe4e823f3c81cf6dee&user=37076
+http://149.255.152.199/arbhd.m3u8?bandwidth=6096&e=1783277468&playlistlength=5&shift=0&sid=coder_62&token=7c2754c649d9a17480583431d535b5b8&user=37076
 #EXTINF:-1 tvg-id="DunyaTV" tvg-logo="https://i.ibb.co/whNG1qY9/dunyatv.jpg" group-title="Azerbaijan",Dunya TV
-http://149.255.152.199/dunya.m3u8?bandwidth=2096&e=1783266751&playlistlength=5&shift=0&sid=coder_53&token=ee0e31ae3826c1ff053d97dd5489a9da&user=37076
+http://149.255.152.199/dunya.m3u8?bandwidth=2096&e=1783277470&playlistlength=5&shift=0&sid=coder_53&token=f2b3417395464e2be6318d7c837ff0b5&user=37076
 #EXTINF:-1 tvg-id="CBCTV" tvg-logo="https://i.ibb.co/mVjVMH0J/cbcaz.png" group-title="Azerbaijan",CBC TV
-http://149.255.152.199/cbcaz.m3u8?bandwidth=2096&e=1783266753&playlistlength=5&shift=0&sid=coder_52&token=e88df519b46056cb35b67b55bb5e5dca&user=37076
+http://149.255.152.199/cbcaz.m3u8?bandwidth=2096&e=1783277472&playlistlength=5&shift=0&sid=coder_52&token=2d5545a3844cda92c44b3ee012d22c71&user=37076
 #EXTINF:-1 tvg-id="NaxcivanTV" tvg-logo="https://i.ibb.co/bgyrK5r2/NTV.png" group-title="Azerbaijan",Naxçıvan TV
 https://str.yodacdn.net/ntv/mono.m3u8?token=eyJpcCI6IjE1OC4xODEuNDUuNjciLCJ1YSI6Ik1vemlsbGEvNS4wIChXaW5kb3dzIE5UIDEwLjA7IFdpbjY0OyB4NjQpIEFwcGxlV2ViS2l0LzUzNy4zNiAoS0hUTUwsIGxpa2EgR2Vja28pIENocm9tZS8xNDkuMC4wLjAgU2FmYXJpLzUzNy4zNiIsImV4cCI6MTg8MjI0MzM2MSwianRpIjoiZGRiYTIyZDA5NTI0ZGRjZCJ9.2+7AgtxqqYc7QqKtDL9bO30SLXSmEZ7GjFp3KSK4gPg%3D
 #EXTINF:-1 tvg-id="ARBGunes" tvg-logo="https://i.ibb.co/1GG5X2mb/gunestv.png" group-title="Azerbaijan",ARB Güneş
-http://149.255.152.199/arbgunes.m3u8?bandwidth=2096&e=1783266755&playlistlength=5&shift=0&sid=coder_52&token=897b77fa4610c8ec42afc797ed226063&user=37076
+http://149.255.152.199/arbgunes.m3u8?bandwidth=2096&e=1783277473&playlistlength=5&shift=0&sid=coder_52&token=898675f3432a782feddc3ec53cd3dc1a&user=37076
 #EXTINF:-1 tvg-id="BiznesTV" tvg-logo="https://i.ibb.co/k60QQDpX/biznestv.png" group-title="Azerbaijan",Biznes TV
 https://str.yodacdn.net/biznestv/tracks-v1a1/mono.ts.m3u8?token=eyJpcCI6IjE1OC4xODEuNDUuNjciLCJ1YSI6Ik1vemlsbGEvNS4wIChXaW5kb3dzIE5UIDEwLjA7IFdpbjY0OyB4NjQpIEFwcGxlV2ViS2l0LzUzNy4zNiAoS0hUTUwsIGxpa2EgR2Vja28pIENocm9tZS8xNDkuMC4wLjAgU2FmYXJpLzUzNy4zNiIsImV4cCI6MTg8MjI0MzM2MSwianRpIjoiZGRiYTIyZDA5NTI0ZGRjZCJ9.2+7AgtxqqYc7QqKtDL9bO30SLXSmEZ7GjFp3KSK4gPg%3D
 #EXTINF:-1 tvg-id="ARB24" tvg-logo="https://i.ibb.co/3mJSN4yT/arb24.png" group-title="Azerbaijan",ARB 24
@@ -58,7 +58,7 @@ https://str.yodacdn.net/xazartv/tracks-v1a1/mono.ts.m3u8?token=eyJpcCI6IjE1OC4xO
 #EXTINF:-1 tvg-id="AzadAzerbaycan2" tvg-logo="https://i.ibb.co/rDHp5Fk/azad.png" group-title="Azerbaijan",Azad Azerbaycan 2
 https://str.yodacdn.net/atv/tracks-v1a1/mono.ts.m3u8?token=eyJpcCI6IjE1OC4xODEuNDUuNjciLCJ1YSI6Ik1vemlsbGEvNS4wIChXaW5kb3dzIE5UIDEwLjA7IFdpbjY0OyB4NjQpIEFwcGxlV2ViS2l0LzUzNy4zNiAoS0hUTUwsIGxpa2EgR2Vja28pIENocm9tZS8xNDkuMC4wLjAgU2FmYXJpLzUzNy4zNiIsImV4cCI6MTg8MjI0MzM2MSwianRpIjoiZGRiYTIyZDA5NTI0ZGRjZCJ9.2+7AgtxqqYc7QqKtDL9bO30SLXSmEZ7GjFp3KSK4gPg%3D
 #EXTINF:-1 tvg-id="BakuTV2" tvg-logo="https://i.ibb.co/zWSLHdDt/bakutv.jpg" group-title="Azerbaijan",Baku TV 2
-http://149.255.152.199/bakutv.m3u8?bandwidth=6056&e=1783266757&playlistlength=5&shift=0&sid=coder_57&token=0857578c2b6f4e113585e579156ab4f9&user=37076
+http://149.255.152.199/bakutv.m3u8?bandwidth=6056&e=1783277475&playlistlength=5&shift=0&sid=coder_57&token=5a451e3687f33d7bf701b1044a3d0e7f&user=37076
 #EXTINF:-1 tvg-id="SpaceTV2" tvg-logo="https://i.ibb.co/v49CGvL2/spacetv.jpg" group-title="Azerbaijan",Space TV 2
 https://str.yodacdn.net/space/tracks-v1a1/mono.ts.m3u8?token=eyJpcCI6IjE1OC4xODEuNDUuNjciLCJ1YSI6Ik1vemlsbGEvNS4wIChXaW5kb3dzIE5UIDEwLjA7IFdpbjY0OyB4NjQpIEFwcGxlV2ViS2l0LzUzNy4zNiAoS0hUTUwsIGxpa2EgR2Vja28pIENocm9tZS8xNDkuMC4wLjAgU2FmYXJpLzUzNy4zNiIsImV4cCI6MTg8MjI0MzM2MSwianRpIjoiZGRiYTIyZDA5NTI0ZGRjZCJ9.2+7AgtxqqYc7QqKtDL9bO30SLXSmEZ7GjFp3KSK4gPg%3D
 #EXTINF:-1 tvg-id="ARB2" tvg-logo="https://i.ibb.co/fY05FcdF/arbhd.jpg" group-title="Azerbaijan",ARB 2
