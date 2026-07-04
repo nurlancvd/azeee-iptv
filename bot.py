@@ -119,23 +119,39 @@ def arb_gunes_link_bul():
         print("ARB Güneş token çekilemedi:", e)
     return "http://149.255.152.199/arbgunes.m3u8?bandwidth=2096&e=1782397933&playlistlength=5&shift=0&sid=coder_52&token=fb5b7d89ffefef249100cbac9aa3d98c&user=37076"
 
+# 9. GRUP: YENİ EKLENEN - Baku TV 2 Özel Dinamik Çözücü
+def bakutv2_link_bul():
+    url = "http://149.255.152.218/channels.aspx?channel=bakutv.m3u8"
+    try:
+        response = requests.get(url, headers=headers, timeout=10)
+        token_match = re.search(r'token=([a-f0-9]+)', response.text)
+        e_match = re.search(r'e=([0-9]+)', response.text)
+        token = token_match.group(1) if token_match else "c50a05ccc7e4e1368b0e238bfd81ac63"
+        e_val = e_match.group(1) if e_match else "1783265522"
+        # Senin istediğin bandwidth=6056 ve sid=coder_57 parametre kalıplarına göre linki otomatik basar
+        return f"http://149.255.152.199/bakutv.m3u8?bandwidth=6056&e={e_val}&playlistlength=5&shift=0&sid=coder_57&token={token}&user=37076"
+    except Exception as e:
+        print("Baku TV 2 token çekilemedi, statik yedek atanıyor:", e)
+    return "http://149.255.152.199/bakutv.m3u8?bandwidth=6056&e=1783265522&playlistlength=5&shift=0&sid=coder_57&token=c50a05ccc7e4e1368b0e238bfd81ac63&user=37076"
+
 
 # --- LİNKLERİ VE TOKENLARI DERLEME ---
 
 cbc_link = cbc_sport_link_bul()
 guncel_token = yoda_token_bul()
 
-# Bota özel dinamik çözücüler (Mevcut listenin ilgili kanalları için)
+# Dinamik çözücüler tetikleniyor
 xezer_link = xezer_link_bul()
 space_link = space_link_bul()
 arb_link = arb_link_bul()
 dunya_link = dunya_link_bul()
 cbc_az_link = cbc_az_link_bul()
 arb_gunes_link = arb_gunes_link_bul()
+bakutv2_dinamik_link = bakutv2_link_bul() # Baku TV 2 için dinamik link çözüldü!
 
 # Yedek Yoda Token (Sitenin korumaya geçme ihtimaline karşı)
 if not guncel_token:
-    guncel_token = "eyJpcCI6IjE1OC4xODEuNDUuNjciLCJ1YSI6Ik1vemlsbGEvNS4wIChXaW5kb3dzIE5UIDEwLjA7IFdpbjY0OyB4NjQpIEFwcGxlV2ViS2l0LzUzNy4zNiAoS0hUTUwsIGxpa2EgR2Vja28pIENocm9tZS8xNDkuMC4wLjAgU2FmYXJpLzUzNy4zNiIsImV4cCI6MTg4MjI0MzM2MSwianRpIjoiZGRiYTIyZDA5NTI0ZGRjZCJ9.2+7AgtxqqYc7QqKtDL9bO30SLXSmEZ7GjFp3KSK4gPg%3D"
+    guncel_token = "eyJpcCI6IjE1OC4xODEuNDUuNjciLCJ1YSI6Ik1vemlsbGEvNS4wIChXaW5kb3dzIE5UIDEwLjA7IFdpbjY0OyB4NjQpIEFwcGxlV2ViS2l0LzUzNy4zNiAoS0hUTUwsIGxpa2EgR2Vja28pIENocm9tZS8xNDkuMC4wLjAgU2FmYXJpLzUzNy4zNiIsImV4cCI6MTg8MjI0MzM2MSwianRpIjoiZGRiYTIyZDA5NTI0ZGRjZCJ9.2+7AgtxqqYc7QqKtDL9bO30SLXSmEZ7GjFp3KSK4gPg%3D"
 
 # 1. GRUP: Mevcut Listenin Yoda Havuzu
 aztv_link = f"https://str.yodacdn.net/azertv/tracks-v3a1/mono.ts.m3u8?token={guncel_token}"
@@ -149,20 +165,19 @@ qafqaz_link = f"https://str.yodacdn.net/qafkaz/tracks-v1a1/mono.ts.m3u8?token={g
 apatv_link = f"https://str.yodacdn.net/apatv/tracks-v1a1/mono.ts.m3u8?token={guncel_token}"
 mtvaz_link = f"https://str.yodacdn.net/mtvaz/tracks-v1a1/mono.ts.m3u8?token={guncel_token}"
 
-# 2. GRUP: Yeni Eklenen 14 Kanalın Yoda Havuzu (Aynı dinamik tokenı paylaşırlar)
+# 2. GRUP: Yeni Eklenen Kanalların Yoda Havuzu
 aztv2_link = f"https://str.yodacdn.net/azertv/tracks-v1a1/mono.ts.m3u8?token={guncel_token}"
 medeniyyet2_link = f"https://str.yodacdn.net/medeniyyettele/tracks-v1a1/mono.ts.m3u8?token={guncel_token}"
 idman2_link = f"https://str.yodacdn.net/idmantele/tracks-v1a1/mono.ts.m3u8?token={guncel_token}"
 real2_link = f"https://str.yodacdn.net/real/mono.m3u8?token={guncel_token}"
 xezer2_link = f"https://str.yodacdn.net/xazartv/tracks-v1a1/mono.ts.m3u8?token={guncel_token}"
 azad2_link = f"https://str.yodacdn.net/atv/tracks-v1a1/mono.ts.m3u8?token={guncel_token}"
-bakutv2_link = f"https://str.yodacdn.net/bakutv/tracks-v1a1/mono.ts.m3u8?token={guncel_token}"
 space2_link = f"https://str.yodacdn.net/space/tracks-v1a1/mono.ts.m3u8?token={guncel_token}"
 arb2_link = f"https://str.yodacdn.net/arb/tracks-v1a1/mono.ts.m3u8?token={guncel_token}"
 cbctv2_link = f"https://str.yodacdn.net/cbc/tracks-v1a1/mono.ts.m3u8?token={guncel_token}"
 arbgunesh2_link = f"https://str.yodacdn.net/arbgunesh/tracks-v1a1/mono.ts.m3u8?token={guncel_token}"
 
-# Sabit CDN Altyapılı Kalıcı Linkler (Mevcut + Yeni Karışık)
+# Sabit CDN Altyapılı Kalıcı Linkler
 itv_link = "https://ikolive-fwc.akamaized.net/fwc/fifa/fwc_1080ph/chunks.m3u8"
 atv_link = "https://lives.atv.az:5443/ATV_TV_STREAM/streams/atvcanli.m3u8"
 baku_link = "https://rtmp.baku.tv/hls/bakutv_1080p.m3u8"
@@ -171,7 +186,7 @@ cbc_sport2_link = "https://cbcsports-live.lg.mncdn.com/cbcsports_live/cbcsports/
 dunyatv2_link = "https://stream.ftv.az/live/dunyatv.m3u8"
 
 
-# --- M3U FORMAT YAPISI (TEK KATEGORİ - 35 KANAL DÜZ LİSTE) ---
+# --- M3U FORMAT YAPISI (35 KANAL DÜZ LİSTE) ---
 
 m3u_satirlari = [
     "#EXTM3U",
@@ -219,7 +234,7 @@ m3u_satirlari = [
     f'#EXTINF:-1 tvg-id="MTVAzerbaijan" tvg-logo="https://i.ibb.co/60Q8b9Q6/MTV.jpg" group-title="Azerbaijan",MTV Azerbaijan',
     f"{mtvaz_link}",
 
-    # --- ARDINA EKLENEN YENİ 14 YEDEK KANAL (22 - 35) ---
+    # --- YENİ 14 YEDEK KANAL (22 - 35) ---
     f'#EXTINF:-1 tvg-id="IctimaiTV2" tvg-logo="https://i.ibb.co/FbKMRyFz/itv2.jpg" group-title="Azerbaijan",Ictimai TV 2',
     f"http://149.255.152.199/ictimai.m3u8?bandwidth=2096&e=1783263773&playlistlength=5&shift=0&sid=coder_52&token=76ab141688bbf61a45cf657ec56ef492&user=37076",
     f'#EXTINF:-1 tvg-id="CBCSport2" tvg-logo="https://i.ibb.co/WvVYTGLR/cbc2.png" group-title="Azerbaijan",CBC Sport 2',
@@ -236,8 +251,11 @@ m3u_satirlari = [
     f"{xezer2_link}",
     f'#EXTINF:-1 tvg-id="AzadAzerbaycan2" tvg-logo="https://i.ibb.co/rDHp5Fk/azad.png" group-title="Azerbaijan",Azad Azerbaycan 2',
     f"{azad2_link}",
+    
+    # [GÜNCELLENEN BÖLÜM] Baku TV 2: Artık tamamen dinamik ve otomatik!
     f'#EXTINF:-1 tvg-id="BakuTV2" tvg-logo="https://i.ibb.co/zWSLHdDt/bakutv.jpg" group-title="Azerbaijan",Baku TV 2',
-    f"{bakutv2_link}",
+    f"{bakutv2_dinamik_link}",
+    
     f'#EXTINF:-1 tvg-id="SpaceTV2" tvg-logo="https://i.ibb.co/v49CGvL2/spacetv.jpg" group-title="Azerbaijan",Space TV 2',
     f"{space2_link}",
     f'#EXTINF:-1 tvg-id="ARB2" tvg-logo="https://i.ibb.co/fY05FcdF/arbhd.jpg" group-title="Azerbaijan",ARB 2',
@@ -252,8 +270,8 @@ m3u_satirlari = [
 
 m3u_yapisi = "\n".join(m3u_satirlari)
 
-# listem.m3u dosyasına kaydetme
+# Dosyaya kaydetme işlemi
 with open("listem.m3u", "w", encoding="utf-8") as f:
     f.write(m3u_yapisi)
 
-print("35 kanallı kesintisiz tek parça M3U listesi başarıyla güncellendi!")
+print("Baku TV 2 dinamik çözücüsü dahil 35 kanallı liste başarıyla güncellendi!")
