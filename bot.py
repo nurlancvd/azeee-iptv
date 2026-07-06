@@ -119,7 +119,7 @@ def arb_gunes_link_bul():
         print("ARB Güneş token çekilemedi:", e)
     return "http://149.255.152.199/arbgunes.m3u8?bandwidth=2096&e=1782397933&playlistlength=5&shift=0&sid=coder_52&token=fb5b7d89ffefef249100cbac9aa3d98c&user=37076"
 
-# 9. GRUP: YENİ EKLENEN - Baku TV 2 Özel Dinamik Çözücü
+# 9. GRUP: Baku TV 2 Özel Dinamik Çözücü
 def bakutv2_link_bul():
     url = "http://149.255.152.218/channels.aspx?channel=bakutv.m3u8"
     try:
@@ -128,11 +128,24 @@ def bakutv2_link_bul():
         e_match = re.search(r'e=([0-9]+)', response.text)
         token = token_match.group(1) if token_match else "c50a05ccc7e4e1368b0e238bfd81ac63"
         e_val = e_match.group(1) if e_match else "1783265522"
-        # Senin istediğin bandwidth=6056 ve sid=coder_57 parametre kalıplarına göre linki otomatik basar
         return f"http://149.255.152.199/bakutv.m3u8?bandwidth=6056&e={e_val}&playlistlength=5&shift=0&sid=coder_57&token={token}&user=37076"
     except Exception as e:
-        print("Baku TV 2 token çekilemedi, statik yedek atanıyor:", e)
+        print("Baku TV 2 token çekilemedi:", e)
     return "http://149.255.152.199/bakutv.m3u8?bandwidth=6056&e=1783265522&playlistlength=5&shift=0&sid=coder_57&token=c50a05ccc7e4e1368b0e238bfd81ac63&user=37076"
+
+# 10. GRUP: YENİ EKLENEN - Ictimai TV 2 Özel Dinamik Çözücü
+def ictimaitv2_link_bul():
+    url = "http://149.255.152.218/channels.aspx?channel=ictimai.m3u8"
+    try:
+        response = requests.get(url, headers=headers, timeout=10)
+        token_match = re.search(r'token=([a-f0-9]+)', response.text)
+        e_match = re.search(r'e=([0-9]+)', response.text)
+        token = token_match.group(1) if token_match else "3e5246d352f344877f4c0edf1eee4c13"
+        e_val = e_match.group(1) if e_match else "1783443027"
+        return f"http://149.255.152.199/ictimai.m3u8?bandwidth=2096&e={e_val}&playlistlength=5&shift=0&sid=coder_52&token={token}&user=37076"
+    except Exception as e:
+        print("Ictimai TV 2 token çekilemedi:", e)
+    return f"http://149.255.152.199/ictimai.m3u8?bandwidth=2096&e=1783443027&playlistlength=5&shift=0&sid=coder_52&token=3e5246d352f344877f4c0edf1eee4c13&user=37076"
 
 
 # --- LİNKLERİ VE TOKENLARI DERLEME ---
@@ -147,9 +160,10 @@ arb_link = arb_link_bul()
 dunya_link = dunya_link_bul()
 cbc_az_link = cbc_az_link_bul()
 arb_gunes_link = arb_gunes_link_bul()
-bakutv2_dinamik_link = bakutv2_link_bul() # Baku TV 2 için dinamik link çözüldü!
+bakutv2_dinamik_link = bakutv2_link_bul()
+ictimaitv2_dinamik_link = ictimaitv2_link_bul() # Ictimai TV 2 dinamikleşti!
 
-# Yedek Yoda Token (Sitenin korumaya geçme ihtimaline karşı)
+# Yedek Yoda Token
 if not guncel_token:
     guncel_token = "eyJpcCI6IjE1OC4xODEuNDUuNjciLCJ1YSI6Ik1vemlsbGEvNS4wIChXaW5kb3dzIE5UIDEwLjA7IFdpbjY0OyB4NjQpIEFwcGxlV2ViS2l0LzUzNy4zNiAoS0hUTUwsIGxpa2EgR2Vja28pIENocm9tZS8xNDkuMC4wLjAgU2FmYXJpLzUzNy4zNiIsImV4cCI6MTg8MjI0MzM2MSwianRpIjoiZGRiYTIyZDA5NTI0ZGRjZCJ9.2+7AgtxqqYc7QqKtDL9bO30SLXSmEZ7GjFp3KSK4gPg%3D"
 
@@ -235,8 +249,10 @@ m3u_satirlari = [
     f"{mtvaz_link}",
 
     # --- YENİ 14 YEDEK KANAL (22 - 35) ---
+    # [GÜNCELLENEN BÖLÜM] Ictimai TV 2: Artık tamamen dinamik ve otomatik!
     f'#EXTINF:-1 tvg-id="IctimaiTV2" tvg-logo="https://i.ibb.co/FbKMRyFz/itv2.jpg" group-title="Azerbaijan",Ictimai TV 2',
-    f"http://149.255.152.199/ictimai.m3u8?bandwidth=2096&e=1783263773&playlistlength=5&shift=0&sid=coder_52&token=76ab141688bbf61a45cf657ec56ef492&user=37076",
+    f"{ictimaitv2_dinamik_link}",
+    
     f'#EXTINF:-1 tvg-id="CBCSport2" tvg-logo="https://i.ibb.co/WvVYTGLR/cbc2.png" group-title="Azerbaijan",CBC Sport 2',
     f"{cbc_sport2_link}",
     f'#EXTINF:-1 tvg-id="AZTV2" tvg-logo="https://i.ibb.co/dwNh0pyg/aztv.jpg" group-title="Azerbaijan",AZTV 2',
@@ -251,11 +267,8 @@ m3u_satirlari = [
     f"{xezer2_link}",
     f'#EXTINF:-1 tvg-id="AzadAzerbaycan2" tvg-logo="https://i.ibb.co/rDHp5Fk/azad.png" group-title="Azerbaijan",Azad Azerbaycan 2',
     f"{azad2_link}",
-    
-    # [GÜNCELLENEN BÖLÜM] Baku TV 2: Artık tamamen dinamik ve otomatik!
     f'#EXTINF:-1 tvg-id="BakuTV2" tvg-logo="https://i.ibb.co/zWSLHdDt/bakutv.jpg" group-title="Azerbaijan",Baku TV 2',
     f"{bakutv2_dinamik_link}",
-    
     f'#EXTINF:-1 tvg-id="SpaceTV2" tvg-logo="https://i.ibb.co/v49CGvL2/spacetv.jpg" group-title="Azerbaijan",Space TV 2',
     f"{space2_link}",
     f'#EXTINF:-1 tvg-id="ARB2" tvg-logo="https://i.ibb.co/fY05FcdF/arbhd.jpg" group-title="Azerbaijan",ARB 2',
@@ -274,4 +287,4 @@ m3u_yapisi = "\n".join(m3u_satirlari)
 with open("listem.m3u", "w", encoding="utf-8") as f:
     f.write(m3u_yapisi)
 
-print("Baku TV 2 dinamik çözücüsü dahil 35 kanallı liste başarıyla güncellendi!")
+print("Ictimai TV 2 dinamik çözücüsü sisteme başarıyla entegre edildi!")
