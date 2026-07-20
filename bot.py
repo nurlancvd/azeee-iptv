@@ -35,7 +35,7 @@ def yoda_token_bul():
         print("AzTV sitesi botu engelledi, yedek token devreye giriyor.")
     return None
 
-# 3. GRUP: Xezer TV Dinamik Çözücü (Mevcut Liste İçin)
+# 3. GRUP: Xezer TV Dinamik Çözücü
 def xezer_link_bul():
     url = "http://149.255.152.218/channels.aspx?channel=xazer.m3u8"
     try:
@@ -49,7 +49,7 @@ def xezer_link_bul():
         print("Xezer TV token çekilemedi:", e)
     return "http://149.255.152.199/xazer.m3u8?bandwidth=2096&e=1782410890&playlistlength=5&shift=0&sid=coder_53&token=a4e6bcd7297a4cd917ce916ef9665bdb&user=37076"
 
-# 4. GRUP: Space TV Dinamik Çözücü (Mevcut Liste İçin)
+# 4. GRUP: Space TV Dinamik Çözücü
 def space_link_bul():
     url = "http://149.255.152.218/channels.aspx?channel=space.m3u8"
     try:
@@ -63,7 +63,7 @@ def space_link_bul():
         print("Space TV token çekilemedi:", e)
     return "http://149.255.152.199/space.m3u8?bandwidth=6096&e=1782389870&playlistlength=5&shift=0&sid=coder_75&token=0ed5c63f2d6189a7198b3c7e0b330f40&user=37076"
 
-# 5. GRUP: ARB HD Dinamik Çözücü (Mevcut Liste İçin)
+# 5. GRUP: ARB HD Dinamik Çözücü
 def arb_link_bul():
     url = "http://149.255.152.218/channels.aspx?channel=arbhd.m3u8"
     try:
@@ -77,7 +77,7 @@ def arb_link_bul():
         print("ARB HD token çekilemedi:", e)
     return "http://149.255.152.199/arbhd.m3u8?bandwidth=6096&e=1782390335&playlistlength=5&shift=0&sid=coder_62&token=1f22fc47e451e32d285081f4423f5132&user=37076"
 
-# 6. GRUP: Dunya TV Dinamik Çözücü (Mevcut Liste İçin)
+# 6. GRUP: Dunya TV Dinamik Çözücü
 def dunya_link_bul():
     url = "http://149.255.152.218/channels.aspx?channel=dunya.m3u8"
     try:
@@ -91,7 +91,7 @@ def dunya_link_bul():
         print("Dunya TV token çekilemedi:", e)
     return "http://149.255.152.199/dunya.m3u8?bandwidth=2096&e=1782391302&playlistlength=5&shift=0&sid=coder_53&token=27ec3d0239833be43b818aa00fa9995d&user=37076"
 
-# 7. GRUP: CBC TV Dinamik Çözücü (Mevcut Liste İçin)
+# 7. GRUP: CBC TV Dinamik Çözücü
 def cbc_az_link_bul():
     url = "http://149.255.152.218/channels.aspx?channel=cbcaz.m3u8"
     try:
@@ -105,7 +105,7 @@ def cbc_az_link_bul():
         print("CBC TV token çekilemedi:", e)
     return "http://149.255.152.199/cbcaz.m3u8?bandwidth=2096&e=1782396949&playlistlength=5&shift=0&sid=coder_52&token=b158f29892dd1c37d43b777aae7b9655&user=37076"
 
-# 8. GRUP: ARB Güneş Dinamik Çözücü (Mevcut Liste İçin)
+# 8. GRUP: ARB Güneş Dinamik Çözücü
 def arb_gunes_link_bul():
     url = "http://149.255.152.218/channels.aspx?channel=arbgunes.m3u8"
     try:
@@ -133,7 +133,7 @@ def bakutv2_link_bul():
         print("Baku TV 2 token çekilemedi:", e)
     return "http://149.255.152.199/bakutv.m3u8?bandwidth=6056&e=1783265522&playlistlength=5&shift=0&sid=coder_57&token=c50a05ccc7e4e1368b0e238bfd81ac63&user=37076"
 
-# 10. GRUP: YENİ EKLENEN - Ictimai TV 2 Özel Dinamik Çözücü
+# 10. GRUP: Ictimai TV 2 Özel Dinamik Çözücü
 def ictimaitv2_link_bul():
     url = "http://149.255.152.218/channels.aspx?channel=ictimai.m3u8"
     try:
@@ -161,7 +161,7 @@ dunya_link = dunya_link_bul()
 cbc_az_link = cbc_az_link_bul()
 arb_gunes_link = arb_gunes_link_bul()
 bakutv2_dinamik_link = bakutv2_link_bul()
-ictimaitv2_dinamik_link = ictimaitv2_link_bul() # Ictimai TV 2 dinamikleşti!
+ictimaitv2_dinamik_link = ictimaitv2_link_bul()
 
 # Yedek Yoda Token
 if not guncel_token:
@@ -181,8 +181,8 @@ mtvaz_link = f"https://str.yodacdn.net/mtvaz/tracks-v1a1/mono.ts.m3u8?token={gun
 
 # 2. GRUP: Yeni Eklenen Kanalların Yoda Havuzu
 aztv2_link = f"https://str.yodacdn.net/azertv/tracks-v1a1/mono.ts.m3u8?token={guncel_token}"
-medeniyyet2_link = f"https://str.yodacdn.net/medeniyyettele/tracks-v1a1/mono.ts.m3u8?token={guncel_token}"
-idman2_link = f"https://str.yodacdn.net/idmantele/tracks-v1a1/mono.ts.m3u8?token={guncel_token}"
+medeniyyet2_link = f"https://str2.yodacdn.net/medeniyyettele/tracks-v1a1/mono.ts.m3u8?token={guncel_token}"
+idman2_link = f"https://str2.yodacdn.net/idmantele/tracks-v1a1/mono.ts.m3u8?token={guncel_token}"
 real2_link = f"https://str.yodacdn.net/real/mono.m3u8?token={guncel_token}"
 xezer2_link = f"https://str.yodacdn.net/xazartv/tracks-v1a1/mono.ts.m3u8?token={guncel_token}"
 azad2_link = f"https://str.yodacdn.net/atv/tracks-v1a1/mono.ts.m3u8?token={guncel_token}"
@@ -191,8 +191,9 @@ arb2_link = f"https://str.yodacdn.net/arb/tracks-v1a1/mono.ts.m3u8?token={guncel
 cbctv2_link = f"https://str.yodacdn.net/cbc/tracks-v1a1/mono.ts.m3u8?token={guncel_token}"
 arbgunesh2_link = f"https://str.yodacdn.net/arbgunesh/tracks-v1a1/mono.ts.m3u8?token={guncel_token}"
 
-# Sabit CDN Altyapılı Kalıcı Linkler
-itv_link = "https://ikolive-fwc.akamaized.net/fwc/fifa/fwc_1080ph/chunks.m3u8"
+# Sabit / Doğrudan M3U Altyapılı Linkler
+# [GÜNCELLENDİ] İctimai TV ana kanalı yeni link ile güncellendi
+itv_link = "https://live.itv.az/itv.m3u8?bandwidth=3900&shift=0" 
 atv_link = "https://lives.atv.az:5443/ATV_TV_STREAM/streams/atvcanli.m3u8"
 baku_link = "https://rtmp.baku.tv/hls/bakutv_1080p.m3u8"
 kanals_link = "https://lives.atv.az:5443/KANAL-S/streams/kanals.m3u8"
@@ -249,10 +250,8 @@ m3u_satirlari = [
     f"{mtvaz_link}",
 
     # --- YENİ 14 YEDEK KANAL (22 - 35) ---
-    # [GÜNCELLENEN BÖLÜM] Ictimai TV 2: Artık tamamen dinamik ve otomatik!
     f'#EXTINF:-1 tvg-id="IctimaiTV2" tvg-logo="https://i.ibb.co/FbKMRyFz/itv2.jpg" group-title="Azerbaijan",Ictimai TV 2',
     f"{ictimaitv2_dinamik_link}",
-    
     f'#EXTINF:-1 tvg-id="CBCSport2" tvg-logo="https://i.ibb.co/WvVYTGLR/cbc2.png" group-title="Azerbaijan",CBC Sport 2',
     f"{cbc_sport2_link}",
     f'#EXTINF:-1 tvg-id="AZTV2" tvg-logo="https://i.ibb.co/dwNh0pyg/aztv.jpg" group-title="Azerbaijan",AZTV 2',
@@ -287,4 +286,4 @@ m3u_yapisi = "\n".join(m3u_satirlari)
 with open("listem.m3u", "w", encoding="utf-8") as f:
     f.write(m3u_yapisi)
 
-print("Ictimai TV 2 dinamik çözücüsü sisteme başarıyla entegre edildi!")
+print("İctimai TV linki güncellendi ve M3U dosyası oluşturuldu!")
