@@ -148,15 +148,16 @@ arb_gunes_link = arb_gunes_link_bul()
 bakutv2_dinamik_link = bakutv2_link_bul()
 ictimaitv2_dinamik_link = ictimaitv2_link_bul()
 
-# Yedek Yoda Token
+# Yedek Yoda Token (Siteden canlı token çekilemezse devreye girer)
 if not guncel_token:
-    guncel_token = "eyJpcCI6IjE1OC4xODEuNDUuNjciLCJ1YSI6Ik1vemlsbGEvNS4wIChXaW5kb3dzIE5UIDEwLjA7IFdpbjY0OyB4NjQpIEFwcGxlV2ViS2l0LzUzNy4zNiAoS0hUTUwsIGxpa2EgR2Vja28pIENocm9tZS8xNDkuMC4wLjAgU2FmYXJpLzUzNy4zNiIsImV4cCI6MTg8MjI0MzM2MSwianRpIjoiZGRiYTIyZDA5NTI0ZGRjZCJ9.2+7AgtxqqYc7QqKtDL9bO30SLXSmEZ7GjFp3KSK4gPg%3D"
+    guncel_token = "eyJpcCI6IjM3LjExNC4xNDYuMTAzIiwidWEiOiJNb3ppbGxhLzUuMCAoaVBob25lOyBDUFUgaVBob25lIE9TIDI2XzVfMiBsaWtlIE1hYyBPUyBYKSBBcHBsZVdlYktpdC82MDUuMS4xNSAoS0hUTUwsIGxpa2UgR2Vja28pIENyaU9TLzE1MC4wLjc4NzEuMTEzIE0iLCJleHAiOjE3ODUzMjI1NzYsImp0aSI6IjA4NGEwMWMxZDFhZTVmMGYifQ%3D%3D.nY55V+xv9tpuxbLvyhHu2aRea8ntSYgdQUMe1nRWXLU%3D"
 
 # 1. GRUP: Mevcut Listenin Yoda Havuzu
 aztv_link = f"https://str.yodacdn.net/azertv/tracks-v3a1/mono.ts.m3u8?token={guncel_token}"
 medeniyyet_link = f"https://str2.yodacdn.net/medeniyyettele/tracks-v3a1/mono.ts.m3u8?token={guncel_token}"
 idman_link = f"https://str2.yodacdn.net/idmantele/tracks-v3a1/mono.ts.m3u8?token={guncel_token}"
 real_link = f"https://str.yodacdn.net/real/tracks-v1a1/mono.ts.m3u8?token={guncel_token}"
+xezer_link = f"https://str.yodacdn.net/xazartv/tracks-v1a1/mono.ts.m3u8?token={guncel_token}"
 ntv_link = f"https://str.yodacdn.net/ntv/mono.m3u8?token={guncel_token}"
 biznes_link = f"https://str.yodacdn.net/biznestv/tracks-v1a1/mono.ts.m3u8?token={guncel_token}"
 arb24_link = f"https://str.yodacdn.net/arb24/tracks-v1a1/mono.ts.m3u8?token={guncel_token}"
@@ -169,7 +170,8 @@ aztv2_link = f"https://str.yodacdn.net/azertv/tracks-v1a1/mono.ts.m3u8?token={gu
 medeniyyet2_link = f"https://str2.yodacdn.net/medeniyyettele/tracks-v1a1/mono.ts.m3u8?token={guncel_token}"
 idman2_link = f"https://str2.yodacdn.net/idmantele/tracks-v1a1/mono.ts.m3u8?token={guncel_token}"
 real2_link = f"https://str.yodacdn.net/real/mono.m3u8?token={guncel_token}"
-xezer2_link = f"https://str.yodacdn.net/xazartv/tracks-v1a1/mono.ts.m3u8?token={guncel_token}"
+# [GÜNCELLENDİ] Xezer TV 2 doğrudan resmi sunucu m3u8 adresine bağlandı
+xezer2_link = "https://xezerxeber.az/stream/main_stream.m3u8"
 azad2_link = f"https://str.yodacdn.net/atv/tracks-v1a1/mono.ts.m3u8?token={guncel_token}"
 space2_link = f"https://str.yodacdn.net/space/tracks-v1a1/mono.ts.m3u8?token={guncel_token}"
 arb2_link = f"https://str.yodacdn.net/arb/tracks-v1a1/mono.ts.m3u8?token={guncel_token}"
@@ -178,8 +180,6 @@ arbgunesh2_link = f"https://str.yodacdn.net/arbgunesh/tracks-v1a1/mono.ts.m3u8?t
 
 # Sabit / Doğrudan M3U Altyapılı Linkler
 itv_link = "https://live.itv.az/itv.m3u8?bandwidth=3900&shift=0" 
-# [GÜNCELLENDİ] Xezer TV ana kanalı yeni doğrudan M3U linki ile güncellendi
-xezer_link = "https://xezerxeber.az/stream/main_stream.m3u8"
 atv_link = "https://lives.atv.az:5443/ATV_TV_STREAM/streams/atvcanli.m3u8"
 baku_link = "https://rtmp.baku.tv/hls/bakutv_1080p.m3u8"
 kanals_link = "https://lives.atv.az:5443/KANAL-S/streams/kanals.m3u8"
@@ -272,4 +272,4 @@ m3u_yapisi = "\n".join(m3u_satirlari)
 with open("listem.m3u", "w", encoding="utf-8") as f:
     f.write(m3u_yapisi)
 
-print("Xezer TV linki güncellendi ve M3U dosyası oluşturuldu!")
+print("Xezer TV 2 yeni adrese bağlandı ve M3U güncellendi!")
