@@ -21,7 +21,7 @@ def cbc_sport_link_bul():
 
 cbc_link = cbc_sport_link_bul()
 
-# En Güncel YodaCDN Token'ı (ARB HD Güncellemesi ile Yenilendi)
+# En Güncel YodaCDN Token'ı
 guncel_token = "eyJpcCI6IjkyLjM5Ljk0LjIwMyIsInVhIjoiTW96aWxsYS81LjAgKExpbnV4OyBBbmRyb2lkIDEwOyBLKSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvMTUwLjAuMC4wIE1vYmlsZSBTYWZhcmkvNTM3LjM2IiwiZXhwIjoxNzg1MzI4NDMwLCJqdGkiOiJmYmQ4OWM1N2FhYjU1ODc3In0%3D.jhtyuuhYTshosf67e+loVyrtIMrjc7az%2F0gAb9BzjmY%3D"
 
 # 1. GRUP: Ana YodaCDN Yayınları
@@ -61,7 +61,7 @@ dunyatv2_link = "https://stream.dunyatv.az/live/dunyatv.m3u8"
 # Diğer Ana Yayın Linkleri (Yoda/Sabit)
 arb_link = f"https://str.yodacdn.net/arb/tracks-v1a1/mono.ts.m3u8?token={guncel_token}"
 dunya_link = "https://stream.dunyatv.az/live/dunyatv.m3u8"
-cbc_az_link = f"https://str.yodacdn.net/cbc/tracks-v1a1/mono.ts.m3u8?token={guncel_token}"
+cbc_az_link = "https://stream.castr.com/6994359f4093355bcd876a4c/live_dfbe52f00be311f1952faf8c24dd1b5c/tracks-v3/index.fmp4.m3u8"
 arb_gunes_link = f"https://str.yodacdn.net/arbgunesh/tracks-v1a1/mono.ts.m3u8?token={guncel_token}"
 bakutv2_link = "https://rtmp.baku.tv/hls/bakutv_1080p.m3u8"
 ictimaitv2_link = "https://live.itv.az/itv.m3u8?bandwidth=3900&shift=0"
@@ -152,4 +152,4 @@ m3u_yapisi = "\n".join(m3u_satirlari)
 with open("listem.m3u", "w", encoding="utf-8") as f:
     f.write(m3u_yapisi)
 
-print("ARB HD yeni token'ı ile güncellendi ve tüm YodaCDN kanallarına uygulandı!")
+print("CBC TV güncellendi ve 35 kanallı liste kaydedildi!")
