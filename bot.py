@@ -21,8 +21,8 @@ def cbc_sport_link_bul():
 
 cbc_link = cbc_sport_link_bul()
 
-# En Güncel YodaCDN Token'ı
-guncel_token = "eyJpcCI6IjE2Mi4xMjAuMTg4LjEwMSIsInVhIjoiTW96aWxsYS81LjAgKExpbnV4OyBBbmRyb2lkIDEwOyBLKSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvMTUwLjAuMC4wIE1vYmlsZSBTYWZhcmkvNTM3LjM2IiwiZXhwIjoxNzg1MzI2MjcwLCJqdGkiOiI1Njg4NDkyZDA4NWQ0ZmY0In0%3D.gQ6A8DPB2d6%2FBoQijNljzDGuMNSRRkLuMaC1vuHHqIg%3D"
+# En Güncel YodaCDN Token'ı (ARB HD Güncellemesi ile Yenilendi)
+guncel_token = "eyJpcCI6IjkyLjM5Ljk0LjIwMyIsInVhIjoiTW96aWxsYS81LjAgKExpbnV4OyBBbmRyb2lkIDEwOyBLKSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvMTUwLjAuMC4wIE1vYmlsZSBTYWZhcmkvNTM3LjM2IiwiZXhwIjoxNzg1MzI4NDMwLCJqdGkiOiJmYmQ4OWM1N2FhYjU1ODc3In0%3D.jhtyuuhYTshosf67e+loVyrtIMrjc7az%2F0gAb9BzjmY%3D"
 
 # 1. GRUP: Ana YodaCDN Yayınları
 aztv_link = f"https://str.yodacdn.net/azertv/tracks-v3a1/mono.ts.m3u8?token={guncel_token}"
@@ -56,11 +56,11 @@ atv_link = "https://lives.atv.az:5443/ATV_TV_STREAM/streams/atvcanli.m3u8"
 baku_link = "https://rtmp.baku.tv/hls/bakutv_1080p.m3u8"
 kanals_link = "https://lives.atv.az:5443/KANAL-S/streams/kanals.m3u8"
 cbc_sport2_link = "https://cbcsports-live.lg.mncdn.com/cbcsports_live/cbcsports/chunklist.m3u8"
-dunyatv2_link = "https://stream.ftv.az/live/dunyatv.m3u8"
+dunyatv2_link = "https://stream.dunyatv.az/live/dunyatv.m3u8"
 
 # Diğer Ana Yayın Linkleri (Yoda/Sabit)
 arb_link = f"https://str.yodacdn.net/arb/tracks-v1a1/mono.ts.m3u8?token={guncel_token}"
-dunya_link = "https://stream.ftv.az/live/dunyatv.m3u8"
+dunya_link = "https://stream.dunyatv.az/live/dunyatv.m3u8"
 cbc_az_link = f"https://str.yodacdn.net/cbc/tracks-v1a1/mono.ts.m3u8?token={guncel_token}"
 arb_gunes_link = f"https://str.yodacdn.net/arbgunesh/tracks-v1a1/mono.ts.m3u8?token={guncel_token}"
 bakutv2_link = "https://rtmp.baku.tv/hls/bakutv_1080p.m3u8"
@@ -152,4 +152,4 @@ m3u_yapisi = "\n".join(m3u_satirlari)
 with open("listem.m3u", "w", encoding="utf-8") as f:
     f.write(m3u_yapisi)
 
-print("Space TV güncellendi ve 35 kanallı liste kaydedildi!")
+print("ARB HD yeni token'ı ile güncellendi ve tüm YodaCDN kanallarına uygulandı!")
