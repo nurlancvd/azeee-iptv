@@ -148,9 +148,8 @@ arb_gunes_link = arb_gunes_link_bul()
 bakutv2_dinamik_link = bakutv2_link_bul()
 ictimaitv2_dinamik_link = ictimaitv2_link_bul()
 
-# Yedek Yoda Token (Siteden canlı token çekilemezse devreye girer)
-if not guncel_token:
-    guncel_token = "eyJpcCI6IjM3LjExNC4xNDYuMTAzIiwidWEiOiJNb3ppbGxhLzUuMCAoaVBob25lOyBDUFUgaVBob25lIE9TIDI2XzVfMiBsaWtlIE1hYyBPUyBYKSBBcHBsZVdlYktpdC82MDUuMS4xNSAoS0hUTUwsIGxpa2UgR2Vja28pIENyaU9TLzE1MC4wLjc4NzEuMTEzIE0iLCJleHAiOjE3ODUzMjI1NzYsImp0aSI6IjA4NGEwMWMxZDFhZTVmMGYifQ%3D%3D.nY55V+xv9tpuxbLvyhHu2aRea8ntSYgdQUMe1nRWXLU%3D"
+# Senin verdiğin özel token (YodaCDN için direkt kullanılır)
+guncel_token = "eyJpcCI6IjM3LjExNC4xNDYuMTAzIiwidWEiOiJNb3ppbGxhLzUuMCAoaVBob25lOyBDUFUgaVBob25lIE9TIDI2XzVfMiBsaWtlIE1hYyBPUyBYKSBBcHBsZVdlYktpdC82MDUuMS4xNSAoS0hUTUwsIGxpa2UgR2Vja28pIENyaU9TLzE1MC4wLjc4NzEuMTEzIE0iLCJleHAiOjE3ODUzMjI1NzYsImp0aSI6IjA4NGEwMWMxZDFhZTVmMGYifQ%3D%3D.nY55V+xv9tpuxbLvyhHu2aRea8ntSYgdQUMe1nRWXLU%3D"
 
 # 1. GRUP: Mevcut Listenin Yoda Havuzu
 aztv_link = f"https://str.yodacdn.net/azertv/tracks-v3a1/mono.ts.m3u8?token={guncel_token}"
@@ -170,7 +169,6 @@ aztv2_link = f"https://str.yodacdn.net/azertv/tracks-v1a1/mono.ts.m3u8?token={gu
 medeniyyet2_link = f"https://str2.yodacdn.net/medeniyyettele/tracks-v1a1/mono.ts.m3u8?token={guncel_token}"
 idman2_link = f"https://str2.yodacdn.net/idmantele/tracks-v1a1/mono.ts.m3u8?token={guncel_token}"
 real2_link = f"https://str.yodacdn.net/real/mono.m3u8?token={guncel_token}"
-# [GÜNCELLENDİ] Xezer TV 2 doğrudan resmi sunucu m3u8 adresine bağlandı
 xezer2_link = "https://xezerxeber.az/stream/main_stream.m3u8"
 azad2_link = f"https://str.yodacdn.net/atv/tracks-v1a1/mono.ts.m3u8?token={guncel_token}"
 space2_link = f"https://str.yodacdn.net/space/tracks-v1a1/mono.ts.m3u8?token={guncel_token}"
@@ -190,7 +188,7 @@ dunyatv2_link = "https://stream.ftv.az/live/dunyatv.m3u8"
 # --- M3U FORMAT YAPISI (35 KANAL DÜZ LİSTE) ---
 
 m3u_satirlari = [
-    "#EXTM3U",
+    '#EXTM3U x-tvg-url="" http-user-agent="Mozilla/5.0 (iPhone; CPU iPhone OS 26_5_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) CriOS/150.0.7871.113 M" http-referrer="https://yoda.az/"',
     # --- İLK 21 KANAL ---
     f'#EXTINF:-1 tvg-id="ITV" tvg-logo="https://i.ibb.co/dsfZQ0Cq/itv.png" group-title="Azerbaijan",İctimai TV',
     f"{itv_link}",
@@ -205,6 +203,8 @@ m3u_satirlari = [
     f'#EXTINF:-1 tvg-id="RealTV" tvg-logo="https://i.ibb.co/Rpk9CspD/realtv.jpg" group-title="Azerbaijan",Real TV',
     f"{real_link}",
     f'#EXTINF:-1 tvg-id="XezerTV" tvg-logo="https://i.ibb.co/q3BGCK8n/xezer.png" group-title="Azerbaijan",Xezer TV',
+    f'#EXTVLCOPT:http-user-agent=Mozilla/5.0 (iPhone; CPU iPhone OS 26_5_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) CriOS/150.0.7871.113 M',
+    f'#EXTVLCOPT:http-referrer=https://yoda.az/',
     f"{xezer_link}",
     f'#EXTINF:-1 tvg-id="AzadAzerbaycanTV" tvg-logo="https://i.ibb.co/rDHp5Fk/azad.png" group-title="Azerbaijan",Azad Azerbaycan TV',
     f"{atv_link}",
@@ -249,6 +249,8 @@ m3u_satirlari = [
     f'#EXTINF:-1 tvg-id="RealTV2" tvg-logo="https://i.ibb.co/Rpk9CspD/realtv.jpg" group-title="Azerbaijan",Real TV 2',
     f"{real2_link}",
     f'#EXTINF:-1 tvg-id="XezerTV2" tvg-logo="https://i.ibb.co/q3BGCK8n/xezer.png" group-title="Azerbaijan",Xezer TV 2',
+    f'#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
+    f'#EXTVLCOPT:http-referrer=https://xezerxeber.az/',
     f"{xezer2_link}",
     f'#EXTINF:-1 tvg-id="AzadAzerbaycan2" tvg-logo="https://i.ibb.co/rDHp5Fk/azad.png" group-title="Azerbaijan",Azad Azerbaycan 2',
     f"{azad2_link}",
@@ -258,7 +260,7 @@ m3u_satirlari = [
     f"{space2_link}",
     f'#EXTINF:-1 tvg-id="ARB2" tvg-logo="https://i.ibb.co/fY05FcdF/arbhd.jpg" group-title="Azerbaijan",ARB 2',
     f"{arb2_link}",
-    f'#EXTINF:-1 tvg-id="CBCTV2" tvg-logo="https://i.ibb.co/mVjVMH0J/cbcaz.png" group-title="Azerbaijan",CBC TV 2',
+    f'#EXTINF:-1 tvg-id="CBCTV2" tvg-logo="https://i.ibb.co/mVjVMH0J/cbcaz.png" group-title="Azerbaijan",CBCTV 2',
     f"{cbctv2_link}",
     f'#EXTINF:-1 tvg-id="ARBGunes2" tvg-logo="https://i.ibb.co/prshwRH9/gunestv.png" group-title="Azerbaijan",ARB Gunes 2',
     f"{arbgunesh2_link}",
@@ -272,4 +274,4 @@ m3u_yapisi = "\n".join(m3u_satirlari)
 with open("listem.m3u", "w", encoding="utf-8") as f:
     f.write(m3u_yapisi)
 
-print("Xezer TV 2 yeni adrese bağlandı ve M3U güncellendi!")
+print("iPhone User-Agent ve Referer eklendi. M3U başarıyla güncellendi!")
