@@ -24,7 +24,7 @@ cbc_link = cbc_sport_link_bul()
 # En Güncel YodaCDN Token'ı
 guncel_token = "eyJpcCI6IjkyLjM5Ljk0LjIwMyIsInVhIjoiTW96aWxsYS81LjAgKExpbnV4OyBBbmRyb2lkIDEwOyBLKSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvMTUwLjAuMC4wIE1vYmlsZSBTYWZhcmkvNTM3LjM2IiwiZXhwIjoxNzg1MzI4NDMwLCJqdGkiOiJmYmQ4OWM1N2FhYjU1ODc3In0%3D.jhtyuuhYTshosf67e+loVyrtIMrjc7az%2F0gAb9BzjmY%3D"
 
-# 1. GRUP: Ana YodaCDN ve Yeni Güncellenen Yayınlar
+# 1. GRUP: Ana YodaCDN Yayınları
 aztv_link = f"https://str.yodacdn.net/azertv/tracks-v3a1/mono.ts.m3u8?token={guncel_token}"
 medeniyyet_link = f"https://str2.yodacdn.net/medeniyyettele/tracks-v3a1/mono.ts.m3u8?token={guncel_token}"
 idman_link = f"https://str2.yodacdn.net/idmantele/tracks-v3a1/mono.ts.m3u8?token={guncel_token}"
@@ -32,10 +32,11 @@ real_link = f"https://str.yodacdn.net/real/tracks-v1a1/mono.ts.m3u8?token={gunce
 xezer_link = f"https://str.yodacdn.net/xazartv/tracks-v1a1/mono.ts.m3u8?token={guncel_token}"
 space_link = f"https://str.yodacdn.net/space/tracks-v1a1/mono.ts.m3u8?token={guncel_token}"
 ntv_link = f"https://str.yodacdn.net/ntv/mono.m3u8?token={guncel_token}"
-arb24_link = "https://uae.iptv2022.com/sh/arb24_az/tracks-v4a1/mono.ts.m3u8?filter.tracks=a1v1v2v3v4"
+biznes_link = f"https://str.yodacdn.net/biznestv/tracks-v1a1/mono.ts.m3u8?token={guncel_token}"
+arb24_link = f"https://str.yodacdn.net/arb24/tracks-v1a1/mono.ts.m3u8?token={guncel_token}"
 qafqaz_link = f"https://str.yodacdn.net/qafkaz/tracks-v1a1/mono.ts.m3u8?token={guncel_token}"
 apatv_link = f"https://str.yodacdn.net/apatv/tracks-v1a1/mono.ts.m3u8?token={guncel_token}"
-mtvaz_link = "https://uae.iptv2022.com/sh/muztv_az/tracks-v4a1/mono.ts.m3u8?filter.tracks=a1v1v2v3v4"
+mtvaz_link = f"https://str.yodacdn.net/mtvaz/tracks-v1a1/mono.ts.m3u8?token={guncel_token}"
 
 # 2. GRUP: Yedek YodaCDN Yayınları
 aztv2_link = f"https://str.yodacdn.net/azertv/tracks-v1a1/mono.ts.m3u8?token={guncel_token}"
@@ -57,21 +58,21 @@ kanals_link = "https://lives.atv.az:5443/KANAL-S/streams/kanals.m3u8"
 cbc_sport2_link = "https://cbcsports-live.lg.mncdn.com/cbcsports_live/cbcsports/chunklist.m3u8"
 dunyatv2_link = "https://stream.dunyatv.az/live/dunyatv.m3u8"
 
-# Diğer Ana Yayın Linkleri
+# Diğer Ana Yayın Linkleri (Yoda/Sabit)
 arb_link = f"https://str.yodacdn.net/arb/tracks-v1a1/mono.ts.m3u8?token={guncel_token}"
 dunya_link = "https://stream.dunyatv.az/live/dunyatv.m3u8"
-cbc_az_link = "https://uae.iptv2022.com/sh/cbc_az/tracks-v4a1/mono.ts.m3u8?filter.tracks=a1v1v2v3v4"
-arb_gunes_link = "https://uae.iptv2022.com/sh/arb_gunes_az/tracks-v4a1/mono.ts.m3u8?filter.tracks=a1v1v2v3v4"
+cbc_az_link = "https://stream.castr.com/6994359f4093355bcd876a4c/live_dfbe52f00be311f1952faf8c24dd1b5c/tracks-v3/index.fmp4.m3u8"
+arb_gunes_link = f"https://str.yodacdn.net/arbgunesh/tracks-v1a1/mono.ts.m3u8?token={guncel_token}"
 bakutv2_link = "https://rtmp.baku.tv/hls/bakutv_1080p.m3u8"
 ictimaitv2_link = "https://live.itv.az/itv.m3u8?bandwidth=3900&shift=0"
 
 
-# --- TAM 34 KANALLI M3U LİSTESİ ---
+# --- TAM 35 KANALLI M3U LİSTESİ ---
 
 m3u_satirlari = [
     '#EXTM3U',
     
-    # --- İLK 20 KANAL (Biznes TV Çıkarıldı) ---
+    # --- İLK 21 KANAL ---
     '#EXTINF:-1 tvg-id="ITV" tvg-logo="https://i.ibb.co/dsfZQ0Cq/itv.png" group-title="Azerbaijan",İctimai TV',
     f"{itv_link}",
     '#EXTINF:-1 tvg-id="CBCSport" tvg-logo="https://i.ibb.co/pBpdbm2j/cbcs.png" group-title="Azerbaijan",CBC Sport',
@@ -102,6 +103,8 @@ m3u_satirlari = [
     f"{ntv_link}",
     '#EXTINF:-1 tvg-id="ARBGunes" tvg-logo="https://i.ibb.co/1GG5X2mb/gunestv.png" group-title="Azerbaijan",ARB Güneş',
     f"{arb_gunes_link}",
+    '#EXTINF:-1 tvg-id="BiznesTV" tvg-logo="https://i.ibb.co/k60QQDpX/biznestv.png" group-title="Azerbaijan",Biznes TV',
+    f"{biznes_link}",
     '#EXTINF:-1 tvg-id="ARB24" tvg-logo="https://i.ibb.co/3mJSN4yT/arb24.png" group-title="Azerbaijan",ARB 24',
     f"{arb24_link}",
     '#EXTINF:-1 tvg-id="QafqazTV" tvg-logo="https://i.ibb.co/dsn5NM67/qafqaz-tv.png" group-title="Azerbaijan",Qafqaz TV',
@@ -113,7 +116,7 @@ m3u_satirlari = [
     '#EXTINF:-1 tvg-id="MTVAzerbaijan" tvg-logo="https://i.ibb.co/60Q8b9Q6/MTV.jpg" group-title="Azerbaijan",MTV Azerbaijan',
     f"{mtvaz_link}",
 
-    # --- 14 YEDEK VE ALTERNATİF KANAL ---
+    # --- 14 YENİ YEDEK VE ALTERNATİF KANAL (22 - 35) ---
     '#EXTINF:-1 tvg-id="IctimaiTV2" tvg-logo="https://i.ibb.co/FbKMRyFz/itv2.jpg" group-title="Azerbaijan",Ictimai TV 2',
     f"{ictimaitv2_link}",
     '#EXTINF:-1 tvg-id="CBCSport2" tvg-logo="https://i.ibb.co/WvVYTGLR/cbc2.png" group-title="Azerbaijan",CBC Sport 2',
@@ -149,4 +152,4 @@ m3u_yapisi = "\n".join(m3u_satirlari)
 with open("listem.m3u", "w", encoding="utf-8") as f:
     f.write(m3u_yapisi)
 
-print("İstenen kanallar güncellendi, Biznes TV silindi ve 34 kanallı liste kaydedildi!")
+print("CBC TV güncellendi ve 35 kanallı liste kaydedildi!")
