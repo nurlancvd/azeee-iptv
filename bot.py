@@ -1,9 +1,9 @@
 import requests
 import re
 
-# Web istekleri için kullanılacak varsayılan header
 headers = {
-    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+    "Referer": "https://mediabay.tv/"
 }
 
 # --- DİNAMİK TOKEN ÇÖZÜCÜ FONKSİYONLAR ---
@@ -19,47 +19,56 @@ def cbc_sport_link_bul():
         print("CBC Sport çekilemedi, yedek atanıyor:", e)
     return "https://cbcsports-live.lg.mncdn.com/cbcsports_live/cbcsports/chunklist.m3u8"
 
-def mediabay_link_bul(page_url, yedek_link):
-    """Mediabay web sayfasından güncel m3u8 token'lı linki otomatik çeker."""
+def mediabay_api_link_bul(channel_id, yedek_link):
+    """
+    Mediabay API'sine doğrudan istek atarak 100% canlı taze token'lı m3u8 linkini çeker.
+    """
+    api_url = f"https://api.mediabay.tv/v2/stream/get-url?id={channel_id}"
     try:
-        response = requests.get(page_url, headers=headers, timeout=10)
-        # Sayfa içeriğindeki st2.mediabay.tv m3u8 linklerini bul
-        linkler = re.findall(r'(https?://st2\.mediabay\.tv/[^\s"\']+\.m3u8[^\s"\']*)', response.text)
-        if linkler:
-            # HTML escape karakterlerini temizle (örneğin &amp; -> &)
-            temiz_link = linkler[0].replace("&amp;", "&")
-            return temiz_link
+        res = requests.get(api_url, headers=headers, timeout=10)
+        if res.status_code == 200:
+            data = res.json()
+            # API yanıtından stream URL'sini al
+            stream_url = data.get("data", {}).get("url") or data.get("url")
+            if stream_url:
+                return stream_url
     except Exception as e:
-        print(f"Mediabay linki çekilemedi ({page_url}), yedek kullanılıyor:", e)
+        print(f"Mediabay API hatası (Kanal ID: {channel_id}):", e)
+    
     return yedek_link
 
 # CBC Sport
 cbc_link = cbc_sport_link_bul()
 
-# --- MEDIABAY OTOMATİK TOKEN ÇEKİCİLER (OTOMATİK + YEDEK DESTEKLİ) ---
-cbc_az_link = mediabay_link_bul(
-    "https://mediabay.tv/tv/154/CBC%20(Caspian%20Broadcasting%20Company)",
-    "https://st2.mediabay.tv/CBC_AZ/tracks-v2a1/mono.m3u8?token=518d8a6fa8863ea885f2c346b92a0c1a527fbcd8-d06c105cd45967e04d5211c24ddea2e8-1785588087-1785577287"
+# --- MEDIABAY KANAL ID'LERİ İLE CANLI TOKEN ÇEKİMİ ---
+# CBC TV (ID: 154)
+cbc_az_link = mediabay_api_link_bul(
+    154, 
+    "https://st2.mediabay.tv/CBC_AZ/tracks-v2a1/mono.m3u8"
 )
 
-mtvaz_link = mediabay_link_bul(
-    "https://mediabay.tv/tv/593/MTV%20Azerbaijan",
-    "https://st2.mediabay.tv/MTV_AZ/tracks-v2a1/mono.m3u8?token=cf20394c3495d5896533c7f1d6f07ad9e56a43a5-b878df2ef4004ee905943c757a4d20b4-1785587989-1785577189"
+# MTV Azerbaijan (ID: 593)
+mtvaz_link = mediabay_api_link_bul(
+    593, 
+    "https://st2.mediabay.tv/MTV_AZ/tracks-v2a1/mono.m3u8"
 )
 
-kn_music_link = mediabay_link_bul(
-    "https://mediabay.tv/tv/714/KNTV",
-    "https://st2.mediabay.tv/KNTV/tracks-v3a1/mono.m3u8?token=1daff6a8555a34505f9b37cc2d980d36a09a22eb-2aaf3410e1f6500827218fbeb8d78d25-1785587783-1785576983"
+# KN Music TV (ID: 714)
+kn_music_link = mediabay_api_link_bul(
+    714, 
+    "https://st2.mediabay.tv/KNTV/tracks-v3a1/mono.m3u8"
 )
 
-konul_link = mediabay_link_bul(
-    "https://mediabay.tv/tv/715/Konul%20Tv",
-    "https://st2.mediabay.tv/KonulTV/tracks-v3a1/mono.m3u8?token=cc52be5577615c05bbae3f87a0b6c960aa558fd0-0e60b2a91ee5fbddd2cdbddb3a7aa592-1785587826-1785577026"
+# Könül TV (ID: 715)
+konul_link = mediabay_api_link_bul(
+    715, 
+    "https://st2.mediabay.tv/KonulTV/tracks-v3a1/mono.m3u8"
 )
 
-k_music_link = mediabay_link_bul(
-    "https://mediabay.tv/tv/716/Konul%20Music%20Tv",
-    "https://st2.mediabay.tv/Konul_MusicTV/tracks-v3a1/mono.m3u8?token=4a6e56a1d9be74ff053eeb52eaaf2e6b31a01061-89deb320a177788ddaaec32b82684f4a-1785587869-1785577069"
+# K Music TV (ID: 716)
+k_music_link = mediabay_api_link_bul(
+    716, 
+    "https://st2.mediabay.tv/Konul_MusicTV/tracks-v3a1/mono.m3u8"
 )
 
 # En Güncel YodaCDN Token'ı
@@ -102,7 +111,6 @@ cbc_sport2_link = "https://cbcsports-live.lg.mncdn.com/cbcsports_live/cbcsports/
 dunyatv2_link = "https://stream.dunyatv.az/live/dunyatv.m3u8"
 bakutv2_link = "https://rtmp.baku.tv/hls/bakutv_1080p.m3u8"
 ictimaitv2_link = "https://live.itv.az/itv.m3u8?bandwidth=3900&shift=0"
-
 
 # --- M3U LİSTESİ OLUŞTURMA ---
 
@@ -193,4 +201,4 @@ m3u_yapisi = "\n".join(m3u_satirlari)
 with open("listem.m3u", "w", encoding="utf-8") as f:
     f.write(m3u_yapisi)
 
-print("Otomatik Mediabay token çekimi eklendi ve liste oluşturuldu!")
+print("Mediabay API'si üzerinden taze token'lar çekildi ve M3U dosyası güncellendi!")
