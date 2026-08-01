@@ -1,39 +1,41 @@
-name: IPTV Guncelleme Botu
+name: Update M3U Playlist
 
 on:
   schedule:
-    - cron: '0 * * * *'  # Her 1 saatte bir çalışır
-  workflow_dispatch:
+    # Her 6 saatte bir otomatik çalışır (İsteğe göre değiştirebilirsiniz)
+    - cron: '0 */6 * * *'
+  workflow_dispatch: # GitHub arayüzünden manuel tetikleme imkanı sağlar
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
+
     steps:
-    - name: Depoyu Kopyala
-      uses: actions/checkout@v4
-      with:
-        fetch-depth: 0
-        token: ${{ secrets.GITHUB_TOKEN }}
+      # 1. Depodaki kodları çek
+      - name: Checkout Repository
+        uses: actions/checkout@v4
 
-    - name: Python Kur
-      uses: actions/setup-python@v5
-      with:
-        python-version: '3.x'
+      # 2. Python Ortamını Kur
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
 
-    - name: Gerekli Kütüphaneleri Yukle
-      run: pip install curl_cffi
+      # 3. Kütüphaneleri ve Playwright Chromium Sürücüsünü Kur
+      - name: Install Dependencies & Playwright
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          playwright install chromium --with-deps
 
-    - name: Botu Calistir
-      run: python bot.py
+      # 4. Botu Çalıştır (Token'lar çekilir ve listem.m3u oluşturulur)
+      - name: Run Bot Script
+        run: python bot.py
 
-    - name: Degisiklikleri Github'a Kaydet
-      run: |
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
-        git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
-        git add listem.m3u
-        git commit -m "M3U Otomatik Güncellendi [skip ci]" || exit 0
-        git pull --rebase origin main || true
-        git push origin HEAD:main
+      # 5. Güncellenmiş listem.m3u Dosyasını Depoya Commit Et
+      - name: Commit and Push Changes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add listem.m3u
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Auto-update playlist [skip ci]" && git push)
