@@ -1,5 +1,5 @@
 #EXTM3U
-# EXTM3U - Son Guncelleme: 2026-08-01 14:27:05 UTC
+# EXTM3U - Son Guncelleme: 2026-08-01 14:34:16 UTC
 #EXTINF:-1 tvg-id="ITV" tvg-logo="https://i.ibb.co/dsfZQ0Cq/itv.png" group-title="Azerbaijan",İctimai TV
 https://live.itv.az/itv.m3u8?bandwidth=3900&shift=0
 #EXTINF:-1 tvg-id="CBCSport" tvg-logo="https://i.ibb.co/pBpdbm2j/cbcs.png" group-title="Azerbaijan",CBC Sport
@@ -25,7 +25,7 @@ https://str.yodacdn.net/arb/tracks-v1a1/mono.ts.m3u8?token=eyJpcCI6IjkyLjM5Ljk0L
 #EXTINF:-1 tvg-id="DunyaTV" tvg-logo="https://i.ibb.co/whNG1qY9/dunyatv.jpg" group-title="Azerbaijan",Dunya TV
 https://stream.dunyatv.az/live/dunyatv.m3u8
 #EXTINF:-1 tvg-id="CBCTV" tvg-logo="https://i.ibb.co/mVjVMH0J/cbcaz.png" group-title="Azerbaijan",CBC TV
-https://st2.mediabay.tv/CBC_AZ/tracks-v2a1/mono.m3u8?token=ce1325d13bdfdf46a71c55971d1e50141a360f6e-1f5a7e14359c4496988f35d2cc94ff0e-1785604885-1785594085
+https://st2.mediabay.tv/CBC_AZ/tracks-v1a1/mono.m3u8?token=a38b5663d375fdff0f588f937bf8d60d2416e702-aa31ae8078a025928408bb37073e3489-1785605310-1785594510
 #EXTINF:-1 tvg-id="NaxcivanTV" tvg-logo="https://i.ibb.co/bgyrK5r2/NTV.png" group-title="Azerbaijan",Naxçıvan TV
 https://str.yodacdn.net/ntv/mono.m3u8?token=eyJpcCI6IjkyLjM5Ljk0LjIwMyIsInVhIjoiTW96aWxsYS81LjAgKExpbnV4OyBBbmRyb2lkIDEwOyBLKSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvNTUwLjAuMC4wIE1vYmlsZSBTYWZhcmkvNTM3MzYiLCJleHAiOjE3ODUzMjg0MzAsImp0aSI6ImZiZDg5YzU3YWFiNTU4NzcifQ%3D%3D.jhtyuuhYTshosf67e+loVyrtIMrjc7az%2F0gAb9BzjmY%3D
 #EXTINF:-1 tvg-id="QafqazTV" tvg-logo="https://i.ibb.co/dsn5NM67/qafqaz-tv.png" group-title="Azerbaijan",Qafqaz TV
@@ -35,15 +35,15 @@ https://str.yodacdn.net/apatv/tracks-v1a1/mono.ts.m3u8?token=eyJpcCI6IjkyLjM5Ljk
 #EXTINF:-1 tvg-id="KanalS" tvg-logo="https://i.ibb.co/RpgqMMct/Kanal-S.png" group-title="Azerbaijan",Kanal S
 https://lives.atv.az:5443/KANAL-S/streams/kanals.m3u8
 #EXTINF:-1 tvg-id="MTVAzerbaijan" tvg-logo="https://i.ibb.co/60Q8b9Q6/MTV.jpg" group-title="Azerbaijan",MTV Azerbaijan
-https://st2.mediabay.tv/MTV_AZ/tracks-v1a1/mono.m3u8?token=852c11977d5d9c3ba5a7d788b20835f7086f2c06-ccd1f1dafb842dc910e03a0119ab22d6-1785604893-1785594093
+https://st2.mediabay.tv/MTV_AZ/tracks-v1a1/mono.m3u8?token=95376d1e3d6319db430ab45d0ed5afb7311cfa44-47fd5b397876c55230bec6d15ca99ebe-1785605320-1785594520
 #EXTINF:-1 tvg-id="AyazTV" tvg-logo="https://i.ibb.co/gNdFzTf/ayaztv.png" group-title="Azerbaijan",Ayaz TV
 https://janya-ayaztv.vgcdn.net/ptnr-WebApp/title-Ayaz_TV/v1/vglive-sk-934820/AyazTV_800k.m3u8
 #EXTINF:-1 tvg-id="KNMusicTV" tvg-logo="https://i.ibb.co/BVwxFNfn/kntv.png" group-title="Azerbaijan",KN Music TV
-https://st2.mediabay.tv/KNTV/tracks-v3a1/mono.m3u8?token=659ae2f9d70c4b89e46b0c146c20f90bba08d7fb-5d13b1f9ca4f7b834e345a3ed1d06cc1-1785604902-1785594102
+https://st2.mediabay.tv/KNTV/tracks-v3a1/mono.m3u8?token=2b94989524e7e897e4d911fad371883c690cdcf6-88db34ce94bb3c646c7d3874238ae305-1785605330-1785594530
 #EXTINF:-1 tvg-id="KonulTV" tvg-logo="https://i.ibb.co/YFh87zMF/ktv.jpg" group-title="Azerbaijan",Konul TV
-https://st2.mediabay.tv/KonulTV/tracks-v3a1/mono.m3u8?token=372e0084842e695cf07e62e0a5d1556174ad7f4e-1b945d2b04659f68bcab185e437d832c-1785604911-1785594111
+https://st2.mediabay.tv/KonulTV/tracks-v2a1/mono.m3u8?token=53b6a4c9dbce3c7ab9793af9cdbd5c5896837fb1-c172f6753b29326d8db68a54c2d29e67-1785605340-1785594540
 #EXTINF:-1 tvg-id="KMusicTV" tvg-logo="https://i.ibb.co/xSp2kZ5S/kmusic.png" group-title="Azerbaijan",K Music TV
-https://st2.mediabay.tv/Konul_MusicTV/tracks-v3a1/mono.m3u8?token=c56e200e20fc1406a1d186a39c3b65fef17f4916-fffd9254571d6e831d0f30e0cf1be147-1785604920-1785594120
+https://st2.mediabay.tv/Konul_MusicTV/tracks-v2a1/mono.m3u8?token=93c7a2ec3dc110cf4aa0c286372b098c9c480801-af4bbc4297bf2984d2aaf3b9f87ce07b-1785605350-1785594550
 #EXTINF:-1 tvg-id="FTV" tvg-logo="https://i.ibb.co/tMwJ0tBm/ftv.png" group-title="Azerbaijan",FTV
 https://stream.ftv.az/live/ftv.m3u8
 #EXTINF:-1 tvg-id="IctimaiTV2" tvg-logo="https://i.ibb.co/FbKMRyFz/itv2.jpg" group-title="Azerbaijan",Ictimai TV 2
