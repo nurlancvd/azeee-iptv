@@ -1,12 +1,12 @@
 from curl_cffi import requests
 import re
 import json
-import urllib.parse
 from datetime import datetime
 
 headers = {
-    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
-    "Accept": "application/json, text/plain, */*",
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
+    "Accept": "*/*",
+    "Accept-Language": "az,tr,en;q=0.9",
     "Referer": "https://mediabay.tv/",
     "Origin": "https://mediabay.tv"
 }
@@ -14,10 +14,9 @@ headers = {
 # --- DİNAMİK TOKEN ÇÖZÜCÜ FONKSİYONLAR ---
 
 def cbc_sport_link_bul():
-    target_url = "https://cbcsport.az/live/"
-    proxy_url = f"https://api.codetabs.com/v1/proxy?quest={target_url}"
+    url = "https://cbcsport.az/live/"
     try:
-        response = requests.get(proxy_url, headers=headers, impersonate="chrome120", timeout=12)
+        response = requests.get(url, headers=headers, impersonate="chrome124", timeout=10)
         linkler = re.findall(r'(https?://[^\s"\']+\.m3u8[^\s"\']*)', response.text)
         if linkler:
             print("CBC Sport linki başarıyla çekildi!")
@@ -28,40 +27,42 @@ def cbc_sport_link_bul():
 
 def mediabay_tokenli_link_bul(channel_id, page_slug, yedek_link):
     """
-    Cloudflare ve GitHub Runner engellerini aşmak için çift kademeli proxy kullanır:
-    1. CodeTabs Proxy
-    2. AllOrigins Proxy (Yedek)
+    Yerel Oturum Yapısı: Dış proxy kullanmadan doğrudan Mediabay API ve Web Player 
+    izlerini tarayarak tokenlı link bulmaya çalışır.
     """
-    target_api = f"https://api.mediabay.tv/v2/stream/get-url?id={channel_id}"
-    encoded_api = urllib.parse.quote(target_api)
+    s = requests.Session()
     
-    # 1. DENEME: CodeTabs Proxy
-    proxy_url = f"https://api.codetabs.com/v1/proxy?quest={target_api}"
+    # 1. YOL: Doğrudan API Denemesi (Mobil Başlıklar ile)
+    api_url = f"https://api.mediabay.tv/v2/stream/get-url?id={channel_id}"
+    api_headers = headers.copy()
+    api_headers["X-Requested-With"] = "XMLHttpRequest"
+    
     try:
-        res = requests.get(proxy_url, headers=headers, impersonate="chrome120", timeout=12)
+        res = s.get(api_url, headers=api_headers, impersonate="chrome124", timeout=8)
         if res.status_code == 200:
-            data = res.json() if isinstance(res.json(), dict) else json.loads(res.text)
+            data = res.json()
             stream_url = data.get("data", {}).get("url") or data.get("url")
             if stream_url and "token=" in stream_url:
-                print(f"ID {channel_id} için Başarıyla Token Alındı (CodeTabs)!")
+                print(f"ID {channel_id} için API'den Token Alındı!")
                 return stream_url
     except Exception as e:
-        print(f"CodeTabs proxy hatası (ID: {channel_id}):", e)
+        print(f"ID {channel_id} API deneme hatası:", e)
 
-    # 2. DENEME: AllOrigins Proxy (Yedek)
-    proxy_url_2 = f"https://api.allorigins.win/get?url={encoded_api}"
+    # 2. YOL: Kanal Sayfasından Doğrudan Regex İle Çekme
+    page_url = f"https://mediabay.tv/tv/{channel_id}/{page_slug}"
     try:
-        res2 = requests.get(proxy_url_2, headers=headers, impersonate="chrome120", timeout=12)
-        if res2.status_code == 200:
-            contents = json.loads(res2.json().get("contents", "{}"))
-            stream_url = contents.get("data", {}).get("url") or contents.get("url")
-            if stream_url and "token=" in stream_url:
-                print(f"ID {channel_id} için Başarıyla Token Alındı (AllOrigins)!")
-                return stream_url
+        res_page = s.get(page_url, headers=headers, impersonate="chrome124", timeout=8)
+        if res_page.status_code == 200:
+            # Sayfa kodlarında geçen token'lı m3u8 linklerini bul
+            found_links = re.findall(r'https?://[^\s"\']+\.m3u8\?token=[^\s"\']+', res_page.text)
+            if found_links:
+                clean_link = found_links[0].replace("&amp;", "&")
+                print(f"ID {channel_id} için Sayfadan Token Alındı!")
+                return clean_link
     except Exception as e:
-        print(f"AllOrigins proxy hatası (ID: {channel_id}):", e)
+        print(f"ID {channel_id} Sayfa tarama hatası:", e)
 
-    print(f"ID {channel_id} için token alınamadı, yedek linke düşüldü.")
+    print(f"ID {channel_id} için token bulunamadı, varsayılan linke düşüldü.")
     return yedek_link
 
 # --- CANLI LİNK ÇEKİMLERİ ---
