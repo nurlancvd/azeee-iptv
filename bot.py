@@ -11,6 +11,13 @@ headers = {
     "Origin": "https://mediabay.tv"
 }
 
+# DNS sorununu aşmak için mediabay domainlerini doğrudan IP ile eşliyoruz
+# st2.mediabay.tv sunucusunun bağlı olduğu IP blogu: 185.100.54.195 / 185.100.54.196
+RESOLVE_MAP = {
+    "mediabay.tv:443": "185.100.54.195",
+    "api.mediabay.tv:443": "185.100.54.195"
+}
+
 # --- DİNAMİK TOKEN ÇÖZÜCÜ FONKSİYONLAR ---
 
 def cbc_sport_link_bul():
@@ -27,18 +34,24 @@ def cbc_sport_link_bul():
 
 def mediabay_tokenli_link_bul(channel_id, page_slug, yedek_link):
     """
-    Yerel Oturum Yapısı: Dış proxy kullanmadan doğrudan Mediabay API ve Web Player 
-    izlerini tarayarak tokenlı link bulmaya çalışır.
+    DNS bypass kullanarak Doğrudan IP üzerinden Mediabay API ve Web Player'a bağlanır.
     """
     s = requests.Session()
     
-    # 1. YOL: Doğrudan API Denemesi (Mobil Başlıklar ile)
+    # 1. YOL: Direct IP / Resolve Map ile API Denemesi
     api_url = f"https://api.mediabay.tv/v2/stream/get-url?id={channel_id}"
     api_headers = headers.copy()
     api_headers["X-Requested-With"] = "XMLHttpRequest"
     
     try:
-        res = s.get(api_url, headers=api_headers, impersonate="chrome124", timeout=8)
+        # resolve parametresi ile DNS aramadan doğrudan IP'ye gider
+        res = s.get(
+            api_url, 
+            headers=api_headers, 
+            impersonate="chrome124", 
+            timeout=8,
+            resolve=RESOLVE_MAP
+        )
         if res.status_code == 200:
             data = res.json()
             stream_url = data.get("data", {}).get("url") or data.get("url")
@@ -46,21 +59,26 @@ def mediabay_tokenli_link_bul(channel_id, page_slug, yedek_link):
                 print(f"ID {channel_id} için API'den Token Alındı!")
                 return stream_url
     except Exception as e:
-        print(f"ID {channel_id} API deneme hatası:", e)
+        print(f"ID {channel_id} API (DNS Bypass) hatası:", e)
 
-    # 2. YOL: Kanal Sayfasından Doğrudan Regex İle Çekme
+    # 2. YOL: Direct IP / Resolve Map ile Sayfa Taraması
     page_url = f"https://mediabay.tv/tv/{channel_id}/{page_slug}"
     try:
-        res_page = s.get(page_url, headers=headers, impersonate="chrome124", timeout=8)
+        res_page = s.get(
+            page_url, 
+            headers=headers, 
+            impersonate="chrome124", 
+            timeout=8,
+            resolve=RESOLVE_MAP
+        )
         if res_page.status_code == 200:
-            # Sayfa kodlarında geçen token'lı m3u8 linklerini bul
             found_links = re.findall(r'https?://[^\s"\']+\.m3u8\?token=[^\s"\']+', res_page.text)
             if found_links:
                 clean_link = found_links[0].replace("&amp;", "&")
                 print(f"ID {channel_id} için Sayfadan Token Alındı!")
                 return clean_link
     except Exception as e:
-        print(f"ID {channel_id} Sayfa tarama hatası:", e)
+        print(f"ID {channel_id} Sayfa (DNS Bypass) hatası:", e)
 
     print(f"ID {channel_id} için token bulunamadı, varsayılan linke düşüldü.")
     return yedek_link
