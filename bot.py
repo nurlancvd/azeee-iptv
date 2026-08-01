@@ -1,104 +1,82 @@
 from curl_cffi import requests
 import re
-import json
 from datetime import datetime
 
-headers = {
+# =====================================================================
+# 1. KULLANICI AYARLARI
+# =====================================================================
+# Cloudflare Worker Adresini Buraya Yapıştır (Sonunda / veya ? olmadan)
+WORKER_URL = "https://soft-fire-da68.nurlancvd.workers.dev/"
+
+HEADERS = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
     "Accept": "*/*",
-    "Accept-Language": "az,tr,en;q=0.9",
-    "Referer": "https://mediabay.tv/",
-    "Origin": "https://mediabay.tv"
+    "Accept-Language": "az,tr,en;q=0.9"
 }
 
-# Mediabay Sunucu IP Adresi (DNS bypass için)
-MEDIABAY_IP = "185.100.54.195"
-
-# --- DİNAMİK TOKEN ÇÖZÜCÜ FONKSİYONLAR ---
+# =====================================================================
+# 2. DİNAMİK TOKEN & LİNK ÇEKME FONKSİYONLARI
+# =====================================================================
 
 def cbc_sport_link_bul():
+    """CBC Sport resmi sitesinden güncel m3u8 linkini çeker."""
     url = "https://cbcsport.az/live/"
     try:
-        response = requests.get(url, headers=headers, impersonate="chrome124", timeout=10)
+        response = requests.get(url, headers=HEADERS, impersonate="chrome124", timeout=10)
         linkler = re.findall(r'(https?://[^\s"\']+\.m3u8[^\s"\']*)', response.text)
         if linkler:
             print("CBC Sport linki başarıyla çekildi!")
             return linkler[0]
     except Exception as e:
-        print("CBC Sport çekilemedi, hatası:", e)
+        print("CBC Sport çekilemedi, varsayılana düşüldü. Hata:", e)
     return "https://cbcsports-live.lg.mncdn.com/cbcsports_live/cbcsports/chunklist.m3u8"
 
 def mediabay_tokenli_link_bul(channel_id, page_slug, yedek_link):
     """
-    Doğrudan IP adresi ve Host başlığı kullanarak DNS çözümleme adımı olmadan Mediabay'e bağlanır.
+    Mediabay API ve Web Player sayfasına Cloudflare Worker üzerinden istek atar.
+    GitHub Actions IP engeline takılmadan dinamik tokenli m3u8 linkini alır.
     """
-    s = requests.Session()
-    
-    # 1. YOL: API Denemesi (Doğrudan IP + Host Header)
-    api_url_ip = f"https://{MEDIABAY_IP}/v2/stream/get-url?id={channel_id}"
-    api_headers = headers.copy()
-    api_headers["Host"] = "api.mediabay.tv"
-    api_headers["X-Requested-With"] = "XMLHttpRequest"
+    # 1. YOL: Worker üzerinden API Denemesi
+    target_api = f"https://api.mediabay.tv/v2/stream/get-url?id={channel_id}"
+    proxied_api_url = f"{WORKER_URL}?url={target_api}"
     
     try:
-        res = s.get(
-            api_url_ip, 
-            headers=api_headers, 
-            impersonate="chrome124", 
-            timeout=8,
-            verify=False  # IP adresi kullanıldığı için SSL cert kontrolü atlanır
-        )
+        res = requests.get(proxied_api_url, timeout=10)
         if res.status_code == 200:
             data = res.json()
-            stream_url = data.get("data", {}).get("url") or data.get("url")
+            stream_url = data.get("data", {}).get("url") or data.get("url") or data.get("file")
             if stream_url and "token=" in stream_url:
-                print(f"ID {channel_id} için API'den Token Alındı!")
+                print(f"ID {channel_id} için Worker Proxy (API) üzerinden Token Alındı!")
                 return stream_url
     except Exception as e:
-        # IP yöntemi başarısız olursa standart domain denemesi yap
-        try:
-            api_url_domain = f"https://api.mediabay.tv/v2/stream/get-url?id={channel_id}"
-            res_dom = s.get(api_url_domain, headers=api_headers, impersonate="chrome124", timeout=8)
-            if res_dom.status_code == 200:
-                data = res_dom.json()
-                stream_url = data.get("data", {}).get("url") or data.get("url")
-                if stream_url and "token=" in stream_url:
-                    print(f"ID {channel_id} için API Domain'den Token Alındı!")
-                    return stream_url
-        except Exception as ex:
-            print(f"ID {channel_id} API hatası:", ex)
+        print(f"ID {channel_id} API proxy hatası: {e}")
 
-    # 2. YOL: Web Sayfası Taraması (Doğrudan IP + Host Header)
-    page_url_ip = f"https://{MEDIABAY_IP}/tv/{channel_id}/{page_slug}"
-    page_headers = headers.copy()
-    page_headers["Host"] = "mediabay.tv"
-
+    # 2. YOL: Worker üzerinden Web Sayfası Taraması
+    target_page = f"https://mediabay.tv/tv/{channel_id}/{page_slug}"
+    proxied_page_url = f"{WORKER_URL}?url={target_page}"
+    
     try:
-        res_page = s.get(
-            page_url_ip, 
-            headers=page_headers, 
-            impersonate="chrome124", 
-            timeout=8,
-            verify=False
-        )
+        res_page = requests.get(proxied_page_url, timeout=10)
         if res_page.status_code == 200:
             found_links = re.findall(r'https?://[^\s"\']+\.m3u8\?token=[^\s"\']+', res_page.text)
             if found_links:
                 clean_link = found_links[0].replace("&amp;", "&")
-                print(f"ID {channel_id} için Sayfadan Token Alındı!")
+                print(f"ID {channel_id} için Worker Proxy (Sayfa) üzerinden Token Alındı!")
                 return clean_link
     except Exception as e:
-        print(f"ID {channel_id} Sayfa tarama hatası:", e)
+        print(f"ID {channel_id} Sayfa proxy hatası: {e}")
 
     print(f"ID {channel_id} için token bulunamadı, varsayılan linke düşüldü.")
     return yedek_link
 
-# --- CANLI LİNK ÇEKİMLERİ ---
+# =====================================================================
+# 3. LİNK BİLEŞENLERİ VE TOKENLAR
+# =====================================================================
 
 # CBC Sport
 cbc_link = cbc_sport_link_bul()
 
-# Mediabay Kanalları
+# Mediabay Kanalları (Proxy ile çekilir)
 cbc_az_link = mediabay_tokenli_link_bul(
     154, "CBC%20(Caspian%20Broadcasting%20Company)",
     "https://st2.mediabay.tv/CBC_AZ/tracks-v2a1/mono.m3u8"
@@ -165,7 +143,9 @@ dunyatv2_link = "https://stream.dunyatv.az/live/dunyatv.m3u8"
 bakutv2_link = "https://rtmp.baku.tv/hls/bakutv_1080p.m3u8"
 ictimaitv2_link = "https://live.itv.az/itv.m3u8?bandwidth=3900&shift=0"
 
-# --- M3U LİSTESİ OLUŞTURMA ---
+# =====================================================================
+# 4. M3U LİSTESİ OLUŞTURMA
+# =====================================================================
 
 m3u_satirlari = [
     '#EXTM3U',
