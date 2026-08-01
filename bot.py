@@ -27,6 +27,7 @@ guncel_token = "eyJpcCI6IjkyLjM5Ljk0LjIwMyIsInVhIjoiTW96aWxsYS81LjAgKExpbnV4OyBB
 
 # Diğer Eklenen Kanallar
 ayaz_link = "https://janya-ayaztv.vgcdn.net/ptnr-WebApp/title-Ayaz_TV/v1/vglive-sk-934820/AyazTV_800k.m3u8"
+kn_music_link = "https://cdn4.yayin.com.tr/kntv/tracks-v1a1/mono.m3u8"
 ftv_link = "https://stream.ftv.az/live/ftv.m3u8"
 
 # 1. GRUP: YodaCDN & Sabit Yayınlar
@@ -106,6 +107,8 @@ m3u_satirlari = [
     # --- MÜZİK VE DİĞER KANALLAR ---
     '#EXTINF:-1 tvg-id="AyazTV" tvg-logo="https://i.ibb.co/gNdFzTf/ayaztv.png" group-title="Azerbaijan",Ayaz TV',
     f"{ayaz_link}",
+    '#EXTINF:-1 tvg-id="KNMusicTV" tvg-logo="https://i.ibb.co/BVwxFNfn/kntv.png" group-title="Azerbaijan",KN Music TV',
+    f"{kn_music_link}",
     '#EXTINF:-1 tvg-id="FTV" tvg-logo="https://i.ibb.co/tMwJ0tBm/ftv.png" group-title="Azerbaijan",FTV',
     f"{ftv_link}",
 
@@ -143,4 +146,4 @@ m3u_yapisi = "\n".join(m3u_satirlari)
 with open("listem.m3u", "w", encoding="utf-8") as f:
     f.write(m3u_yapisi)
 
-print("Mediabay bagimliliklari temizlendi ve listem.m3u basariyla olusturuldu!")
+print("KN Music TV başarıyla eklendi ve listem.m3u oluşturuldu!")
