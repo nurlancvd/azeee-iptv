@@ -32,25 +32,45 @@ def cbc_sport_link_bul():
     return "https://cbcsports-live.lg.mncdn.com/cbcsports_live/cbcsports/chunklist.m3u8"
 
 def mediabay_tokenli_link_bul(channel_id, page_slug, yedek_link):
-    target_api = f"https://api.mediabay.tv/v2/stream/live/{channel_id}"
+    """
+    Cloudflare Worker Proxy üzerinden Mediabay'in güncel API'sine istek atarak token alır.
+    """
+    # Mediabay'in GÜNCEL API adresi
+    target_api = f"https://api.mediabay.tv/v2/stream/get-url?id={channel_id}"
     proxied_api_url = f"{WORKER_URL}?url={target_api}"
     
     try:
         res = requests.get(proxied_api_url, timeout=10)
-        print(f"DEBUG ID {channel_id} Status:", res.status_code) # Gelen HTTP Durumu
-        print(f"DEBUG ID {channel_id} Response:", res.text[:150]) # Yanıtın ilk 150 karakteri
-        
         if res.status_code == 200:
             data = res.json()
-            stream_url = data.get("file") or data.get("url") or data.get("data", {}).get("stream_url")
-            if stream_url:
+            # Güncel API yanıtındaki JSON ağacı
+            stream_url = data.get("data", {}).get("url") or data.get("url")
+            if stream_url and "token=" in stream_url:
                 print(f"ID {channel_id} için Token Başarıyla Alındı!")
                 return stream_url
+            elif stream_url:
+                print(f"ID {channel_id} için Tokensız Link Alındı!")
+                return stream_url
     except Exception as e:
-        print(f"ID {channel_id} Hata Detayı:", e)
+        print(f"ID {channel_id} API proxy hatası: {e}")
 
+    # API başarısız olursa Web Sayfası üzerinden tarama yap
+    target_page = f"https://mediabay.tv/tv/{channel_id}/{page_slug}"
+    proxied_page_url = f"{WORKER_URL}?url={target_page}"
+    
+    try:
+        res_page = requests.get(proxied_page_url, timeout=10)
+        if res_page.status_code == 200:
+            found_links = re.findall(r'https?://[^\s"\']+\.m3u8\?token=[^\s"\']+', res_page.text)
+            if found_links:
+                clean_link = found_links[0].replace("&amp;", "&")
+                print(f"ID {channel_id} için Sayfadan Token Alındı!")
+                return clean_link
+    except Exception as e:
+        print(f"ID {channel_id} Sayfa proxy hatası: {e}")
+
+    print(f"ID {channel_id} için token bulunamadı, varsayılan linke düşüldü.")
     return yedek_link
-
 # =====================================================================
 # 3. LİNK BİLEŞENLERİ VE TOKENLAR
 # =====================================================================
