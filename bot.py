@@ -33,47 +33,31 @@ def cbc_sport_link_bul():
 
 def mediabay_tokenli_link_bul(channel_id, page_slug, yedek_link):
     """
-    Cloudflare Worker Proxy üzerinden Mediabay API ve Web sayfasını tarar.
-    Detaylı log verir.
+    Cloudflare Worker Proxy üzerinden Mediabay web sayfasını çeker 
+    ve HTML/JS kaynak kodundan m3u8 / token yayın linkini cıkarır.
     """
-    target_api = f"https://api.mediabay.tv/v2/stream/get-url?id={channel_id}"
-    proxied_api_url = f"{WORKER_URL}?url={target_api}"
-    
-    try:
-        res = requests.get(proxied_api_url, timeout=10)
-        print(f"DEBUG ID {channel_id} API HTTP Code:", res.status_code)
-        print(f"DEBUG ID {channel_id} API Body:", res.text[:200]) # Yanıtın ilk 200 karakteri
-        
-        if res.status_code == 200:
-            try:
-                data = res.json()
-                # Olası tüm JSON key'lerini tara
-                stream_url = (
-                    data.get("data", {}).get("url") if isinstance(data.get("data"), dict) else None
-                ) or data.get("url") or data.get("file") or data.get("stream")
-                
-                if stream_url:
-                    print(f"ID {channel_id} için API'den Link Bulundu: {stream_url[:40]}...")
-                    return stream_url
-            except Exception as json_err:
-                print(f"ID {channel_id} JSON Parse Hatası:", json_err)
-    except Exception as e:
-        print(f"ID {channel_id} API Istek Hatası:", e)
-
-    # 2. ŞANS: Doğrudan Web Sayfası Taraması (HTML Regex)
     target_page = f"https://mediabay.tv/tv/{channel_id}/{page_slug}"
     proxied_page_url = f"{WORKER_URL}?url={target_page}"
     
     try:
-        res_page = requests.get(proxied_page_url, timeout=10)
-        print(f"DEBUG ID {channel_id} PAGE HTTP Code:", res_page.status_code)
+        res_page = requests.get(proxied_page_url, timeout=12)
         if res_page.status_code == 200:
-            # HTML içindeki m3u8 veya token geçen linkleri ara
-            found_links = re.findall(r'https?://[^\s"\']+\.m3u8[^\s"\']*', res_page.text)
-            if found_links:
-                clean_link = found_links[0].replace("&amp;", "&")
-                print(f"ID {channel_id} için Sayfadan Link Bulundu!")
+            html_text = res_page.text
+
+            # 1. Öncelik: Token içeren m3u8 linkleri
+            tokenli_linkler = re.findall(r'https?://[^\s"\'<>]+?\.m3u8\?[^\s"\'<>]+', html_text)
+            if tokenli_linkler:
+                clean_link = tokenli_linkler[0].replace("&amp;", "&")
+                print(f"ID {channel_id} için Sayfadan Tokenlı Link Alındı!")
                 return clean_link
+
+            # 2. Öncelik: Sayfa icinde geçen herhangi bir m3u8 akış linki (st2.mediabay.tv vb.)
+            genel_linkler = re.findall(r'https?://[^\s"\'<>]+?\.m3u8', html_text)
+            if genel_linkler:
+                clean_link = genel_linkler[0].replace("&amp;", "&")
+                print(f"ID {channel_id} için Sayfadan Doğrudan m3u8 Alındı!")
+                return clean_link
+
     except Exception as e:
         print(f"ID {channel_id} Sayfa Istek Hatası:", e)
 
