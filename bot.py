@@ -1,5 +1,6 @@
 from curl_cffi import requests
 import re
+from datetime import datetime
 
 headers = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
@@ -22,23 +23,19 @@ def cbc_sport_link_bul():
     return "https://cbcsports-live.lg.mncdn.com/cbcsports_live/cbcsports/chunklist.m3u8"
 
 def mediabay_tokenli_link_bul(channel_id, page_slug, yedek_link):
-    """
-    curl_cffi ile Chrome tarayıcısını taklit ederek token'lı linki çeker.
-    """
     session = requests.Session()
     
     # 1. Sayfayı Chrome gibi ziyaret et
     page_url = f"https://mediabay.tv/tv/{channel_id}/{page_slug}"
     try:
         resp = session.get(page_url, headers=headers, impersonate="chrome120", timeout=10)
-        # HTML içinde token'lı link arama
         linkler = re.findall(r'(https?://st2\.mediabay\.tv/[^\s"\']+\.m3u8\?token=[^\s"\']+)', resp.text)
         if linkler:
             return linkler[0].replace("&amp;", "&")
     except Exception as e:
         print(f"Mediabay web tarama hatası (ID: {channel_id}):", e)
 
-    # 2. Eğer bulamadıysa doğrudan API'den iste
+    # 2. Doğrudan API'den iste
     api_url = f"https://api.mediabay.tv/v2/stream/get-url?id={channel_id}"
     try:
         res = session.get(api_url, headers=headers, impersonate="chrome120", timeout=10)
@@ -126,6 +123,7 @@ ictimaitv2_link = "https://live.itv.az/itv.m3u8?bandwidth=3900&shift=0"
 
 m3u_satirlari = [
     '#EXTM3U',
+    f'# EXTM3U - Son Guncelleme: {datetime.now().strftime("%Y-%m-%d %H:%M:%S")} UTC',
     
     # --- ANA KANAL GRUBU ---
     '#EXTINF:-1 tvg-id="ITV" tvg-logo="https://i.ibb.co/dsfZQ0Cq/itv.png" group-title="Azerbaijan",İctimai TV',
@@ -211,4 +209,7 @@ m3u_yapisi = "\n".join(m3u_satirlari)
 with open("listem.m3u", "w", encoding="utf-8") as f:
     f.write(m3u_yapisi)
 
-print("curl_cffi kullanılarak taze token'lar çekildi ve M3U dosyası güncellendi!")
+print("----------------------------------------")
+print("ISLEM TAMAMLANDI!")
+print("Cekilen CBC TV Linki:", cbc_az_link)
+print("----------------------------------------")
