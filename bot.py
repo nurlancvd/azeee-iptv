@@ -33,41 +33,49 @@ def cbc_sport_link_bul():
 
 def mediabay_tokenli_link_bul(channel_id, page_slug, yedek_link):
     """
-    Cloudflare Worker Proxy üzerinden Mediabay'in güncel API'sine istek atarak token alır.
+    Cloudflare Worker Proxy üzerinden Mediabay API ve Web sayfasını tarar.
+    Detaylı log verir.
     """
-    # Mediabay'in GÜNCEL API adresi
     target_api = f"https://api.mediabay.tv/v2/stream/get-url?id={channel_id}"
     proxied_api_url = f"{WORKER_URL}?url={target_api}"
     
     try:
         res = requests.get(proxied_api_url, timeout=10)
+        print(f"DEBUG ID {channel_id} API HTTP Code:", res.status_code)
+        print(f"DEBUG ID {channel_id} API Body:", res.text[:200]) # Yanıtın ilk 200 karakteri
+        
         if res.status_code == 200:
-            data = res.json()
-            # Güncel API yanıtındaki JSON ağacı
-            stream_url = data.get("data", {}).get("url") or data.get("url")
-            if stream_url and "token=" in stream_url:
-                print(f"ID {channel_id} için Token Başarıyla Alındı!")
-                return stream_url
-            elif stream_url:
-                print(f"ID {channel_id} için Tokensız Link Alındı!")
-                return stream_url
+            try:
+                data = res.json()
+                # Olası tüm JSON key'lerini tara
+                stream_url = (
+                    data.get("data", {}).get("url") if isinstance(data.get("data"), dict) else None
+                ) or data.get("url") or data.get("file") or data.get("stream")
+                
+                if stream_url:
+                    print(f"ID {channel_id} için API'den Link Bulundu: {stream_url[:40]}...")
+                    return stream_url
+            except Exception as json_err:
+                print(f"ID {channel_id} JSON Parse Hatası:", json_err)
     except Exception as e:
-        print(f"ID {channel_id} API proxy hatası: {e}")
+        print(f"ID {channel_id} API Istek Hatası:", e)
 
-    # API başarısız olursa Web Sayfası üzerinden tarama yap
+    # 2. ŞANS: Doğrudan Web Sayfası Taraması (HTML Regex)
     target_page = f"https://mediabay.tv/tv/{channel_id}/{page_slug}"
     proxied_page_url = f"{WORKER_URL}?url={target_page}"
     
     try:
         res_page = requests.get(proxied_page_url, timeout=10)
+        print(f"DEBUG ID {channel_id} PAGE HTTP Code:", res_page.status_code)
         if res_page.status_code == 200:
-            found_links = re.findall(r'https?://[^\s"\']+\.m3u8\?token=[^\s"\']+', res_page.text)
+            # HTML içindeki m3u8 veya token geçen linkleri ara
+            found_links = re.findall(r'https?://[^\s"\']+\.m3u8[^\s"\']*', res_page.text)
             if found_links:
                 clean_link = found_links[0].replace("&amp;", "&")
-                print(f"ID {channel_id} için Sayfadan Token Alındı!")
+                print(f"ID {channel_id} için Sayfadan Link Bulundu!")
                 return clean_link
     except Exception as e:
-        print(f"ID {channel_id} Sayfa proxy hatası: {e}")
+        print(f"ID {channel_id} Sayfa Istek Hatası:", e)
 
     print(f"ID {channel_id} için token bulunamadı, varsayılan linke düşüldü.")
     return yedek_link
