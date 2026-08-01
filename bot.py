@@ -32,48 +32,59 @@ def cbc_sport_link_bul():
     return "https://cbcsports-live.lg.mncdn.com/cbcsports_live/cbcsports/chunklist.m3u8"
 
 from playwright.sync_api import sync_playwright
+import time
 
 def mediabay_tokenli_link_bul(channel_id, page_slug, yedek_link):
     """
-    Sanal tarayıcı (Playwright) başlatır, Mediabay sayfasını yükler
-    ve arka planda atılan gerçek .m3u8?token= istek adresini yakalar.
+    Önbelleği temizleyerek taze oturum açar, player'ı tetikler
+    ve oluşturulan EN SON taze token'lı m3u8 linkini yakalar.
     """
     target_url = f"https://mediabay.tv/tv/{channel_id}/{page_slug}"
-    found_link = None
+    found_links = []
 
     try:
         with sync_playwright() as p:
-            # Arka planda gizli tarayıcı başlat
+            # Her istekte tamamen temiz, önbelleksiz bir gizli tarayıcı başlat
             browser = p.chromium.launch(headless=True)
             context = browser.new_context(
-                user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"
+                user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
+                viewport={"width": 1280, "height": 720}
             )
             page = context.new_page()
 
-            # Ağ trafiğini (network) dinleme fonksiyonu
+            # Ağ trafiğini dinle - Yakalanan TÜM m3u8 linklerini listeye ekle
             def handle_request(request):
-                nonlocal found_link
                 url = request.url
                 if ".m3u8" in url and "token=" in url:
-                    found_link = url
+                    found_links.append(url)
 
-            # Ağ isteklerini dinlemeye al
             page.on("request", handle_request)
 
-            # Sayfaya git ve player'ın yüklenmesi için 6 saniye bekle
-            page.goto(target_url, timeout=15000, wait_until="domcontentloaded")
-            page.wait_for_timeout(6000)
+            # Sayfaya git
+            page.goto(target_url, timeout=20000, wait_until="domcontentloaded")
+            page.wait_for_timeout(3000)
+
+            # Player yayın başlatmadıysa ekrana/play butonuna tıklamayı dene
+            try:
+                page.click("video", timeout=2000)
+            except:
+                pass
+
+            # Player'ın en taze akış isteğini atması için biraz bekle
+            page.wait_for_timeout(4000)
 
             browser.close()
 
-            if found_link:
-                print(f"ID {channel_id} için Canlı Tokenlı Link Başarıyla Yakalandı!")
-                return found_link
+            # Yakalanan en SON isteği al (en güncel token en sondakidir)
+            if found_links:
+                latest_link = found_links[-1]
+                print(f"ID {channel_id} için Taze Token Yakalandı! ({len(found_links)} istek arasından sonuncusu seçildi)")
+                return latest_link
 
     except Exception as e:
         print(f"ID {channel_id} Playwright Hatası:", e)
 
-    print(f"ID {channel_id} için token yakalanamadı, yedek linke düşüldü.")
+    print(f"ID {channel_id} için taze token yakalanamadı, yedek linke düşüldü.")
     return yedek_link
 # =====================================================================
 # 3. LİNK BİLEŞENLERİ VE TOKENLAR
