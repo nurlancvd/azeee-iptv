@@ -12,47 +12,47 @@ headers = {
 # --- DİNAMİK TOKEN ÇÖZÜCÜ FONKSİYONLAR ---
 
 def cbc_sport_link_bul():
-    url = "https://cbcsport.az/live/"
+    # CBC Sport sitesine CORS Proxy üzerinden erişim
+    proxy_url = "https://corsproxy.io/?https://cbcsport.az/live/"
     try:
-        response = requests.get(url, headers=headers, impersonate="chrome120", timeout=10)
+        response = requests.get(proxy_url, headers=headers, impersonate="chrome120", timeout=12)
         linkler = re.findall(r'(https?://[^\s"\']+\.m3u8[^\s"\']*)', response.text)
         if linkler:
+            print("CBC Sport linki başarıyla çekildi!")
             return linkler[0]
     except Exception as e:
         print("CBC Sport çekilemedi, hatası:", e)
     return "https://cbcsports-live.lg.mncdn.com/cbcsports_live/cbcsports/chunklist.m3u8"
 
 def mediabay_tokenli_link_bul(channel_id, page_slug, yedek_link):
-    session = requests.Session()
+    """
+    GitHub Runner IP/DNS engellerini aşmak için CORS Proxy üzerinden 
+    Mediabay API'sine erişir ve geçerli token'lı canlı yayın linkini çeker.
+    """
+    proxy_api_url = f"https://corsproxy.io/?https://api.mediabay.tv/v2/stream/get-url?id={channel_id}"
     
-    # 1. Sayfayı Chrome gibi ziyaret et
-    page_url = f"https://mediabay.tv/tv/{channel_id}/{page_slug}"
     try:
-        resp = session.get(page_url, headers=headers, impersonate="chrome120", timeout=10)
-        linkler = re.findall(r'(https?://st2\.mediabay\.tv/[^\s"\']+\.m3u8\?token=[^\s"\']+)', resp.text)
-        if linkler:
-            return linkler[0].replace("&amp;", "&")
-    except Exception as e:
-        print(f"Mediabay web tarama hatası (ID: {channel_id}):", e)
-
-    # 2. Doğrudan API'den iste
-    api_url = f"https://api.mediabay.tv/v2/stream/get-url?id={channel_id}"
-    try:
-        res = session.get(api_url, headers=headers, impersonate="chrome120", timeout=10)
+        res = requests.get(proxy_api_url, headers=headers, impersonate="chrome120", timeout=12)
         if res.status_code == 200:
             data = res.json()
             stream_url = data.get("data", {}).get("url") or data.get("url")
             if stream_url and "token=" in stream_url:
+                print(f"ID {channel_id} için Başarıyla Token Alındı!")
+                return stream_url
+            elif stream_url:
                 return stream_url
     except Exception as e:
-        print(f"Mediabay API hatası (ID: {channel_id}):", e)
+        print(f"Mediabay Proxy API hatası (ID: {channel_id}):", e)
 
+    print(f"ID {channel_id} için token alınamadı, yedek linke düşüldü.")
     return yedek_link
+
+# --- CANLI LİNK ÇEKİMLERİ ---
 
 # CBC Sport
 cbc_link = cbc_sport_link_bul()
 
-# --- MEDIABAY TOKEN'LI CANLI LİNK ÇEKİMİ ---
+# Mediabay Kanalları
 cbc_az_link = mediabay_tokenli_link_bul(
     154, "CBC%20(Caspian%20Broadcasting%20Company)",
     "https://st2.mediabay.tv/CBC_AZ/tracks-v2a1/mono.m3u8"
