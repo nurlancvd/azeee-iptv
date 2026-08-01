@@ -1,4 +1,4 @@
-import requests
+from curl_cffi import requests
 import re
 
 headers = {
@@ -13,43 +13,42 @@ headers = {
 def cbc_sport_link_bul():
     url = "https://cbcsport.az/live/"
     try:
-        response = requests.get(url, headers=headers, timeout=10)
+        response = requests.get(url, headers=headers, impersonate="chrome120", timeout=10)
         linkler = re.findall(r'(https?://[^\s"\']+\.m3u8[^\s"\']*)', response.text)
         if linkler:
             return linkler[0]
     except Exception as e:
-        print("CBC Sport çekilemedi, yedek atanıyor:", e)
+        print("CBC Sport çekilemedi, hatası:", e)
     return "https://cbcsports-live.lg.mncdn.com/cbcsports_live/cbcsports/chunklist.m3u8"
 
 def mediabay_tokenli_link_bul(channel_id, page_slug, yedek_link):
     """
-    Mediabay oturumu açarak web sayfası üzerinden canlı token'ı kesin olarak çeker.
+    curl_cffi ile Chrome tarayıcısını taklit ederek token'lı linki çeker.
     """
     session = requests.Session()
-    session.headers.update(headers)
     
-    # 1. Önce web sayfasına gidip oturum çerezlerini (cookies) topla
+    # 1. Sayfayı Chrome gibi ziyaret et
     page_url = f"https://mediabay.tv/tv/{channel_id}/{page_slug}"
     try:
-        resp = session.get(page_url, timeout=10)
-        # HTML içinden doğrudan token'lı m3u8 linkini ara
+        resp = session.get(page_url, headers=headers, impersonate="chrome120", timeout=10)
+        # HTML içinde token'lı link arama
         linkler = re.findall(r'(https?://st2\.mediabay\.tv/[^\s"\']+\.m3u8\?token=[^\s"\']+)', resp.text)
         if linkler:
             return linkler[0].replace("&amp;", "&")
     except Exception as e:
-        print(f"Mediabay web tarama hatası ({channel_id}):", e)
+        print(f"Mediabay web tarama hatası (ID: {channel_id}):", e)
 
-    # 2. Eğer HTML içinde düz metin bulunamazsa API'den oturum çereziyle token talep et
+    # 2. Eğer bulamadıysa doğrudan API'den iste
     api_url = f"https://api.mediabay.tv/v2/stream/get-url?id={channel_id}"
     try:
-        res = session.get(api_url, timeout=10)
+        res = session.get(api_url, headers=headers, impersonate="chrome120", timeout=10)
         if res.status_code == 200:
             data = res.json()
             stream_url = data.get("data", {}).get("url") or data.get("url")
             if stream_url and "token=" in stream_url:
                 return stream_url
     except Exception as e:
-        print(f"Mediabay API hatası (Kanal ID: {channel_id}):", e)
+        print(f"Mediabay API hatası (ID: {channel_id}):", e)
 
     return yedek_link
 
@@ -212,4 +211,4 @@ m3u_yapisi = "\n".join(m3u_satirlari)
 with open("listem.m3u", "w", encoding="utf-8") as f:
     f.write(m3u_yapisi)
 
-print("Oturum çerezleri kullanılarak Mediabay token'ları çekildi!")
+print("curl_cffi kullanılarak taze token'lar çekildi ve M3U dosyası güncellendi!")
