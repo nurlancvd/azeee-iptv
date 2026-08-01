@@ -2,7 +2,7 @@ name: IPTV Guncelleme Botu
 
 on:
   schedule:
-    - cron: '0 * * * *'  # Her 1 saatte bir çalışır
+    - cron: '15 * * * *'  # Her saatin 15. dakikasında çalışır
   workflow_dispatch:
 
 jobs:
