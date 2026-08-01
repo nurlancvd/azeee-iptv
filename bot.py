@@ -1,9 +1,13 @@
 import requests
 import re
 
+# Standart tarayıcı başlıkları (Mediabay korumasını aşmak için)
 headers = {
-    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
-    "Referer": "https://mediabay.tv/"
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
+    "Accept-Language": "tr-TR,tr;q=0.9,en-US;q=0.8,en;q=0.7",
+    "Referer": "https://mediabay.tv/",
+    "Origin": "https://mediabay.tv"
 }
 
 # --- DİNAMİK TOKEN/LİNK ÇÖZÜCÜ FONKSİYONLAR ---
@@ -20,22 +24,42 @@ def cbc_sport_link_bul():
     return "https://cbcsports-live.lg.mncdn.com/cbcsports_live/cbcsports/chunklist.m3u8"
 
 def mediabay_link_bul(tv_id, varsayilan_link=""):
-    """Mediabay sayfasına bağlanıp güncel .m3u8?token=... linkini otomatik çeker."""
-    url = f"https://mediabay.tv/tv/{tv_id}"
-    try:
-        res = requests.get(url, headers=headers, timeout=10)
-        # Sayfa içindeki .m3u8?token= yapısını yakalar
-        match = re.search(r'https?://st\d+\.mediabay\.tv/[^\s"\'<>]+\.m3u8\?token=[^\s"\'<>]+', res.text)
-        if match:
-            return match.group(0)
-    except Exception as e:
-        print(f"Mediabay ID {tv_id} çekilemedi:", e)
+    """Mediabay yayın linkini ve token'ını çekmeye çalışır."""
+    session = requests.Session()
+    
+    # 1. Yöntem: Doğrudan Player/Embed Sayfasını Taramak
+    urls_to_check = [
+        f"https://mediabay.tv/tv/{tv_id}",
+        f"https://mediabay.tv/embed/{tv_id}"
+    ]
+    
+    for url in urls_to_check:
+        try:
+            res = session.get(url, headers=headers, timeout=10)
+            
+            # .m3u8?token=... veya stXX.mediabay.tv kalıplarını ara
+            matches = re.findall(r'https?://[^\s"\'<>]+\.m3u8\?[^\s"\'<>]+', res.text)
+            if matches:
+                print(f"Mediabay ID {tv_id} başarıyla çekildi.")
+                return matches[0]
+                
+            # Alternatif regex: Sadece .m3u8 barındıran linkler
+            matches_simple = re.findall(r'https?://st\d+\.mediabay\.tv/[^\s"\'<>]+\.m3u8[^\s"\'<>]*', res.text)
+            if matches_simple:
+                print(f"Mediabay ID {tv_id} başarıyla çekildi.")
+                return matches_simple[0]
+        except Exception as e:
+            print(f"Mediabay ID {tv_id} ({url}) denenirken hata oluştu:", e)
+            
+    print(f"Mediabay ID {tv_id} çekilemedi, varsayılan/boş link kullanılıyor.")
     return varsayilan_link
 
 print("Canlı linkler ve token'lar çekiliyor...")
 
 # Dynamically Scraped Links
 cbc_link = cbc_sport_link_bul()
+
+# Mediabay Kanalları (Varsayılan yedek linklerle)
 cbc_az_link = mediabay_link_bul("154", "https://stream.castr.com/6994359f4093355bcd876a4c/live_dfbe52f00be311f1952faf8c24dd1b5c/tracks-v3/index.fmp4.m3u8")
 mtvaz_link = mediabay_link_bul("593")
 kn_music_link = mediabay_link_bul("714")
@@ -45,7 +69,7 @@ k_music_link = mediabay_link_bul("716")
 # En Güncel YodaCDN Token'ı
 guncel_token = "eyJpcCI6IjkyLjM5Ljk0LjIwMyIsInVhIjoiTW96aWxsYS81LjAgKExpbnV4OyBBbmRyb2lkIDEwOyBLKSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvNTUwLjAuMC4wIE1vYmlsZSBTYWZhcmkvNTM3MzYiLCJleHAiOjE3ODUzMjg0MzAsImp0aSI6ImZiZDg5YzU3YWFiNTU4NzcifQ%3D%3D.jhtyuuhYTshosf67e+loVyrtIMrjc7az%2F0gAb9BzjmY%3D"
 
-# Diğer Sabit Kanallar
+# Sabit Kanallar
 ayaz_link = "https://janya-ayaztv.vgcdn.net/ptnr-WebApp/title-Ayaz_TV/v1/vglive-sk-934820/AyazTV_800k.m3u8"
 ftv_link = "https://stream.ftv.az/live/ftv.m3u8"
 
@@ -82,7 +106,6 @@ cbc_sport2_link = "https://cbcsports-live.lg.mncdn.com/cbcsports_live/cbcsports/
 dunyatv2_link = "https://stream.dunyatv.az/live/dunyatv.m3u8"
 bakutv2_link = "https://rtmp.baku.tv/hls/bakutv_1080p.m3u8"
 ictimaitv2_link = "https://live.itv.az/itv.m3u8?bandwidth=3900&shift=0"
-
 
 # --- M3U LİSTESİ OLUŞTURMA ---
 
@@ -127,7 +150,7 @@ m3u_satirlari = [
     '#EXTINF:-1 tvg-id="MTVAzerbaijan" tvg-logo="https://i.ibb.co/60Q8b9Q6/MTV.jpg" group-title="Azerbaijan",MTV Azerbaijan',
     f"{mtvaz_link}",
 
-    # --- MTV AZERBAIJAN SONRASI YENİ KANALLAR ---
+    # --- MTV AZERBAIJAN SONRASI KANALLAR ---
     '#EXTINF:-1 tvg-id="AyazTV" tvg-logo="https://i.ibb.co/gNdFzTf/ayaztv.png" group-title="Azerbaijan",Ayaz TV',
     f"{ayaz_link}",
     '#EXTINF:-1 tvg-id="KNMusicTV" tvg-logo="https://i.ibb.co/BVwxFNfn/kntv.png" group-title="Azerbaijan",KN Music TV',
@@ -173,4 +196,4 @@ m3u_yapisi = "\n".join(m3u_satirlari)
 with open("listem.m3u", "w", encoding="utf-8") as f:
     f.write(m3u_yapisi)
 
-print("İşlem tamamlandı! Mediabay kanalları canlı kazındı ve M3U dosyasına yazıldı.")
+print("İşlem tamamlandı! M3U dosyası güncellendi.")
