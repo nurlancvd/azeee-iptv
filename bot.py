@@ -3,7 +3,9 @@ import re
 
 headers = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
-    "Referer": "https://mediabay.tv/"
+    "Accept": "application/json, text/plain, */*",
+    "Referer": "https://mediabay.tv/",
+    "Origin": "https://mediabay.tv"
 }
 
 # --- DİNAMİK TOKEN ÇÖZÜCÜ FONKSİYONLAR ---
@@ -19,55 +21,64 @@ def cbc_sport_link_bul():
         print("CBC Sport çekilemedi, yedek atanıyor:", e)
     return "https://cbcsports-live.lg.mncdn.com/cbcsports_live/cbcsports/chunklist.m3u8"
 
-def mediabay_api_link_bul(channel_id, yedek_link):
+def mediabay_tokenli_link_bul(channel_id, page_slug, yedek_link):
     """
-    Mediabay API'sine doğrudan istek atarak 100% canlı taze token'lı m3u8 linkini çeker.
+    Mediabay oturumu açarak web sayfası üzerinden canlı token'ı kesin olarak çeker.
     """
+    session = requests.Session()
+    session.headers.update(headers)
+    
+    # 1. Önce web sayfasına gidip oturum çerezlerini (cookies) topla
+    page_url = f"https://mediabay.tv/tv/{channel_id}/{page_slug}"
+    try:
+        resp = session.get(page_url, timeout=10)
+        # HTML içinden doğrudan token'lı m3u8 linkini ara
+        linkler = re.findall(r'(https?://st2\.mediabay\.tv/[^\s"\']+\.m3u8\?token=[^\s"\']+)', resp.text)
+        if linkler:
+            return linkler[0].replace("&amp;", "&")
+    except Exception as e:
+        print(f"Mediabay web tarama hatası ({channel_id}):", e)
+
+    # 2. Eğer HTML içinde düz metin bulunamazsa API'den oturum çereziyle token talep et
     api_url = f"https://api.mediabay.tv/v2/stream/get-url?id={channel_id}"
     try:
-        res = requests.get(api_url, headers=headers, timeout=10)
+        res = session.get(api_url, timeout=10)
         if res.status_code == 200:
             data = res.json()
-            # API yanıtından stream URL'sini al
             stream_url = data.get("data", {}).get("url") or data.get("url")
-            if stream_url:
+            if stream_url and "token=" in stream_url:
                 return stream_url
     except Exception as e:
         print(f"Mediabay API hatası (Kanal ID: {channel_id}):", e)
-    
+
     return yedek_link
 
 # CBC Sport
 cbc_link = cbc_sport_link_bul()
 
-# --- MEDIABAY KANAL ID'LERİ İLE CANLI TOKEN ÇEKİMİ ---
-# CBC TV (ID: 154)
-cbc_az_link = mediabay_api_link_bul(
-    154, 
+# --- MEDIABAY TOKEN'LI CANLI LİNK ÇEKİMİ ---
+cbc_az_link = mediabay_tokenli_link_bul(
+    154, "CBC%20(Caspian%20Broadcasting%20Company)",
     "https://st2.mediabay.tv/CBC_AZ/tracks-v2a1/mono.m3u8"
 )
 
-# MTV Azerbaijan (ID: 593)
-mtvaz_link = mediabay_api_link_bul(
-    593, 
+mtvaz_link = mediabay_tokenli_link_bul(
+    593, "MTV%20Azerbaijan",
     "https://st2.mediabay.tv/MTV_AZ/tracks-v2a1/mono.m3u8"
 )
 
-# KN Music TV (ID: 714)
-kn_music_link = mediabay_api_link_bul(
-    714, 
+kn_music_link = mediabay_tokenli_link_bul(
+    714, "KNTV",
     "https://st2.mediabay.tv/KNTV/tracks-v3a1/mono.m3u8"
 )
 
-# Könül TV (ID: 715)
-konul_link = mediabay_api_link_bul(
-    715, 
+konul_link = mediabay_tokenli_link_bul(
+    715, "Konul%20Tv",
     "https://st2.mediabay.tv/KonulTV/tracks-v3a1/mono.m3u8"
 )
 
-# K Music TV (ID: 716)
-k_music_link = mediabay_api_link_bul(
-    716, 
+k_music_link = mediabay_tokenli_link_bul(
+    716, "Konul%20Music%20Tv",
     "https://st2.mediabay.tv/Konul_MusicTV/tracks-v3a1/mono.m3u8"
 )
 
@@ -201,4 +212,4 @@ m3u_yapisi = "\n".join(m3u_satirlari)
 with open("listem.m3u", "w", encoding="utf-8") as f:
     f.write(m3u_yapisi)
 
-print("Mediabay API'si üzerinden taze token'lar çekildi ve M3U dosyası güncellendi!")
+print("Oturum çerezleri kullanılarak Mediabay token'ları çekildi!")
