@@ -1,9 +1,9 @@
 import requests
 import re
 
-# Sadece token çekerken kullanılacak varsayılan header
+# Web istekleri için kullanılacak varsayılan header
 headers = {
-    "User-Agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Mobile Safari/537.36"
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
 }
 
 # --- DİNAMİK TOKEN ÇÖZÜCÜ FONKSİYONLAR ---
@@ -19,17 +19,51 @@ def cbc_sport_link_bul():
         print("CBC Sport çekilemedi, yedek atanıyor:", e)
     return "https://cbcsports-live.lg.mncdn.com/cbcsports_live/cbcsports/chunklist.m3u8"
 
+def mediabay_link_bul(page_url, yedek_link):
+    """Mediabay web sayfasından güncel m3u8 token'lı linki otomatik çeker."""
+    try:
+        response = requests.get(page_url, headers=headers, timeout=10)
+        # Sayfa içeriğindeki st2.mediabay.tv m3u8 linklerini bul
+        linkler = re.findall(r'(https?://st2\.mediabay\.tv/[^\s"\']+\.m3u8[^\s"\']*)', response.text)
+        if linkler:
+            # HTML escape karakterlerini temizle (örneğin &amp; -> &)
+            temiz_link = linkler[0].replace("&amp;", "&")
+            return temiz_link
+    except Exception as e:
+        print(f"Mediabay linki çekilemedi ({page_url}), yedek kullanılıyor:", e)
+    return yedek_link
+
+# CBC Sport
 cbc_link = cbc_sport_link_bul()
+
+# --- MEDIABAY OTOMATİK TOKEN ÇEKİCİLER (OTOMATİK + YEDEK DESTEKLİ) ---
+cbc_az_link = mediabay_link_bul(
+    "https://mediabay.tv/tv/154/CBC%20(Caspian%20Broadcasting%20Company)",
+    "https://st2.mediabay.tv/CBC_AZ/tracks-v2a1/mono.m3u8?token=518d8a6fa8863ea885f2c346b92a0c1a527fbcd8-d06c105cd45967e04d5211c24ddea2e8-1785588087-1785577287"
+)
+
+mtvaz_link = mediabay_link_bul(
+    "https://mediabay.tv/tv/593/MTV%20Azerbaijan",
+    "https://st2.mediabay.tv/MTV_AZ/tracks-v2a1/mono.m3u8?token=cf20394c3495d5896533c7f1d6f07ad9e56a43a5-b878df2ef4004ee905943c757a4d20b4-1785587989-1785577189"
+)
+
+kn_music_link = mediabay_link_bul(
+    "https://mediabay.tv/tv/714/KNTV",
+    "https://st2.mediabay.tv/KNTV/tracks-v3a1/mono.m3u8?token=1daff6a8555a34505f9b37cc2d980d36a09a22eb-2aaf3410e1f6500827218fbeb8d78d25-1785587783-1785576983"
+)
+
+konul_link = mediabay_link_bul(
+    "https://mediabay.tv/tv/715/Konul%20Tv",
+    "https://st2.mediabay.tv/KonulTV/tracks-v3a1/mono.m3u8?token=cc52be5577615c05bbae3f87a0b6c960aa558fd0-0e60b2a91ee5fbddd2cdbddb3a7aa592-1785587826-1785577026"
+)
+
+k_music_link = mediabay_link_bul(
+    "https://mediabay.tv/tv/716/Konul%20Music%20Tv",
+    "https://st2.mediabay.tv/Konul_MusicTV/tracks-v3a1/mono.m3u8?token=4a6e56a1d9be74ff053eeb52eaaf2e6b31a01061-89deb320a177788ddaaec32b82684f4a-1785587869-1785577069"
+)
 
 # En Güncel YodaCDN Token'ı
 guncel_token = "eyJpcCI6IjkyLjM5Ljk0LjIwMyIsInVhIjoiTW96aWxsYS81LjAgKExpbnV4OyBBbmRyb2lkIDEwOyBLKSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvNTUwLjAuMC4wIE1vYmlsZSBTYWZhcmkvNTM3MzYiLCJleHAiOjE3ODUzMjg0MzAsImp0aSI6ImZiZDg5YzU3YWFiNTU4NzcifQ%3D%3D.jhtyuuhYTshosf67e+loVyrtIMrjc7az%2F0gAb9BzjmY%3D"
-
-# --- MEDIABAY GÜNCEL AKIŞ LİNKLERİ (YENİ TOKEN'LAR) ---
-cbc_az_link = "https://st2.mediabay.tv/CBC_AZ/tracks-v2a1/mono.m3u8?token=518d8a6fa8863ea885f2c346b92a0c1a527fbcd8-d06c105cd45967e04d5211c24ddea2e8-1785588087-1785577287"
-mtvaz_link = "https://st2.mediabay.tv/MTV_AZ/tracks-v2a1/mono.m3u8?token=cf20394c3495d5896533c7f1d6f07ad9e56a43a5-b878df2ef4004ee905943c757a4d20b4-1785587989-1785577189"
-kn_music_link = "https://st2.mediabay.tv/KNTV/tracks-v3a1/mono.m3u8?token=1daff6a8555a34505f9b37cc2d980d36a09a22eb-2aaf3410e1f6500827218fbeb8d78d25-1785587783-1785576983"
-konul_link = "https://st2.mediabay.tv/KonulTV/tracks-v3a1/mono.m3u8?token=cc52be5577615c05bbae3f87a0b6c960aa558fd0-0e60b2a91ee5fbddd2cdbddb3a7aa592-1785587826-1785577026"
-k_music_link = "https://st2.mediabay.tv/Konul_MusicTV/tracks-v3a1/mono.m3u8?token=4a6e56a1d9be74ff053eeb52eaaf2e6b31a01061-89deb320a177788ddaaec32b82684f4a-1785587869-1785577069"
 
 # Diğer Eklenen Kanallar
 ayaz_link = "https://janya-ayaztv.vgcdn.net/ptnr-WebApp/title-Ayaz_TV/v1/vglive-sk-934820/AyazTV_800k.m3u8"
@@ -159,4 +193,4 @@ m3u_yapisi = "\n".join(m3u_satirlari)
 with open("listem.m3u", "w", encoding="utf-8") as f:
     f.write(m3u_yapisi)
 
-print("Güncel Mediabay token'ları eklendi ve 36 kanallı liste başarıyla oluşturuldu!")
+print("Otomatik Mediabay token çekimi eklendi ve liste oluşturuldu!")
