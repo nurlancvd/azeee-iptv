@@ -31,31 +31,49 @@ def cbc_sport_link_bul():
         print("CBC Sport çekilemedi, varsayılana düşüldü. Hata:", e)
     return "https://cbcsports-live.lg.mncdn.com/cbcsports_live/cbcsports/chunklist.m3u8"
 
+from playwright.sync_api import sync_playwright
+
 def mediabay_tokenli_link_bul(channel_id, page_slug, yedek_link):
-    target_page = f"https://mediabay.tv/tv/{channel_id}/{page_slug}"
-    proxied_page_url = f"{WORKER_URL}?url={target_page}"
-    
+    """
+    Sanal tarayıcı (Playwright) başlatır, Mediabay sayfasını yükler
+    ve arka planda atılan gerçek .m3u8?token= istek adresini yakalar.
+    """
+    target_url = f"https://mediabay.tv/tv/{channel_id}/{page_slug}"
+    found_link = None
+
     try:
-        res_page = requests.get(proxied_page_url, timeout=12)
-        if res_page.status_code == 200:
-            html = res_page.text
-            
-            # 1. HTML içinde m3u8 kelimesinin geçtiği yerleri kontrol et
-            if ".m3u8" in html:
-                print(f"ID {channel_id}: Sayfada .m3u8 metni var!")
-                # m3u8 geçen yerlerin etrafındaki 100 karakteri yazdır
-                for match in re.finditer(r'.{0,50}\.m3u8.{0,50}', html):
-                    print("Bulunan eşleşme:", match.group(0))
-            else:
-                print(f"ID {channel_id}: HTML kaynağında düz .m3u8 bulunamadı.")
-                
-            # 2. Player script veya embed linklerini kontrol et
-            scripts = re.findall(r'<script[^>]*src=["\']([^"\']+)["\']', html)
-            print(f"ID {channel_id} Yüklenen Script Sayısı:", len(scripts))
+        with sync_playwright() as p:
+            # Arka planda gizli tarayıcı başlat
+            browser = p.chromium.launch(headless=True)
+            context = browser.new_context(
+                user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"
+            )
+            page = context.new_page()
+
+            # Ağ trafiğini (network) dinleme fonksiyonu
+            def handle_request(request):
+                nonlocal found_link
+                url = request.url
+                if ".m3u8" in url and "token=" in url:
+                    found_link = url
+
+            # Ağ isteklerini dinlemeye al
+            page.on("request", handle_request)
+
+            # Sayfaya git ve player'ın yüklenmesi için 6 saniye bekle
+            page.goto(target_url, timeout=15000, wait_until="domcontentloaded")
+            page.wait_for_timeout(6000)
+
+            browser.close()
+
+            if found_link:
+                print(f"ID {channel_id} için Canlı Tokenlı Link Başarıyla Yakalandı!")
+                return found_link
 
     except Exception as e:
-        print(f"ID {channel_id} Hata:", e)
+        print(f"ID {channel_id} Playwright Hatası:", e)
 
+    print(f"ID {channel_id} için token yakalanamadı, yedek linke düşüldü.")
     return yedek_link
 # =====================================================================
 # 3. LİNK BİLEŞENLERİ VE TOKENLAR
