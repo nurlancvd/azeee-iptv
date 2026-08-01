@@ -32,36 +32,30 @@ def cbc_sport_link_bul():
     return "https://cbcsports-live.lg.mncdn.com/cbcsports_live/cbcsports/chunklist.m3u8"
 
 def mediabay_tokenli_link_bul(channel_id, page_slug, yedek_link):
-    """
-    Cloudflare Worker Proxy üzerinden Mediabay web sayfasını çeker 
-    ve HTML/JS kaynak kodundan m3u8 / token yayın linkini cıkarır.
-    """
     target_page = f"https://mediabay.tv/tv/{channel_id}/{page_slug}"
     proxied_page_url = f"{WORKER_URL}?url={target_page}"
     
     try:
         res_page = requests.get(proxied_page_url, timeout=12)
         if res_page.status_code == 200:
-            html_text = res_page.text
-
-            # 1. Öncelik: Token içeren m3u8 linkleri
-            tokenli_linkler = re.findall(r'https?://[^\s"\'<>]+?\.m3u8\?[^\s"\'<>]+', html_text)
-            if tokenli_linkler:
-                clean_link = tokenli_linkler[0].replace("&amp;", "&")
-                print(f"ID {channel_id} için Sayfadan Tokenlı Link Alındı!")
-                return clean_link
-
-            # 2. Öncelik: Sayfa icinde geçen herhangi bir m3u8 akış linki (st2.mediabay.tv vb.)
-            genel_linkler = re.findall(r'https?://[^\s"\'<>]+?\.m3u8', html_text)
-            if genel_linkler:
-                clean_link = genel_linkler[0].replace("&amp;", "&")
-                print(f"ID {channel_id} için Sayfadan Doğrudan m3u8 Alındı!")
-                return clean_link
+            html = res_page.text
+            
+            # 1. HTML içinde m3u8 kelimesinin geçtiği yerleri kontrol et
+            if ".m3u8" in html:
+                print(f"ID {channel_id}: Sayfada .m3u8 metni var!")
+                # m3u8 geçen yerlerin etrafındaki 100 karakteri yazdır
+                for match in re.finditer(r'.{0,50}\.m3u8.{0,50}', html):
+                    print("Bulunan eşleşme:", match.group(0))
+            else:
+                print(f"ID {channel_id}: HTML kaynağında düz .m3u8 bulunamadı.")
+                
+            # 2. Player script veya embed linklerini kontrol et
+            scripts = re.findall(r'<script[^>]*src=["\']([^"\']+)["\']', html)
+            print(f"ID {channel_id} Yüklenen Script Sayısı:", len(scripts))
 
     except Exception as e:
-        print(f"ID {channel_id} Sayfa Istek Hatası:", e)
+        print(f"ID {channel_id} Hata:", e)
 
-    print(f"ID {channel_id} için token bulunamadı, varsayılan linke düşüldü.")
     return yedek_link
 # =====================================================================
 # 3. LİNK BİLEŞENLERİ VE TOKENLAR
