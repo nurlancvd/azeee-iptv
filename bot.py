@@ -1,5 +1,7 @@
 from curl_cffi import requests
 import re
+import json
+import urllib.parse
 from datetime import datetime
 
 headers = {
@@ -12,8 +14,8 @@ headers = {
 # --- DİNAMİK TOKEN ÇÖZÜCÜ FONKSİYONLAR ---
 
 def cbc_sport_link_bul():
-    # CBC Sport sitesine CORS Proxy üzerinden erişim
-    proxy_url = "https://corsproxy.io/?https://cbcsport.az/live/"
+    target_url = "https://cbcsport.az/live/"
+    proxy_url = f"https://api.codetabs.com/v1/proxy?quest={target_url}"
     try:
         response = requests.get(proxy_url, headers=headers, impersonate="chrome120", timeout=12)
         linkler = re.findall(r'(https?://[^\s"\']+\.m3u8[^\s"\']*)', response.text)
@@ -26,23 +28,38 @@ def cbc_sport_link_bul():
 
 def mediabay_tokenli_link_bul(channel_id, page_slug, yedek_link):
     """
-    GitHub Runner IP/DNS engellerini aşmak için CORS Proxy üzerinden 
-    Mediabay API'sine erişir ve geçerli token'lı canlı yayın linkini çeker.
+    Cloudflare ve GitHub Runner engellerini aşmak için çift kademeli proxy kullanır:
+    1. CodeTabs Proxy
+    2. AllOrigins Proxy (Yedek)
     """
-    proxy_api_url = f"https://corsproxy.io/?https://api.mediabay.tv/v2/stream/get-url?id={channel_id}"
+    target_api = f"https://api.mediabay.tv/v2/stream/get-url?id={channel_id}"
+    encoded_api = urllib.parse.quote(target_api)
     
+    # 1. DENEME: CodeTabs Proxy
+    proxy_url = f"https://api.codetabs.com/v1/proxy?quest={target_api}"
     try:
-        res = requests.get(proxy_api_url, headers=headers, impersonate="chrome120", timeout=12)
+        res = requests.get(proxy_url, headers=headers, impersonate="chrome120", timeout=12)
         if res.status_code == 200:
-            data = res.json()
+            data = res.json() if isinstance(res.json(), dict) else json.loads(res.text)
             stream_url = data.get("data", {}).get("url") or data.get("url")
             if stream_url and "token=" in stream_url:
-                print(f"ID {channel_id} için Başarıyla Token Alındı!")
-                return stream_url
-            elif stream_url:
+                print(f"ID {channel_id} için Başarıyla Token Alındı (CodeTabs)!")
                 return stream_url
     except Exception as e:
-        print(f"Mediabay Proxy API hatası (ID: {channel_id}):", e)
+        print(f"CodeTabs proxy hatası (ID: {channel_id}):", e)
+
+    # 2. DENEME: AllOrigins Proxy (Yedek)
+    proxy_url_2 = f"https://api.allorigins.win/get?url={encoded_api}"
+    try:
+        res2 = requests.get(proxy_url_2, headers=headers, impersonate="chrome120", timeout=12)
+        if res2.status_code == 200:
+            contents = json.loads(res2.json().get("contents", "{}"))
+            stream_url = contents.get("data", {}).get("url") or contents.get("url")
+            if stream_url and "token=" in stream_url:
+                print(f"ID {channel_id} için Başarıyla Token Alındı (AllOrigins)!")
+                return stream_url
+    except Exception as e:
+        print(f"AllOrigins proxy hatası (ID: {channel_id}):", e)
 
     print(f"ID {channel_id} için token alınamadı, yedek linke düşüldü.")
     return yedek_link
