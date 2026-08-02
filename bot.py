@@ -27,6 +27,7 @@ guncel_token = "eyJpcCI6IjkyLjM5Ljk0LjIwMyIsInVhIjoiTW96aWxsYS81LjAgKExpbnV4OyBB
 
 # Diğer Eklenen Kanallar
 ayaz_link = "https://janya-ayaztv.vgcdn.net/ptnr-WebApp/title-Ayaz_TV/v1/vglive-sk-934820/AyazTV_800k.m3u8"
+show_plus_link = "https://rtmp.showplus.tv/hls/myshow.m3u8"
 kn_music_link = "https://cdn4.yayin.com.tr/kntv/tracks-v1a1/mono.m3u8"
 ftv_link = "https://stream.ftv.az/live/ftv.m3u8"
 
@@ -107,6 +108,8 @@ m3u_satirlari = [
     # --- MÜZİK VE DİĞER KANALLAR ---
     '#EXTINF:-1 tvg-id="AyazTV" tvg-logo="https://i.ibb.co/gNdFzTf/ayaztv.png" group-title="Azerbaijan",Ayaz TV',
     f"{ayaz_link}",
+    '#EXTINF:-1 tvg-id="ShowPlusTV" tvg-logo="https://i.ibb.co/nsS1GSMZ/showplus.png" group-title="Azerbaijan",Show Plus TV',
+    f"{show_plus_link}",
     '#EXTINF:-1 tvg-id="KNMusicTV" tvg-logo="https://i.ibb.co/BVwxFNfn/kntv.png" group-title="Azerbaijan",KN Music TV',
     f"{kn_music_link}",
     '#EXTINF:-1 tvg-id="FTV" tvg-logo="https://i.ibb.co/tMwJ0tBm/ftv.png" group-title="Azerbaijan",FTV',
@@ -146,4 +149,4 @@ m3u_yapisi = "\n".join(m3u_satirlari)
 with open("listem.m3u", "w", encoding="utf-8") as f:
     f.write(m3u_yapisi)
 
-print("KN Music TV başarıyla eklendi ve listem.m3u oluşturuldu!")
+print("Eski sağlam koda dönüldü, Show Plus TV eklendi ve listem.m3u başarıyla oluşturuldu!")
