@@ -1,4 +1,8 @@
 #EXTM3U
+#EXTINF:-1 tvg-id="ITV" tvg-logo="https://i.ibb.co/dsfZQ0Cq/itv.png" group-title="Azerbaijan",İctimai TV
+
+#EXTINF:-1 tvg-id="CBCSport" tvg-logo="https://i.ibb.co/pBpdbm2j/cbcs.png" group-title="Azerbaijan",CBC Sport
+
 #EXTINF:-1 tvg-id="AzTV" tvg-logo="https://i.ibb.co/dwNh0pyg/aztv.jpg" group-title="Azerbaijan",AzTV
 https://str.yodacdn.net/azertv/tracks-v3a1/mono.ts.m3u8?token=eyJpcCI6IjkyLjM5Ljk0LjIwMyIsInVhIjoiTW96aWxsYS81LjAgKExpbnV4OyBBbmRyb2lkIDEwOyBLKSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvNTUwLjAuMC4wIE1vYmlsZSBTYWZhcmkvNTM3MzYiLCJleHAiOjE3ODUzMjg0MzAsImp0aSI6ImZiZDg5YzU3YWFiNTU4NzcifQ%3D%3D.jhtyuuhYTshosf67e+loVyrtIMrjc7az%2F0gAb9BzjmY%3D
 #EXTINF:-1 tvg-id="MedeniyyetTV" tvg-logo="https://i.ibb.co/B5BtPZLd/medeniyyet.jpg" group-title="Azerbaijan",Medeniyyet TV
@@ -9,6 +13,10 @@ https://str2.yodacdn.net/idmantele/tracks-v3a1/mono.ts.m3u8?token=eyJpcCI6IjkyLj
 https://str.yodacdn.net/real/tracks-v1a1/mono.ts.m3u8?token=eyJpcCI6IjkyLjM5Ljk0LjIwMyIsInVhIjoiTW96aWxsYS81LjAgKExpbnV4OyBBbmRyb2lkIDEwOyBLKSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvNTUwLjAuMC4wIE1vYmlsZSBTYWZhcmkvNTM3MzYiLCJleHAiOjE3ODUzMjg0MzAsImp0aSI6ImZiZDg5YzU3YWFiNTU4NzcifQ%3D%3D.jhtyuuhYTshosf67e+loVyrtIMrjc7az%2F0gAb9BzjmY%3D
 #EXTINF:-1 tvg-id="XezerTV" tvg-logo="https://i.ibb.co/q3BGCK8n/xezer.png" group-title="Azerbaijan",Xezer TV
 https://str.yodacdn.net/xazartv/tracks-v1a1/mono.ts.m3u8?token=eyJpcCI6IjkyLjM5Ljk0LjIwMyIsInVhIjoiTW96aWxsYS81LjAgKExpbnV4OyBBbmRyb2lkIDEwOyBLKSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvNTUwLjAuMC4wIE1vYmlsZSBTYWZhcmkvNTM3MzYiLCJleHAiOjE3ODUzMjg0MzAsImp0aSI6ImZiZDg5YzU3YWFiNTU4NzcifQ%3D%3D.jhtyuuhYTshosf67e+loVyrtIMrjc7az%2F0gAb9BzjmY%3D
+#EXTINF:-1 tvg-id="AzadAzerbaycanTV" tvg-logo="https://i.ibb.co/rDHp5Fk/azad.png" group-title="Azerbaijan",Azad Azerbaycan TV
+
+#EXTINF:-1 tvg-id="BakuTV" tvg-logo="https://i.ibb.co/23N9F7s8/bakutvv.png" group-title="Azerbaijan",Baku TV
+
 #EXTINF:-1 tvg-id="SpaceTV" tvg-logo="https://i.ibb.co/v49CGvL2/spacetv.jpg" group-title="Azerbaijan",Space TV
 https://str.yodacdn.net/space/tracks-v1a1/mono.ts.m3u8?token=eyJpcCI6IjkyLjM5Ljk0LjIwMyIsInVhIjoiTW96aWxsYS81LjAgKExpbnV4OyBBbmRyb2lkIDEwOyBLKSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvNTUwLjAuMC4wIE1vYmlsZSBTYWZhcmkvNTM3MzYiLCJleHAiOjE3ODUzMjg0MzAsImp0aSI6ImZiZDg5YzU3YWFiNTU4NzcifQ%3D%3D.jhtyuuhYTshosf67e+loVyrtIMrjc7az%2F0gAb9BzjmY%3D
 #EXTINF:-1 tvg-id="ARBHD" tvg-logo="https://i.ibb.co/fY05FcdF/arbhd.jpg" group-title="Azerbaijan",ARB HD
@@ -21,10 +29,18 @@ https://str.yodacdn.net/ntv/mono.m3u8?token=eyJpcCI6IjkyLjM5Ljk0LjIwMyIsInVhIjoi
 https://str.yodacdn.net/qafkaz/tracks-v1a1/mono.ts.m3u8?token=eyJpcCI6IjkyLjM5Ljk0LjIwMyIsInVhIjoiTW96aWxsYS81LjAgKExpbnV4OyBBbmRyb2lkIDEwOyBLKSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvNTUwLjAuMC4wIE1vYmlsZSBTYWZhcmkvNTM3MzYiLCJleHAiOjE3ODUzMjg0MzAsImp0aSI6ImZiZDg5YzU3YWFiNTU4NzcifQ%3D%3D.jhtyuuhYTshosf67e+loVyrtIMrjc7az%2F0gAb9BzjmY%3D
 #EXTINF:-1 tvg-id="APATV" tvg-logo="https://i.ibb.co/WNnQ0fw9/apatv.jpg" group-title="Azerbaijan",APA TV
 https://str.yodacdn.net/apatv/tracks-v1a1/mono.ts.m3u8?token=eyJpcCI6IjkyLjM5Ljk0LjIwMyIsInVhIjoiTW96aWxsYS81LjAgKExpbnV4OyBBbmRyb2lkIDEwOyBLKSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvNTUwLjAuMC4wIE1vYmlsZSBTYWZhcmkvNTM3MzYiLCJleHAiOjE3ODUzMjg0MzAsImp0aSI6ImZiZDg5YzU3YWFiNTU4NzcifQ%3D%3D.jhtyuuhYTshosf67e+loVyrtIMrjc7az%2F0gAb9BzjmY%3D
+#EXTINF:-1 tvg-id="KanalS" tvg-logo="https://i.ibb.co/RpgqMMct/Kanal-S.png" group-title="Azerbaijan",Kanal S
+
+#EXTINF:-1 tvg-id="AyazTV" tvg-logo="https://i.ibb.co/gNdFzTf/ayaztv.png" group-title="Azerbaijan",Ayaz TV
+
 #EXTINF:-1 tvg-id="ShowPlusTV" tvg-logo="https://i.ibb.co/nsS1GSMZ/showplus.png" group-title="Azerbaijan",Show Plus TV
 https://rtmp.showplus.tv/hls/myshow.m3u8
+#EXTINF:-1 tvg-id="KNMusicTV" tvg-logo="https://i.ibb.co/BVwxFNfn/kntv.png" group-title="Azerbaijan",KN Music TV
+
 #EXTINF:-1 tvg-id="FTV" tvg-logo="https://i.ibb.co/tMwJ0tBm/ftv.png" group-title="Azerbaijan",FTV
 https://stream.ftv.az/live/ftv.m3u8
+#EXTINF:-1 tvg-id="IctimaiTV2" tvg-logo="https://i.ibb.co/FbKMRyFz/itv2.jpg" group-title="Azerbaijan",Ictimai TV 2
+
 #EXTINF:-1 tvg-id="CBCSport2" tvg-logo="https://i.ibb.co/WvVYTGLR/cbc2.png" group-title="Azerbaijan",CBC Sport 2
 https://cbcsports-live.lg.mncdn.com/cbcsports_live/cbcsports/chunklist.m3u8
 #EXTINF:-1 tvg-id="AZTV2" tvg-logo="https://i.ibb.co/dwNh0pyg/aztv.jpg" group-title="Azerbaijan",AZTV 2
