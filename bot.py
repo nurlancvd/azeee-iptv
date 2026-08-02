@@ -1,16 +1,11 @@
 import requests
 import re
 
-# Web istekleri için kullanılacak varsayılan header
 headers = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
 }
 
 def taze_link_cek(url, regex_pattern=r'(https?://[^\s"\']+\.m3u8[^\s"\']*)'):
-    """
-    Sadece belirtilen URL'ye gider ve M3U8 adresini arar.
-    Bulursa taze linki döndürür, bulamazsa None döner.
-    """
     try:
         response = requests.get(url, headers=headers, timeout=10)
         linkler = re.findall(regex_pattern, response.text)
@@ -21,13 +16,13 @@ def taze_link_cek(url, regex_pattern=r'(https?://[^\s"\']+\.m3u8[^\s"\']*)'):
     except Exception as e:
         print(f"[UYARI] {url} adresinden link çekilemedi: {e}")
     
-    return None
+    return ""  # None yerine boş string döndürüyoruz ki liste kırılarak eksilmesin
 
 # ==============================================================================
 # LİNK TANIMLAMALARI
 # ==============================================================================
 
-# 1. Otomatik Siteden Tarananlar
+# Siteden Tarananlar
 itv_link = taze_link_cek("https://live.itv.az/")
 cbc_link = taze_link_cek("https://cbcsport.az/live/")
 atv_link = taze_link_cek("https://atv.az/live")
@@ -38,13 +33,12 @@ dunya_link = taze_link_cek("https://dunyatv.az/live")
 kn_music_link = taze_link_cek("https://kntv.az/")
 ftv_link = taze_link_cek("https://ftv.az/")
 
-# 2. Sabit M3U8 Linkleri
+# Sabit M3U8 Linkleri
 show_plus_link = "https://rtmp.showplus.tv/hls/myshow.m3u8"
 
-# 3. YodaCDN Tekil Token Yönetimi
+# YodaCDN
 guncel_token = "eyJpcCI6IjkyLjM5Ljk0LjIwMyIsInVhIjoiTW96aWxsYS81LjAgKExpbnV4OyBBbmRyb2lkIDEwOyBLKSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvNTUwLjAuMC4wIE1vYmlsZSBTYWZhcmkvNTM3MzYiLCJleHAiOjE3ODUzMjg0MzAsImp0aSI6ImZiZDg5YzU3YWFiNTU4NzcifQ%3D%3D.jhtyuuhYTshosf67e+loVyrtIMrjc7az%2F0gAb9BzjmY%3D"
 
-# YodaCDN Akışları
 aztv_link = f"https://str.yodacdn.net/azertv/tracks-v3a1/mono.ts.m3u8?token={guncel_token}"
 medeniyyet_link = f"https://str2.yodacdn.net/medeniyyettele/tracks-v3a1/mono.ts.m3u8?token={guncel_token}"
 idman_link = f"https://str2.yodacdn.net/idmantele/tracks-v3a1/mono.ts.m3u8?token={guncel_token}"
@@ -56,7 +50,7 @@ qafqaz_link = f"https://str.yodacdn.net/qafkaz/tracks-v1a1/mono.ts.m3u8?token={g
 apatv_link = f"https://str.yodacdn.net/apatv/tracks-v1a1/mono.ts.m3u8?token={guncel_token}"
 arb_link = f"https://str.yodacdn.net/arb/tracks-v1a1/mono.ts.m3u8?token={guncel_token}"
 
-# YodaCDN Yedek Grubu
+# Yedek Grubu
 aztv2_link = f"https://str.yodacdn.net/azertv/tracks-v1a1/mono.ts.m3u8?token={guncel_token}"
 medeniyyet2_link = f"https://str2.yodacdn.net/medeniyyettele/tracks-v3a1/mono.ts.m3u8?token={guncel_token}"
 idman2_link = f"https://str2.yodacdn.net/idmantele/tracks-v1a1/mono.ts.m3u8?token={guncel_token}"
@@ -69,11 +63,10 @@ cbctv2_link = f"https://str.yodacdn.net/cbc/tracks-v1a1/mono.ts.m3u8?token={gunc
 cbc_sport2_link = "https://cbcsports-live.lg.mncdn.com/cbcsports_live/cbcsports/chunklist.m3u8"
 
 # ==============================================================================
-# M3U LİSTESİ (ORİJİNAL KANAL SIRASI)
+# M3U LİSTESİ OLUŞTURMA
 # ==============================================================================
 
 orijinal_kanal_listesi = [
-    # --- ANA KANAL GRUBU ---
     ("ITV", "https://i.ibb.co/dsfZQ0Cq/itv.png", "İctimai TV", itv_link),
     ("CBCSport", "https://i.ibb.co/pBpdbm2j/cbcs.png", "CBC Sport", cbc_link),
     ("AzTV", "https://i.ibb.co/dwNh0pyg/aztv.jpg", "AzTV", aztv_link),
@@ -90,14 +83,12 @@ orijinal_kanal_listesi = [
     ("QafqazTV", "https://i.ibb.co/dsn5NM67/qafqaz-tv.png", "Qafqaz TV", qafqaz_link),
     ("APATV", "https://i.ibb.co/WNnQ0fw9/apatv.jpg", "APA TV", apatv_link),
     ("KanalS", "https://i.ibb.co/RpgqMMct/Kanal-S.png", "Kanal S", kanals_link),
-
-    # --- MÜZİK VE DİĞER KANALLAR ---
     ("AyazTV", "https://i.ibb.co/gNdFzTf/ayaztv.png", "Ayaz TV", ayaz_link),
-    ("ShowPlusTV", "https://i.ibb.co/nsS1GSMZ/showplus.png", "Show Plus TV", show_plus_link), # Ayaz TV'nin hemen ardına yerleştirildi
+    ("ShowPlusTV", "https://i.ibb.co/nsS1GSMZ/showplus.png", "Show Plus TV", show_plus_link),
     ("KNMusicTV", "https://i.ibb.co/BVwxFNfn/kntv.png", "KN Music TV", kn_music_link),
     ("FTV", "https://i.ibb.co/tMwJ0tBm/ftv.png", "FTV", ftv_link),
 
-    # --- YEDEK KANAL GRUBU ---
+    # YEDEK KANALLAR
     ("IctimaiTV2", "https://i.ibb.co/FbKMRyFz/itv2.jpg", "Ictimai TV 2", itv_link),
     ("CBCSport2", "https://i.ibb.co/WvVYTGLR/cbc2.png", "CBC Sport 2", cbc_sport2_link),
     ("AZTV2", "https://i.ibb.co/dwNh0pyg/aztv.jpg", "AZTV 2", aztv2_link),
@@ -111,17 +102,16 @@ orijinal_kanal_listesi = [
     ("CBCTV2", "https://i.ibb.co/mVjVMH0J/cbcaz.png", "CBCTV 2", cbctv2_link),
 ]
 
-# Dosyayı Oluşturma
 m3u_satirlari = ['#EXTM3U']
 
 for tvg_id, logo, isim, link in orijinal_kanal_listesi:
-    if link:  # Link varsa M3U'ya yazar
-        m3u_satirlari.append(f'#EXTINF:-1 tvg-id="{tvg_id}" tvg-logo="{logo}" group-title="Azerbaijan",{isim}')
-        m3u_satirlari.append(link)
+    # KOŞULSUZ EKLENİR: Link olmasa bile kanal listeden düşmez
+    m3u_satirlari.append(f'#EXTINF:-1 tvg-id="{tvg_id}" tvg-logo="{logo}" group-title="Azerbaijan",{isim}')
+    m3u_satirlari.append(link)
 
 m3u_yapisi = "\n".join(m3u_satirlari)
 
 with open("listem.m3u", "w", encoding="utf-8") as f:
     f.write(m3u_yapisi)
 
-print("Orijinal sıralama korundu, Show Plus TV eklendi ve listem.m3u güncellendi!")
+print("Kanal sayısı sabitlendi ve listem.m3u güncellendi.")
