@@ -31,6 +31,7 @@ show_plus_link = "https://rtmp.showplus.tv/hls/myshow.m3u8"
 kn_music_link = "https://cdn4.yayin.com.tr/kntv/tracks-v1a1/mono.m3u8"
 ktv_link = "https://cdn-konultvazerbaijan.yayin.com.tr/konultvazerbaijan/konultvazerbaijan/playlist.m3u8"
 ftv_link = "https://stream.ftv.az/live/ftv.m3u8"
+vip_hd_link = "https://str.yodacdn.net/vip/tracks-v1a1/mono.ts.m3u8?token=eyJpcCI6IjE4NS4xNDYuMTEyLjIyNSIsInVhIjoiTW96aWxsYS81LjAgKExpbnV4OyBBbmRyb2lkIDEwOyBLKSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvMTUxLjAuMC4wIE1vYmlsZSBTYWZhcmkvNTM3LjM2IiwiZXhwIjoxNzg2MDEwNTU3LCJqdGkiOiI5Y2U3NDg5Zjk2MzRjNjJiIn0%3D.xwF8SuCFm335A5dAHY4C8jXAOR4K2fR0XApZggAR1l4%3D"
 
 # 1. GRUP: YodaCDN & Sabit Yayınlar
 aztv_link = f"https://str.yodacdn.net/azertv/tracks-v3a1/mono.ts.m3u8?token={guncel_token}"
@@ -98,6 +99,8 @@ m3u_satirlari = [
     f"{qafqaz_link}",
     '#EXTINF:-1 tvg-id="APATV" tvg-logo="https://i.ibb.co/WNnQ0fw9/apatv.jpg" group-title="Azerbaijan",APA TV',
     f"{apatv_link}",
+    '#EXTINF:-1 tvg-id="VIPHD" tvg-logo="https://i.ibb.co/WvY8zPt4/viphd.png" group-title="Azerbaijan",VIP HD',
+    f"{vip_hd_link}",
     '#EXTINF:-1 tvg-id="KanalS" tvg-logo="https://i.ibb.co/RpgqMMct/Kanal-S.png" group-title="Azerbaijan",Kanal S',
     f"{kanals_link}",
 
@@ -137,4 +140,4 @@ m3u_yapisi = "\n".join(m3u_satirlari)
 with open("listem.m3u", "w", encoding="utf-8") as f:
     f.write(m3u_yapisi)
 
-print("Yedek kanallar güncellendi, istenmeyen kanallar silindi ve listem.m3u başarıyla oluşturuldu!")
+print("VIP HD eklendi ve listem.m3u başarıyla güncellendi!")
