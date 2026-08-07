@@ -25,6 +25,13 @@ cbc_link = cbc_sport_link_bul()
 # En Güncel YodaCDN Token'ı (Ana Kanallar İçin)
 guncel_token = "eyJpcCI6IjkyLjM5Ljk0LjIwMyIsInVhIjoiTW96aWxsYS81LjAgKExpbnV4OyBBbmRyb2lkIDEwOyBLKSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvNTUwLjAuMC4wIE1vYmlsZSBTYWZhcmkvNTM3MzYiLCJleHAiOjE3ODUzMjg0MzAsImp0aSI6ImZiZDg5YzU3YWFiNTU4NzcifQ%3D%3D.jhtyuuhYTshosf67e+loVyrtIMrjc7az%2F0gAb9BzjmY%3D"
 
+# Cloudflare Worker Linkleri
+arb24_link = "https://empty-fire-e7df.ipx2026.workers.dev/arb24.m3u8"
+arbgunesh_link = "https://empty-fire-e7df.ipx2026.workers.dev/arbgunes.m3u8"
+mtv_link = "https://empty-fire-e7df.ipx2026.workers.dev/mtv.m3u8"
+livetvaz_link = "https://empty-fire-e7df.ipx2026.workers.dev/livetvaz.m3u8"
+cbctv_link = "https://empty-fire-e7df.ipx2026.workers.dev/cbc.m3u8"
+
 # Diğer Eklenen Kanallar
 ayaz_link = "https://janya-ayaztv.vgcdn.net/ptnr-WebApp/title-Ayaz_TV/v1/vglive-sk-934820/AyazTV_800k.m3u8"
 show_plus_link = "https://rtmp.showplus.tv/hls/myshow.m3u8"
@@ -91,6 +98,10 @@ m3u_satirlari = [
     f"{space_link}",
     '#EXTINF:-1 tvg-id="ARBHD" tvg-logo="https://i.ibb.co/fY05FcdF/arbhd.jpg" group-title="Azerbaijan",ARB HD',
     f"{arb_link}",
+    '#EXTINF:-1 tvg-id="ARB24" tvg-logo="https://i.ibb.co/67DJBLqt/arb24.png" group-title="Azerbaijan",ARB 24',
+    f"{arb24_link}",
+    '#EXTINF:-1 tvg-id="ARBGunesh" tvg-logo="https://i.ibb.co/BHJ1vbr5/arbgunesh.png" group-title="Azerbaijan",ARB Gunesh',
+    f"{arbgunesh_link}",
     '#EXTINF:-1 tvg-id="DunyaTV" tvg-logo="https://i.ibb.co/whNG1qY9/dunyatv.jpg" group-title="Azerbaijan",Dunya TV',
     f"{dunya_link}",
     '#EXTINF:-1 tvg-id="NaxcivanTV" tvg-logo="https://i.ibb.co/bgyrK5r2/NTV.png" group-title="Azerbaijan",Naxçıvan TV',
@@ -99,10 +110,14 @@ m3u_satirlari = [
     f"{qafqaz_link}",
     '#EXTINF:-1 tvg-id="APATV" tvg-logo="https://i.ibb.co/WNnQ0fw9/apatv.jpg" group-title="Azerbaijan",APA TV',
     f"{apatv_link}",
+    '#EXTINF:-1 tvg-id="MTVAzerbaijan" tvg-logo="https://i.ibb.co/WvhWckLW/mtvaz.png" group-title="Azerbaijan",MTV Azerbaijan',
+    f"{mtv_link}",
     '#EXTINF:-1 tvg-id="VIPHD" tvg-logo="https://i.ibb.co/WvY8zPt4/viphd.png" group-title="Azerbaijan",VIP HD',
     f"{vip_hd_link}",
     '#EXTINF:-1 tvg-id="KanalS" tvg-logo="https://i.ibb.co/RpgqMMct/Kanal-S.png" group-title="Azerbaijan",Kanal S',
     f"{kanals_link}",
+    '#EXTINF:-1 tvg-id="CBCTV" tvg-logo="https://i.ibb.co/NgcJ7xPb/cbctv.png" group-title="Azerbaijan",CBC TV',
+    f"{cbctv_link}",
 
     # --- MÜZİK VE DİĞER KANALLAR ---
     '#EXTINF:-1 tvg-id="AyazTV" tvg-logo="https://i.ibb.co/gNdFzTf/ayaztv.png" group-title="Azerbaijan",Ayaz TV',
@@ -111,6 +126,8 @@ m3u_satirlari = [
     f"{show_plus_link}",
     '#EXTINF:-1 tvg-id="KNMusicTV" tvg-logo="https://i.ibb.co/BVwxFNfn/kntv.png" group-title="Azerbaijan",KN Music TV',
     f"{kn_music_link}",
+    '#EXTINF:-1 tvg-id="LivetvAZ" tvg-logo="https://i.ibb.co/cK9TKFJt/livetvaz.png" group-title="Azerbaijan",LivetvAZ',
+    f"{livetvaz_link}",
     '#EXTINF:-1 tvg-id="KTV" tvg-logo="https://i.ibb.co/jkptgkwH/ktv.png" group-title="Azerbaijan",KTV',
     f"{ktv_link}",
     '#EXTINF:-1 tvg-id="FTV" tvg-logo="https://i.ibb.co/tMwJ0tBm/ftv.png" group-title="Azerbaijan",FTV',
@@ -140,4 +157,4 @@ m3u_yapisi = "\n".join(m3u_satirlari)
 with open("listem.m3u", "w", encoding="utf-8") as f:
     f.write(m3u_yapisi)
 
-print("VIP HD eklendi ve listem.m3u başarıyla güncellendi!")
+print("Worker kanalları eklendi ve listem.m3u (toplam 35 kanal) oluşturuldu!")
