@@ -33,6 +33,8 @@ livetvaz_link = "https://empty-fire-e7df.ipx2026.workers.dev/livetvaz.m3u8"
 cbctv_link = "https://empty-fire-e7df.ipx2026.workers.dev/cbc.m3u8"
 spacetv2_link = "https://empty-fire-e7df.ipx2026.workers.dev/spacetv.m3u8"
 arbhd2_link = "https://empty-fire-e7df.ipx2026.workers.dev/arb.m3u8"
+real2_link = "https://empty-fire-e7df.ipx2026.workers.dev/realtv.m3u8"
+xezer2_link = "https://empty-fire-e7df.ipx2026.workers.dev/xezertv.m3u8"
 
 # Diğer Eklenen Kanallar
 ayaz_link = "https://janya-ayaztv.vgcdn.net/ptnr-WebApp/title-Ayaz_TV/v1/vglive-sk-934820/AyazTV_800k.m3u8"
@@ -67,8 +69,6 @@ cbc_sport2_link = "https://cbcsports-live.lg.mncdn.com/cbcsports_live/cbcsports/
 aztv2_link = f"https://str.yodacdn.net/azertv/tracks-v1a1/mono.ts.m3u8?token={guncel_token}"
 medeniyyet2_link = f"https://str2.yodacdn.net/medeniyyettele/tracks-v3a1/mono.ts.m3u8?token={guncel_token}"
 idman2_link = f"https://str2.yodacdn.net/idmantele/tracks-v1a1/mono.ts.m3u8?token={guncel_token}"
-real2_link = "https://str.yodacdn.net/real/video.m3u8?token=fd52e4683ce089c6b215d65b698372e041051362-e014820ed83409f90146c1025c23c69b-1785862217000000-1785851417000"
-xezer2_link = "https://xezerxeber.az/stream/main_stream.m3u8"
 bakutv2_link = "https://str.yodacdn.net/bakutv/tracks-v1a1/mono.ts.m3u8?token=eyJpcCI6Ijg1LjEzMi4yNy4xODIiLCJ1YSI6Ik1vemlsbGEvNS4wIChNYWNpbnRvc2g7IEludGVsIE1hYyBPUyBYIDEwXzE1XzcpIEFwcGxlV2ViS2l0LzYwNS4xLjE1IChLSFRNTCwgbGlrZSBHZWNrbykgVmVyc2lvbi8xNy4zLjEgU2FmYXJpLzYwNS4xLjE1IiwiZXhwIjoxNzg1ODU0Mjc4LCJqdGkiOiI3MjhmZjgzOGE2OWY0YzIyIn0%3D.SVGB8xCW60QQlO23gP25hBeDJoHeJspZk7HfLMk2OBw%3D"
 
 
@@ -163,4 +163,4 @@ m3u_yapisi = "\n".join(m3u_satirlari)
 with open("listem.m3u", "w", encoding="utf-8") as f:
     f.write(m3u_yapisi)
 
-print("SpaceTV 2 ve ARB HD 2 eklendi. Toplam 37 kanallı listem.m3u başarıyla güncellendi!")
+print("Real TV 2 ve Xezer TV 2 güncellendi. Toplam 37 kanallı listem.m3u hazır!")
