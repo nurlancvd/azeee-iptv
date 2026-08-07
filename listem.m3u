@@ -69,3 +69,7 @@ https://str.yodacdn.net/real/video.m3u8?token=fd52e4683ce089c6b215d65b698372e041
 https://xezerxeber.az/stream/main_stream.m3u8
 #EXTINF:-1 tvg-id="BakuTV2" tvg-logo="https://i.ibb.co/zWSLHdDt/bakutv.jpg" group-title="Azerbaijan",Baku TV 2
 https://str.yodacdn.net/bakutv/tracks-v1a1/mono.ts.m3u8?token=eyJpcCI6Ijg1LjEzMi4yNy4xODIiLCJ1YSI6Ik1vemlsbGEvNS4wIChNYWNpbnRvc2g7IEludGVsIE1hYyBPUyBYIDEwXzE1XzcpIEFwcGxlV2ViS2l0LzYwNS4xLjE1IChLSFRNTCwgbGlrZSBHZWNrbykgVmVyc2lvbi8xNy4zLjEgU2FmYXJpLzYwNS4xLjE1IiwiZXhwIjoxNzg1ODU0Mjc4LCJqdGkiOiI3MjhmZjgzOGE2OWY0YzIyIn0%3D.SVGB8xCW60QQlO23gP25hBeDJoHeJspZk7HfLMk2OBw%3D
+#EXTINF:-1 tvg-id="SpaceTV2" tvg-logo="https://i.ibb.co/jpX0Z9v/spacetvv.png" group-title="Azerbaijan",Space TV 2
+https://empty-fire-e7df.ipx2026.workers.dev/spacetv.m3u8
+#EXTINF:-1 tvg-id="ARBHD2" tvg-logo="https://i.ibb.co/fY05FcdF/arbhd.jpg" group-title="Azerbaijan",ARB HD 2
+https://empty-fire-e7df.ipx2026.workers.dev/arb.m3u8
