@@ -31,6 +31,8 @@ arbgunesh_link = "https://empty-fire-e7df.ipx2026.workers.dev/arbgunes.m3u8"
 mtv_link = "https://empty-fire-e7df.ipx2026.workers.dev/mtv.m3u8"
 livetvaz_link = "https://empty-fire-e7df.ipx2026.workers.dev/livetvaz.m3u8"
 cbctv_link = "https://empty-fire-e7df.ipx2026.workers.dev/cbc.m3u8"
+spacetv2_link = "https://empty-fire-e7df.ipx2026.workers.dev/spacetv.m3u8"
+arbhd2_link = "https://empty-fire-e7df.ipx2026.workers.dev/arb.m3u8"
 
 # Diğer Eklenen Kanallar
 ayaz_link = "https://janya-ayaztv.vgcdn.net/ptnr-WebApp/title-Ayaz_TV/v1/vglive-sk-934820/AyazTV_800k.m3u8"
@@ -149,7 +151,11 @@ m3u_satirlari = [
     '#EXTINF:-1 tvg-id="XezerTV2" tvg-logo="https://i.ibb.co/q3BGCK8n/xezer.png" group-title="Azerbaijan",Xezer TV 2',
     f"{xezer2_link}",
     '#EXTINF:-1 tvg-id="BakuTV2" tvg-logo="https://i.ibb.co/zWSLHdDt/bakutv.jpg" group-title="Azerbaijan",Baku TV 2',
-    f"{bakutv2_link}"
+    f"{bakutv2_link}",
+    '#EXTINF:-1 tvg-id="SpaceTV2" tvg-logo="https://i.ibb.co/jpX0Z9v/spacetvv.png" group-title="Azerbaijan",Space TV 2',
+    f"{spacetv2_link}",
+    '#EXTINF:-1 tvg-id="ARBHD2" tvg-logo="https://i.ibb.co/fY05FcdF/arbhd.jpg" group-title="Azerbaijan",ARB HD 2',
+    f"{arbhd2_link}"
 ]
 
 m3u_yapisi = "\n".join(m3u_satirlari)
@@ -157,4 +163,4 @@ m3u_yapisi = "\n".join(m3u_satirlari)
 with open("listem.m3u", "w", encoding="utf-8") as f:
     f.write(m3u_yapisi)
 
-print("Worker kanalları eklendi ve listem.m3u (toplam 35 kanal) oluşturuldu!")
+print("SpaceTV 2 ve ARB HD 2 eklendi. Toplam 37 kanallı listem.m3u başarıyla güncellendi!")
