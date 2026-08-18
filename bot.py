@@ -38,10 +38,10 @@ xezer2_link = "https://empty-fire-e7df.ipx2026.workers.dev/xezertv.m3u8"
 
 # Diğer Eklenen Kanallar
 ayaz_link = "https://janya-ayaztv.vgcdn.net/ptnr-WebApp/title-Ayaz_TV/v1/vglive-sk-934820/AyazTV_800k.m3u8"
-show_plus_link = "https://rtmp.showplus.tv/hls/myshow.m3u8"
 kn_music_link = "https://cdn4.yayin.com.tr/kntv/tracks-v1a1/mono.m3u8"
 ktv_link = "https://cdn-konultvazerbaijan.yayin.com.tr/konultvazerbaijan/konultvazerbaijan/playlist.m3u8"
 ftv_link = "https://stream.ftv.az/live/ftv.m3u8"
+el_tv_link = "https://str.yodacdn.net/eltv/tracks-v1a1/mono.ts.m3u8?token=eyJpcCI6IjE4NS4xNDYuMTE1LjIyMCIsInVhIjoiTW96aWxsYS81LjAgKExpbnV4OyBBbmRyb2lkIDE0OyBDVk02MzNBMTRUKSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvOTguMC40NzU4Ljg3IE1vYmlsZSBTYWZhcmkvNTM3IiwiZXhwIjoxNzg3MDg1ODE1LCJqdGkiOiIyZjVkZjI1MjdkMWUwOWI4In0%3D.R0FWS%2FtJTn4pMPtLjKFvAYVlLFdJtqPzXHHJ8xRXj+M%3D"
 vip_hd_link = "https://str.yodacdn.net/vip/tracks-v1a1/mono.ts.m3u8?token=eyJpcCI6IjE4NS4xNDYuMTEyLjIyNSIsInVhIjoiTW96aWxsYS81LjAgKExpbnV4OyBBbmRyb2lkIDEwOyBLKSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvMTUxLjAuMC4wIE1vYmlsZSBTYWZhcmkvNTM3LjM2IiwiZXhwIjoxNzg2MDEwNTU3LCJqdGkiOiI5Y2U3NDg5Zjk2MzRjNjJiIn0%3D.xwF8SuCFm335A5dAHY4C8jXAOR4K2fR0XApZggAR1l4%3D"
 
 # 1. GRUP: YodaCDN & Sabit Yayınlar
@@ -123,8 +123,6 @@ m3u_satirlari = [
     # --- MÜZİK VE DİĞER KANALLAR ---
     '#EXTINF:-1 tvg-id="AyazTV" tvg-logo="https://i.ibb.co/gNdFzTf/ayaztv.png" group-title="Azerbaijan",Ayaz TV',
     f"{ayaz_link}",
-    '#EXTINF:-1 tvg-id="ShowPlusTV" tvg-logo="https://i.ibb.co/nsS1GSMZ/showplus.png" group-title="Azerbaijan",Show Plus TV',
-    f"{show_plus_link}",
     '#EXTINF:-1 tvg-id="KNMusicTV" tvg-logo="https://i.ibb.co/BVwxFNfn/kntv.png" group-title="Azerbaijan",KN Music TV',
     f"{kn_music_link}",
     '#EXTINF:-1 tvg-id="LivetvAZ" tvg-logo="https://i.ibb.co/cK9TKFJt/livetvaz.png" group-title="Azerbaijan",LivetvAZ',
@@ -133,6 +131,8 @@ m3u_satirlari = [
     f"{ktv_link}",
     '#EXTINF:-1 tvg-id="FTV" tvg-logo="https://i.ibb.co/tMwJ0tBm/ftv.png" group-title="Azerbaijan",FTV',
     f"{ftv_link}",
+    '#EXTINF:-1 tvg-id="ELTV" tvg-logo="https://i.ibb.co/5WV8sz7s/eltvaz.png" group-title="Azerbaijan",EL TV',
+    f"{el_tv_link}",
 
     # --- YEDEK KANAL GRUBU ---
     '#EXTINF:-1 tvg-id="IctimaiTV2" tvg-logo="https://i.ibb.co/FbKMRyFz/itv2.jpg" group-title="Azerbaijan",Ictimai TV 2',
@@ -160,4 +160,4 @@ m3u_yapisi = "\n".join(m3u_satirlari)
 with open("listem.m3u", "w", encoding="utf-8") as f:
     f.write(m3u_yapisi)
 
-print("Yedek kanallar güncellendi. Toplam 36 kanallı listem.m3u hazır!")
+print("EL TV eklendi, Show Plus çıkarıldı. Toplam 36 kanallı listem.m3u hazır!")
