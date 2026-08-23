@@ -1,23 +1,30 @@
-import requests
 import re
+import requests
 
 # Web istekleri için kullanılacak varsayılan header
 headers = {
-    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+    "User-Agent": (
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,"
+        " like Gecko) Chrome/120.0.0.0 Safari/537.36"
+    )
 }
 
 # --- DİNAMİK TOKEN ÇÖZÜCÜ FONKSİYONLAR ---
 
+
 def cbc_sport_link_bul():
-    url = "https://cbcsport.az/live/"
+    url = "https://cbcsport.tvstream.az/"
     try:
         response = requests.get(url, headers=headers, timeout=10)
-        linkler = re.findall(r'(https?://[^\s"\']+\.m3u8[^\s"\']*)', response.text)
+        linkler = re.findall(
+            r'(https?://[^\s"\']+\.m3u8[^\s"\']*)', response.text
+        )
         if linkler:
             return linkler[0]
     except Exception as e:
         print("CBC Sport çekilemedi, yedek atanıyor:", e)
-    return "https://cbcsports-live.lg.mncdn.com/cbcsports_live/cbcsports/chunklist.m3u8"
+    return "https://cbcsport.tvstream.az/hls/stream3/stream.m3u8"
+
 
 # CBC Sport Linki
 cbc_link = cbc_sport_link_bul()
@@ -76,89 +83,238 @@ bakutv2_link = "http://str.yodacdn.net/bakutv/tracks-v1a1/mono.ts.m3u8?token=eyJ
 # --- M3U LİSTESİ OLUŞTURMA ---
 
 m3u_satirlari = [
-    '#EXTM3U',
-    
+    "#EXTM3U",
     # --- ANA KANAL GRUBU ---
-    '#EXTINF:-1 tvg-id="ITV" tvg-logo="https://i.ibb.co/dsfZQ0Cq/itv.png" group-title="Azerbaijan",İctimai TV',
+    (
+        '#EXTINF:-1 tvg-id="ITV"'
+        ' tvg-logo="https://i.ibb.co/dsfZQ0Cq/itv.png"'
+        ' group-title="Azerbaijan",İctimai TV'
+    ),
     f"{itv_link}",
-    '#EXTINF:-1 tvg-id="CBCSport" tvg-logo="https://i.ibb.co/pBpdbm2j/cbcs.png" group-title="Azerbaijan",CBC Sport',
+    (
+        '#EXTINF:-1 tvg-id="CBCSport"'
+        ' tvg-logo="https://i.ibb.co/pBpdbm2j/cbcs.png"'
+        ' group-title="Azerbaijan",CBC Sport'
+    ),
     f"{cbc_link}",
-    '#EXTINF:-1 tvg-id="AzTV" tvg-logo="https://i.ibb.co/dwNh0pyg/aztv.jpg" group-title="Azerbaijan",AzTV',
+    (
+        '#EXTINF:-1 tvg-id="AzTV"'
+        ' tvg-logo="https://i.ibb.co/dwNh0pyg/aztv.jpg"'
+        ' group-title="Azerbaijan",AzTV'
+    ),
     f"{aztv_link}",
-    '#EXTINF:-1 tvg-id="MedeniyyetTV" tvg-logo="https://i.ibb.co/B5BtPZLd/medeniyyet.jpg" group-title="Azerbaijan",Medeniyyet TV',
+    (
+        '#EXTINF:-1 tvg-id="MedeniyyetTV"'
+        ' tvg-logo="https://i.ibb.co/B5BtPZLd/medeniyyet.jpg"'
+        ' group-title="Azerbaijan",Medeniyyet TV'
+    ),
     f"{medeniyyet_link}",
-    '#EXTINF:-1 tvg-id="IdmanTV" tvg-logo="https://i.ibb.co/pBNzbCWD/idmanv.jpg" group-title="Azerbaijan",İdman TV',
+    (
+        '#EXTINF:-1 tvg-id="IdmanTV"'
+        ' tvg-logo="https://i.ibb.co/pBNzbCWD/idmanv.jpg"'
+        ' group-title="Azerbaijan",İdman TV'
+    ),
     f"{idman_link}",
-    '#EXTINF:-1 tvg-id="RealTV" tvg-logo="https://i.ibb.co/Rpk9CspD/realtv.jpg" group-title="Azerbaijan",Real TV',
+    (
+        '#EXTINF:-1 tvg-id="RealTV"'
+        ' tvg-logo="https://i.ibb.co/Rpk9CspD/realtv.jpg"'
+        ' group-title="Azerbaijan",Real TV'
+    ),
     f"{real_link}",
-    '#EXTINF:-1 tvg-id="XezerTV" tvg-logo="https://i.ibb.co/q3BGCK8n/xezer.png" group-title="Azerbaijan",Xezer TV',
+    (
+        '#EXTINF:-1 tvg-id="XezerTV"'
+        ' tvg-logo="https://i.ibb.co/q3BGCK8n/xezer.png"'
+        ' group-title="Azerbaijan",Xezer TV'
+    ),
     f"{xezer_link}",
-    '#EXTINF:-1 tvg-id="AzadAzerbaycanTV" tvg-logo="https://i.ibb.co/rDHp5Fk/azad.png" group-title="Azerbaijan",Azad Azerbaycan TV',
+    (
+        '#EXTINF:-1 tvg-id="AzadAzerbaycanTV"'
+        ' tvg-logo="https://i.ibb.co/rDHp5Fk/azad.png"'
+        ' group-title="Azerbaijan",Azad Azerbaycan TV'
+    ),
     f"{atv_link}",
-    '#EXTINF:-1 tvg-id="BakuTV" tvg-logo="https://i.ibb.co/23N9F7s8/bakutvv.png" group-title="Azerbaijan",Baku TV',
+    (
+        '#EXTINF:-1 tvg-id="BakuTV"'
+        ' tvg-logo="https://i.ibb.co/23N9F7s8/bakutvv.png"'
+        ' group-title="Azerbaijan",Baku TV'
+    ),
     f"{baku_link}",
-    '#EXTINF:-1 tvg-id="SpaceTV" tvg-logo="https://i.ibb.co/v49CGvL2/spacetv.jpg" group-title="Azerbaijan",Space TV',
+    (
+        '#EXTINF:-1 tvg-id="SpaceTV"'
+        ' tvg-logo="https://i.ibb.co/v49CGvL2/spacetv.jpg"'
+        ' group-title="Azerbaijan",Space TV'
+    ),
     f"{space_link}",
-    '#EXTINF:-1 tvg-id="ARBHD" tvg-logo="https://i.ibb.co/fY05FcdF/arbhd.jpg" group-title="Azerbaijan",ARB HD',
+    (
+        '#EXTINF:-1 tvg-id="ARBHD"'
+        ' tvg-logo="https://i.ibb.co/fY05FcdF/arbhd.jpg"'
+        ' group-title="Azerbaijan",ARB HD'
+    ),
     f"{arb_link}",
-    '#EXTINF:-1 tvg-id="ARB24" tvg-logo="https://i.ibb.co/67DJBLqt/arb24.png" group-title="Azerbaijan",ARB 24',
+    (
+        '#EXTINF:-1 tvg-id="ARB24"'
+        ' tvg-logo="https://i.ibb.co/67DJBLqt/arb24.png"'
+        ' group-title="Azerbaijan",ARB 24'
+    ),
     f"{arb24_link}",
-    '#EXTINF:-1 tvg-id="ARBGunesh" tvg-logo="https://i.ibb.co/BHJ1vbr5/arbgunesh.png" group-title="Azerbaijan",ARB Gunesh',
+    (
+        '#EXTINF:-1 tvg-id="ARBGunesh"'
+        ' tvg-logo="https://i.ibb.co/BHJ1vbr5/arbgunesh.png"'
+        ' group-title="Azerbaijan",ARB Gunesh'
+    ),
     f"{arbgunesh_link}",
-    '#EXTINF:-1 tvg-id="DunyaTV" tvg-logo="https://i.ibb.co/whNG1qY9/dunyatv.jpg" group-title="Azerbaijan",Dunya TV',
+    (
+        '#EXTINF:-1 tvg-id="DunyaTV"'
+        ' tvg-logo="https://i.ibb.co/whNG1qY9/dunyatv.jpg"'
+        ' group-title="Azerbaijan",Dunya TV'
+    ),
     f"{dunya_link}",
-    '#EXTINF:-1 tvg-id="NaxcivanTV" tvg-logo="https://i.ibb.co/bgyrK5r2/NTV.png" group-title="Azerbaijan",Naxçıvan TV',
+    (
+        '#EXTINF:-1 tvg-id="NaxcivanTV"'
+        ' tvg-logo="https://i.ibb.co/bgyrK5r2/NTV.png"'
+        ' group-title="Azerbaijan",Naxçıvan TV'
+    ),
     f"{ntv_link}",
-    '#EXTINF:-1 tvg-id="QafqazTV" tvg-logo="https://i.ibb.co/dsn5NM67/qafqaz-tv.png" group-title="Azerbaijan",Qafqaz TV',
+    (
+        '#EXTINF:-1 tvg-id="QafqazTV"'
+        ' tvg-logo="https://i.ibb.co/dsn5NM67/qafqaz-tv.png"'
+        ' group-title="Azerbaijan",Qafqaz TV'
+    ),
     f"{qafqaz_link}",
-    '#EXTINF:-1 tvg-id="APATV" tvg-logo="https://i.ibb.co/WNnQ0fw9/apatv.jpg" group-title="Azerbaijan",APA TV',
+    (
+        '#EXTINF:-1 tvg-id="APATV"'
+        ' tvg-logo="https://i.ibb.co/WNnQ0fw9/apatv.jpg"'
+        ' group-title="Azerbaijan",APA TV'
+    ),
     f"{apatv_link}",
-    '#EXTINF:-1 tvg-id="MTVAzerbaijan" tvg-logo="https://i.ibb.co/WvhWckLW/mtvaz.png" group-title="Azerbaijan",MTV Azerbaijan',
+    (
+        '#EXTINF:-1 tvg-id="MTVAzerbaijan"'
+        ' tvg-logo="https://i.ibb.co/WvhWckLW/mtvaz.png"'
+        ' group-title="Azerbaijan",MTV Azerbaijan'
+    ),
     f"{mtv_link}",
-    '#EXTINF:-1 tvg-id="VIPHD" tvg-logo="https://i.ibb.co/WvY8zPt4/viphd.png" group-title="Azerbaijan",VIP HD',
+    (
+        '#EXTINF:-1 tvg-id="VIPHD"'
+        ' tvg-logo="https://i.ibb.co/WvY8zPt4/viphd.png"'
+        ' group-title="Azerbaijan",VIP HD'
+    ),
     f"{vip_hd_link}",
-    '#EXTINF:-1 tvg-id="KanalS" tvg-logo="https://i.ibb.co/RpgqMMct/Kanal-S.png" group-title="Azerbaijan",Kanal S',
+    (
+        '#EXTINF:-1 tvg-id="KanalS"'
+        ' tvg-logo="https://i.ibb.co/RpgqMMct/Kanal-S.png"'
+        ' group-title="Azerbaijan",Kanal S'
+    ),
     f"{kanals_link}",
-    '#EXTINF:-1 tvg-id="CBCTV" tvg-logo="https://i.ibb.co/NgcJ7xPb/cbctv.png" group-title="Azerbaijan",CBC TV',
+    (
+        '#EXTINF:-1 tvg-id="CBCTV"'
+        ' tvg-logo="https://i.ibb.co/NgcJ7xPb/cbctv.png"'
+        ' group-title="Azerbaijan",CBC TV'
+    ),
     f"{cbctv_link}",
-
     # --- MÜZİK VE DİĞER KANALLAR ---
-    '#EXTINF:-1 tvg-id="AyazTV" tvg-logo="https://i.ibb.co/gNdFzTf/ayaztv.png" group-title="Azerbaijan",Ayaz TV',
+    (
+        '#EXTINF:-1 tvg-id="AyazTV"'
+        ' tvg-logo="https://i.ibb.co/gNdFzTf/ayaztv.png"'
+        ' group-title="Azerbaijan",Ayaz TV'
+    ),
     f"{ayaz_link}",
-    '#EXTINF:-1 tvg-id="KNMusicTV" tvg-logo="https://i.ibb.co/BVwxFNfn/kntv.png" group-title="Azerbaijan",KN Music TV',
+    (
+        '#EXTINF:-1 tvg-id="KNMusicTV"'
+        ' tvg-logo="https://i.ibb.co/BVwxFNfn/kntv.png"'
+        ' group-title="Azerbaijan",KN Music TV'
+    ),
     f"{kn_music_link}",
-    '#EXTINF:-1 tvg-id="ShowPlusTV" tvg-logo="https://i.ibb.co/nsS1GSMZ/showplus.png" group-title="Azerbaijan",Show Plus TV',
+    (
+        '#EXTINF:-1 tvg-id="ShowPlusTV"'
+        ' tvg-logo="https://i.ibb.co/nsS1GSMZ/showplus.png"'
+        ' group-title="Azerbaijan",Show Plus TV'
+    ),
     f"{showplus_link}",
-    '#EXTINF:-1 tvg-id="LivetvAZ" tvg-logo="https://i.ibb.co/cK9TKFJt/livetvaz.png" group-title="Azerbaijan",LivetvAZ',
+    (
+        '#EXTINF:-1 tvg-id="LivetvAZ"'
+        ' tvg-logo="https://i.ibb.co/cK9TKFJt/livetvaz.png"'
+        ' group-title="Azerbaijan",LivetvAZ'
+    ),
     f"{livetvaz_link}",
-    '#EXTINF:-1 tvg-id="KTV" tvg-logo="https://i.ibb.co/jkptgkwH/ktv.png" group-title="Azerbaijan",KTV',
+    (
+        '#EXTINF:-1 tvg-id="KTV"'
+        ' tvg-logo="https://i.ibb.co/jkptgkwH/ktv.png"'
+        ' group-title="Azerbaijan",KTV'
+    ),
     f"{ktv_link}",
-    '#EXTINF:-1 tvg-id="FTV" tvg-logo="https://i.ibb.co/tMwJ0tBm/ftv.png" group-title="Azerbaijan",FTV',
+    (
+        '#EXTINF:-1 tvg-id="FTV"'
+        ' tvg-logo="https://i.ibb.co/tMwJ0tBm/ftv.png"'
+        ' group-title="Azerbaijan",FTV'
+    ),
     f"{ftv_link}",
-    '#EXTINF:-1 tvg-id="DiginetCinema" tvg-logo="https://i.ibb.co/My64g8Fv/digi.png" group-title="Azerbaijan",Diginet Cinema',
+    (
+        '#EXTINF:-1 tvg-id="DiginetCinema"'
+        ' tvg-logo="https://i.ibb.co/My64g8Fv/digi.png"'
+        ' group-title="Azerbaijan",Diginet Cinema'
+    ),
     f"{diginet_link}",
-    '#EXTINF:-1 tvg-id="ELTV" tvg-logo="https://i.ibb.co/5WV8sz7s/eltvaz.png" group-title="Azerbaijan",EL TV',
+    (
+        '#EXTINF:-1 tvg-id="ELTV"'
+        ' tvg-logo="https://i.ibb.co/5WV8sz7s/eltvaz.png"'
+        ' group-title="Azerbaijan",EL TV'
+    ),
     f"{el_tv_link}",
-
     # --- YEDEK KANAL GRUBU ---
-    '#EXTINF:-1 tvg-id="IctimaiTV2" tvg-logo="https://i.ibb.co/FbKMRyFz/itv2.jpg" group-title="Azerbaijan",Ictimai TV 2',
+    (
+        '#EXTINF:-1 tvg-id="IctimaiTV2"'
+        ' tvg-logo="https://i.ibb.co/FbKMRyFz/itv2.jpg"'
+        ' group-title="Azerbaijan",Ictimai TV 2'
+    ),
     f"{ictimaitv2_link}",
-    '#EXTINF:-1 tvg-id="AZTV2" tvg-logo="https://i.ibb.co/dwNh0pyg/aztv.jpg" group-title="Azerbaijan",AZTV 2',
+    (
+        '#EXTINF:-1 tvg-id="AZTV2"'
+        ' tvg-logo="https://i.ibb.co/dwNh0pyg/aztv.jpg"'
+        ' group-title="Azerbaijan",AZTV 2'
+    ),
     f"{aztv2_link}",
-    '#EXTINF:-1 tvg-id="MedeniyyetTV2" tvg-logo="https://i.ibb.co/B5BtPZLd/medeniyyet.jpg" group-title="Azerbaijan",Medeniyyet TV 2',
+    (
+        '#EXTINF:-1 tvg-id="MedeniyyetTV2"'
+        ' tvg-logo="https://i.ibb.co/B5BtPZLd/medeniyyet.jpg"'
+        ' group-title="Azerbaijan",Medeniyyet TV 2'
+    ),
     f"{medeniyyet2_link}",
-    '#EXTINF:-1 tvg-id="AzadAzerbaycanTV2" tvg-logo="https://i.ibb.co/rDHp5Fk/azad.png" group-title="Azerbaijan",Azad Azerbaycan TV 2',
+    (
+        '#EXTINF:-1 tvg-id="AzadAzerbaycanTV2"'
+        ' tvg-logo="https://i.ibb.co/rDHp5Fk/azad.png"'
+        ' group-title="Azerbaijan",Azad Azerbaycan TV 2'
+    ),
     f"{atv2_link}",
-    '#EXTINF:-1 tvg-id="RealTV2" tvg-logo="https://i.ibb.co/Rpk9CspD/realtv.jpg" group-title="Azerbaijan",Real TV 2',
+    (
+        '#EXTINF:-1 tvg-id="RealTV2"'
+        ' tvg-logo="https://i.ibb.co/Rpk9CspD/realtv.jpg"'
+        ' group-title="Azerbaijan",Real TV 2'
+    ),
     f"{real2_link}",
-    '#EXTINF:-1 tvg-id="XezerTV2" tvg-logo="https://i.ibb.co/q3BGCK8n/xezer.png" group-title="Azerbaijan",Xezer TV 2',
+    (
+        '#EXTINF:-1 tvg-id="XezerTV2"'
+        ' tvg-logo="https://i.ibb.co/q3BGCK8n/xezer.png"'
+        ' group-title="Azerbaijan",Xezer TV 2'
+    ),
     f"{xezer2_link}",
-    '#EXTINF:-1 tvg-id="BakuTV2" tvg-logo="https://i.ibb.co/zWSLHdDt/bakutv.jpg" group-title="Azerbaijan",Baku TV 2',
+    (
+        '#EXTINF:-1 tvg-id="BakuTV2"'
+        ' tvg-logo="https://i.ibb.co/zWSLHdDt/bakutv.jpg"'
+        ' group-title="Azerbaijan",Baku TV 2'
+    ),
     f"{bakutv2_link}",
-    '#EXTINF:-1 tvg-id="SpaceTV2" tvg-logo="https://i.ibb.co/jpX0Z9v/spacetvv.png" group-title="Azerbaijan",Space TV 2',
+    (
+        '#EXTINF:-1 tvg-id="SpaceTV2"'
+        ' tvg-logo="https://i.ibb.co/jpX0Z9v/spacetvv.png"'
+        ' group-title="Azerbaijan",Space TV 2'
+    ),
     f"{spacetv2_link}",
-    '#EXTINF:-1 tvg-id="ARBHD2" tvg-logo="https://i.ibb.co/fY05FcdF/arbhd.jpg" group-title="Azerbaijan",ARB HD 2',
-    f"{arbhd2_link}"
+    (
+        '#EXTINF:-1 tvg-id="ARBHD2"'
+        ' tvg-logo="https://i.ibb.co/fY05FcdF/arbhd.jpg"'
+        ' group-title="Azerbaijan",ARB HD 2'
+    ),
+    f"{arbhd2_link}",
 ]
 
 m3u_yapisi = "\n".join(m3u_satirlari)
