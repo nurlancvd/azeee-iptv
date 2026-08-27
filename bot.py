@@ -1,4 +1,3 @@
-import re
 import requests
 
 # Web istekleri için kullanılacak varsayılan header
@@ -9,25 +8,10 @@ headers = {
     )
 }
 
-# --- DİNAMİK TOKEN ÇÖZÜCÜ FONKSİYONLAR ---
+# --- KANAL LİNKLERİ ---
 
-
-def cbc_sport_link_bul():
-    url = "https://cbcsport.tvstream.az/"
-    try:
-        response = requests.get(url, headers=headers, timeout=10)
-        linkler = re.findall(
-            r'(https?://[^\s"\']+\.m3u8[^\s"\']*)', response.text
-        )
-        if linkler:
-            return linkler[0]
-    except Exception as e:
-        print("CBC Sport çekilemedi, yedek atanıyor:", e)
-    return "https://cbcsport.tvstream.az/hls/stream3/stream.m3u8"
-
-
-# CBC Sport Linki
-cbc_link = cbc_sport_link_bul()
+# CBC Sport Sabit M3U8 Akış Adresi (https://cbcsport.az/live/ kaynaklı)
+cbc_link = "https://cbcsports-live.lg.mncdn.com/cbcsports_live/cbcsports/playlist.m3u8"
 
 # En Güncel YodaCDN Token'ı (Ana Kanallar İçin)
 guncel_token = "eyJpcCI6IjkyLjM5Ljk0LjIwMyIsInVhIjoiTW96aWxsYS81LjAgKExpbnV4OyBBbmRyb2lkIDEwOyBLKSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvNTUwLjAuMC4wIE1vYmlsZSBTYWZhcmkvNTM3MzYiLCJleHAiOjE3ODUzMjg0MzAsImp0aSI6ImZiZDg5YzU3YWFiNTU4NzcifQ%3D%3D.jhtyuuhYTshosf67e+loVyrtIMrjc7az%2F0gAb9BzjmY%3D"
@@ -336,4 +320,4 @@ m3u_yapisi = "\n".join(m3u_satirlari)
 with open("listem.m3u", "w", encoding="utf-8") as f:
     f.write(m3u_yapisi)
 
-print("STV AZ ve Sport TV AZ eklendi. Toplam 40 kanallı listem.m3u hazır!")
+print("CBC Sport güncellendi. Toplam 40 kanallı listem.m3u hazır!")
