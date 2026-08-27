@@ -10,7 +10,7 @@ headers = {
 
 # --- KANAL LİNKLERİ ---
 
-# CBC Sport Sabit M3U8 Akış Adresi (https://cbcsport.az/live/ kaynaklı)
+# CBC Sport Ana Yayın Bağlantısı (https://cbcsport.az/live/ kaynaklı)
 cbc_link = "https://cbcsports-live.lg.mncdn.com/cbcsports_live/cbcsports/playlist.m3u8"
 
 # En Güncel YodaCDN Token'ı (Ana Kanallar İçin)
@@ -28,6 +28,7 @@ real2_link = "https://empty-fire-e7df.ipx2026.workers.dev/realtv.m3u8"
 xezer2_link = "https://empty-fire-e7df.ipx2026.workers.dev/xezertv.m3u8"
 
 # Diğer Eklenen Kanallar
+atv_cinema_link = "http://sewv654wfcsdwfi87fwvgbngh.siauliairsavlt.pw/iptv/ZEEDV4QP6HVZU3YXP49H3ECB/2120/index.m3u8"
 ayaz_link = "https://janya-ayaztv.vgcdn.net/ptnr-WebApp/title-Ayaz_TV/v1/vglive-sk-934820/AyazTV_800k.m3u8"
 kn_music_link = "https://cdn4.yayin.com.tr/kntv/tracks-v1a1/mono.m3u8"
 showplus_link = "https://rtmp.showplus.tv/hls/myshow.m3u8"
@@ -229,6 +230,12 @@ m3u_satirlari = [
     ),
     f"{livetvaz_link}",
     (
+        '#EXTINF:-1 tvg-id="ATVCinema"'
+        ' tvg-logo="https://i.ibb.co/hpghfmx/atvcinema.png"'
+        ' group-title="Azerbaijan",ATV Cinema'
+    ),
+    f"{atv_cinema_link}",
+    (
         '#EXTINF:-1 tvg-id="KTV"'
         ' tvg-logo="https://i.ibb.co/jkptgkwH/ktv.png"'
         ' group-title="Azerbaijan",KTV'
@@ -320,4 +327,4 @@ m3u_yapisi = "\n".join(m3u_satirlari)
 with open("listem.m3u", "w", encoding="utf-8") as f:
     f.write(m3u_yapisi)
 
-print("CBC Sport güncellendi. Toplam 40 kanallı listem.m3u hazır!")
+print("ATV Cinema kanalı LivetvAZ'nin hemen arkasına eklendi. listem.m3u hazır!")
