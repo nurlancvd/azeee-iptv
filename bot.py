@@ -10,8 +10,8 @@ headers = {
 
 # --- KANAL LİNKLERİ ---
 
-# CBC Sport Ana Yayın Bağlantısı (https://cbcsport.az/live/ kaynaklı)
-cbc_link = "https://cbcsports-live.lg.mncdn.com/cbcsports_live/cbcsports/playlist.m3u8"
+# CBC Sport Güncellenmiş Yayın Bağlantısı (https://cbcsport.tvstream.az/ kaynaklı)
+cbc_link = "https://cbcsport.tvstream.az/hls/stream3/index.m3u8"
 
 # En Güncel YodaCDN Token'ı (Ana Kanallar İçin)
 guncel_token = "eyJpcCI6IjkyLjM5Ljk0LjIwMyIsInVhIjoiTW96aWxsYS81LjAgKExpbnV4OyBBbmRyb2lkIDEwOyBLKSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvNTUwLjAuMC4wIE1vYmlsZSBTYWZhcmkvNTM3MzYiLCJleHAiOjE3ODUzMjg0MzAsImp0aSI6ImZiZDg5YzU3YWFiNTU4NzcifQ%3D%3D.jhtyuuhYTshosf67e+loVyrtIMrjc7az%2F0gAb9BzjmY%3D"
@@ -327,4 +327,4 @@ m3u_yapisi = "\n".join(m3u_satirlari)
 with open("listem.m3u", "w", encoding="utf-8") as f:
     f.write(m3u_yapisi)
 
-print("ATV Cinema kanalı LivetvAZ'nin hemen arkasına eklendi. listem.m3u hazır!")
+print("CBC Sport adresi 'https://cbcsport.tvstream.az/hls/stream3/index.m3u8' olarak güncellendi. listem.m3u hazır!")
