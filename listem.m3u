@@ -51,6 +51,8 @@ https://cdn4.yayin.com.tr/kntv/tracks-v1a1/mono.m3u8
 https://rtmp.showplus.tv/hls/myshow.m3u8
 #EXTINF:-1 tvg-id="LivetvAZ" tvg-logo="https://i.ibb.co/cK9TKFJt/livetvaz.png" group-title="Azerbaijan",LivetvAZ
 https://empty-fire-e7df.ipx2026.workers.dev/livetvaz.m3u8
+#EXTINF:-1 tvg-id="ATVCinema" tvg-logo="https://i.ibb.co/hpghfmx/atvcinema.png" group-title="Azerbaijan",ATV Cinema
+http://sewv654wfcsdwfi87fwvgbngh.siauliairsavlt.pw/iptv/ZEEDV4QP6HVZU3YXP49H3ECB/2120/index.m3u8
 #EXTINF:-1 tvg-id="KTV" tvg-logo="https://i.ibb.co/jkptgkwH/ktv.png" group-title="Azerbaijan",KTV
 https://cdn-konultvazerbaijan.yayin.com.tr/konultvazerbaijan/konultvazerbaijan/playlist.m3u8
 #EXTINF:-1 tvg-id="FTV" tvg-logo="https://i.ibb.co/tMwJ0tBm/ftv.png" group-title="Azerbaijan",FTV
