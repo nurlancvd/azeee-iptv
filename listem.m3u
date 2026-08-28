@@ -43,6 +43,8 @@ http://str.yodacdn.net/vip/tracks-v1a1/mono.ts.m3u8?token=eyJpcCI6IjE4NS4xNDYuMT
 https://lives.atv.az:5443/KANAL-S/streams/kanals.m3u8
 #EXTINF:-1 tvg-id="CBCTV" tvg-logo="https://i.ibb.co/NgcJ7xPb/cbctv.png" group-title="Azerbaijan",CBC TV
 https://empty-fire-e7df.ipx2026.workers.dev/cbc.m3u8
+#EXTINF:-1 tvg-id="KATV1AZ" tvg-logo="https://i.ibb.co/xK15jB6f/katv1.png" group-title="Azerbaijan",KATV1 AZ
+http://sewv654wfcsdwfi87fwvgbngh.siauliairsavlt.pw/iptv/ZEEDV4QP6HVZU3YXP49H3ECB/11317/index.m3u8
 #EXTINF:-1 tvg-id="AyazTV" tvg-logo="https://i.ibb.co/gNdFzTf/ayaztv.png" group-title="Azerbaijan",Ayaz TV
 https://janya-ayaztv.vgcdn.net/ptnr-WebApp/title-Ayaz_TV/v1/vglive-sk-934820/AyazTV_800k.m3u8
 #EXTINF:-1 tvg-id="KNMusicTV" tvg-logo="https://i.ibb.co/BVwxFNfn/kntv.png" group-title="Azerbaijan",KN Music TV
