@@ -40,9 +40,6 @@ sport_tv_az_link = "http://sewv654wfcsdwfi87fwvgbngh.siauliairsavlt.pw/iptv/ZEED
 el_tv_link = "http://str.yodacdn.net/eltv/tracks-v1a1/mono.ts.m3u8?token=eyJpcCI6IjE4NS4xNDYuMTE1LjIyMCIsInVhIjoiTW96aWxsYS81LjAgKExpbnV4OyBBbmRyb2lkIDE0OyBDVk02MzNBMTRUKSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvOTguMC40NzU4Ljg3IE1vYmlsZSBTYWZhcmkvNTM3IiwiZXhwIjoxNzg3MDg1ODE1LCJqdGkiOiIyZjVkZjI1MjdkMWUwOWI4In0%3D.R0FWS%2FtJTn4pMPtLjKFvAYVlLFdJtqPzXHHJ8xRXj+M%3D"
 vip_hd_link = "http://str.yodacdn.net/vip/tracks-v1a1/mono.ts.m3u8?token=eyJpcCI6IjE4NS4xNDYuMTEyLjIyNSIsInVhIjoiTW96aWxsYS81LjAgKExpbnV4OyBBbmRyb2lkIDEwOyBLKSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvMTUxLjAuMC4wIE1vYmlsZSBTYWZhcmkvNTM3LjM2IiwiZXhwIjoxNzg2MDEwNTU3LCJqdGkiOiI5Y2U3NDg5Zjk2MzRjNjJiIn0%3D.xwF8SuCFm335A5dAHY4C8jXAOR4K2fR0XApZggAR1l4%3D"
 
-# KATV1 AZ - Düzeltilmiş Çalışan Yayın Linki
-katv1_az_link = "https://stream.ftv.az/live/katv1.m3u8"
-
 # 1. GRUP: YodaCDN & Sabit Yayınlar
 aztv_link = f"http://str.yodacdn.net/azertv/tracks-v3a1/mono.ts.m3u8?token={guncel_token}"
 medeniyyet_link = f"http://str2.yodacdn.net/medeniyyettele/tracks-v3a1/mono.ts.m3u8?token={guncel_token}"
@@ -207,12 +204,6 @@ m3u_satirlari = [
         ' group-title="Azerbaijan",CBC TV'
     ),
     f"{cbctv_link}",
-    (
-        '#EXTINF:-1 tvg-id="KATV1AZ"'
-        ' tvg-logo="https://i.ibb.co/3kWyvC1/katv1.png"'
-        ' group-title="Azerbaijan",KATV1 AZ'
-    ),
-    f"{katv1_az_link}",
     # --- MÜZİK VE DİĞER KANALLAR ---
     (
         '#EXTINF:-1 tvg-id="AyazTV"'
@@ -336,4 +327,4 @@ m3u_yapisi = "\n".join(m3u_satirlari)
 with open("listem.m3u", "w", encoding="utf-8") as f:
     f.write(m3u_yapisi)
 
-print("KATV1 AZ linki ve logosu güncellendi, listem.m3u tekrar yazıldı!")
+print("CBC Sport adresi 'https://cbcsport.tvstream.az/hls/stream3/index.m3u8' olarak güncellendi. listem.m3u hazır!")
