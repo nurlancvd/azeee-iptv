@@ -39,6 +39,7 @@ stv_az_link = "https://a8.radyotelekom.com.tr:3179/stream/play.m3u8"
 sport_tv_az_link = "http://sewv654wfcsdwfi87fwvgbngh.siauliairsavlt.pw/iptv/ZEEDV4QP6HVZU3YXP49H3ECB/31926/index.m3u8"
 el_tv_link = "http://str.yodacdn.net/eltv/tracks-v1a1/mono.ts.m3u8?token=eyJpcCI6IjE4NS4xNDYuMTE1LjIyMCIsInVhIjoiTW96aWxsYS81LjAgKExpbnV4OyBBbmRyb2lkIDE0OyBDVk02MzNBMTRUKSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvOTguMC40NzU4Ljg3IE1vYmlsZSBTYWZhcmkvNTM3IiwiZXhwIjoxNzg3MDg1ODE1LCJqdGkiOiIyZjVkZjI1MjdkMWUwOWI4In0%3D.R0FWS%2FtJTn4pMPtLjKFvAYVlLFdJtqPzXHHJ8xRXj+M%3D"
 vip_hd_link = "http://str.yodacdn.net/vip/tracks-v1a1/mono.ts.m3u8?token=eyJpcCI6IjE4NS4xNDYuMTEyLjIyNSIsInVhIjoiTW96aWxsYS81LjAgKExpbnV4OyBBbmRyb2lkIDEwOyBLKSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvMTUxLjAuMC4wIE1vYmlsZSBTYWZhcmkvNTM3LjM2IiwiZXhwIjoxNzg2MDEwNTU3LCJqdGkiOiI5Y2U3NDg5Zjk2MzRjNjJiIn0%3D.xwF8SuCFm335A5dAHY4C8jXAOR4K2fR0XApZggAR1l4%3D"
+katv1_az_link = "http://sewv654wfcsdwfi87fwvgbngh.siauliairsavlt.pw/iptv/U3PFTYPG76MSLWDDT2ZW8A6H/16042/index.m3u8"
 
 # 1. GRUP: YodaCDN & Sabit Yayınlar
 aztv_link = f"http://str.yodacdn.net/azertv/tracks-v3a1/mono.ts.m3u8?token={guncel_token}"
@@ -193,6 +194,12 @@ m3u_satirlari = [
     ),
     f"{vip_hd_link}",
     (
+        '#EXTINF:-1 tvg-id="KATV1AZ"'
+        ' tvg-logo="https://i.ibb.co/1Jv4mFZX/katv1az.png"'
+        ' group-title="Azerbaijan",KATV1 AZ'
+    ),
+    f"{katv1_az_link}",
+    (
         '#EXTINF:-1 tvg-id="KanalS"'
         ' tvg-logo="https://i.ibb.co/RpgqMMct/Kanal-S.png"'
         ' group-title="Azerbaijan",Kanal S'
@@ -327,4 +334,4 @@ m3u_yapisi = "\n".join(m3u_satirlari)
 with open("listem.m3u", "w", encoding="utf-8") as f:
     f.write(m3u_yapisi)
 
-print("CBC Sport adresi 'https://cbcsport.tvstream.az/hls/stream3/index.m3u8' olarak güncellendi. listem.m3u hazır!")
+print("KATV1 AZ kanalı VIP HD kanalından hemen sonraya eklendi ve listem.m3u oluşturuldu!")
