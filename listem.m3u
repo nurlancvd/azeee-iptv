@@ -29,6 +29,8 @@ https://empty-fire-e7df.ipx2026.workers.dev/arb24.m3u8
 https://empty-fire-e7df.ipx2026.workers.dev/arbgunes.m3u8
 #EXTINF:-1 tvg-id="DunyaTV" tvg-logo="https://i.ibb.co/whNG1qY9/dunyatv.jpg" group-title="Azerbaijan",Dunya TV
 https://stream.dunyatv.az/live/dunyatv.m3u8
+#EXTINF:-1 tvg-id="BiznesTV" tvg-logo="https://i.ibb.co/jkdWR8m2/biznestv.png" group-title="Azerbaijan",Biznes TV
+https://str.yodacdn.net/biznestv/index.m3u8
 #EXTINF:-1 tvg-id="NaxcivanTV" tvg-logo="https://i.ibb.co/bgyrK5r2/NTV.png" group-title="Azerbaijan",Naxçıvan TV
 http://str.yodacdn.net/ntv/mono.m3u8?token=eyJpcCI6IjkyLjM5Ljk0LjIwMyIsInVhIjoiTW96aWxsYS81LjAgKExpbnV4OyBBbmRyb2lkIDEwOyBLKSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvNTUwLjAuMC4wIE1vYmlsZSBTYWZhcmkvNTM3MzYiLCJleHAiOjE3ODUzMjg0MzAsImp0aSI6ImZiZDg5YzU3YWFiNTU4NzcifQ%3D%3D.jhtyuuhYTshosf67e+loVyrtIMrjc7az%2F0gAb9BzjmY%3D
 #EXTINF:-1 tvg-id="QafqazTV" tvg-logo="https://i.ibb.co/dsn5NM67/qafqaz-tv.png" group-title="Azerbaijan",Qafqaz TV
