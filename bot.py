@@ -55,7 +55,7 @@ apatv_link = f"http://str.yodacdn.net/apatv/tracks-v1a1/mono.ts.m3u8?token={gunc
 arb_link = f"http://str.yodacdn.net/arb/tracks-v1a1/mono.ts.m3u8?token={guncel_token}"
 
 # Sabit M3U Altyapılı Linkler
-itv_link = "https://live.itv.az/itv.m3u8?bandwidth=3900&shift=0"
+itv_link = "https://live.itv.az/itv.m3u8"
 atv_link = "https://lives.atv.az:5443/ATV_TV_STREAM/streams/atvcanli.m3u8"
 baku_link = "https://rtmp.baku.tv/hls/bakutv_1080p.m3u8"
 kanals_link = "https://lives.atv.az:5443/KANAL-S/streams/kanals.m3u8"
