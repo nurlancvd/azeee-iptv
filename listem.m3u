@@ -64,7 +64,7 @@ https://stream.ftv.az/live/ftv.m3u8
 #EXTINF:-1 tvg-id="DiginetCinema" tvg-logo="https://i.ibb.co/My64g8Fv/digi.png" group-title="Azerbaijan",Diginet Cinema
 https://a8.radyotelekom.com.tr:3276/stream/play.m3u8
 #EXTINF:-1 tvg-id="STVAZ" tvg-logo="https://i.ibb.co/7dNDq4Sx/stvhd.png" group-title="Azerbaijan",STV AZ
-https://kctv.koryofront.org/stream/sports/index.m3u8
+https://a8.radyotelekom.com.tr:3179/stream/play.m3u8
 #EXTINF:-1 tvg-id="ELTV" tvg-logo="https://i.ibb.co/5WV8sz7s/eltvaz.png" group-title="Azerbaijan",EL TV
 http://str.yodacdn.net/eltv/tracks-v1a1/mono.ts.m3u8?token=eyJpcCI6IjE4NS4xNDYuMTE1LjIyMCIsInVhIjoiTW96aWxsYS81LjAgKExpbnV4OyBBbmRyb2lkIDE0OyBDVk02MzNBMTRUKSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvOTguMC40NzU4Ljg3IE1vYmlsZSBTYWZhcmkvNTM3IiwiZXhwIjoxNzg3MDg1ODE1LCJqdGkiOiIyZjVkZjI1MjdkMWUwOWI4In0%3D.R0FWS%2FtJTn4pMPtLjKFvAYVlLFdJtqPzXHHJ8xRXj+M%3D
 #EXTINF:-1 tvg-id="IctimaiTV2" tvg-logo="https://i.ibb.co/FbKMRyFz/itv2.jpg" group-title="Azerbaijan",Ictimai TV 2
