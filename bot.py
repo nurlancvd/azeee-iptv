@@ -41,6 +41,7 @@ el_tv_link = "http://str.yodacdn.net/eltv/tracks-v1a1/mono.ts.m3u8?token=eyJpcCI
 vip_hd_link = "http://str.yodacdn.net/vip/tracks-v1a1/mono.ts.m3u8?token=eyJpcCI6IjE4NS4xNDYuMTEyLjIyNSIsInVhIjoiTW96aWxsYS81LjAgKExpbnV4OyBBbmRyb2lkIDEwOyBLKSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvMTUxLjAuMC4wIE1vYmlsZSBTYWZhcmkvNTM3LjM2IiwiZXhwIjoxNzg2MDEwNTU3LCJqdGkiOiI5Y2U3NDg5Zjk2MzRjNjJiIn0%3D.xwF8SuCFm335A5dAHY4C8jXAOR4K2fR0XApZggAR1l4%3D"
 katv1_az_link = "http://sewv654wfcsdwfi87fwvgbngh.siauliairsavlt.pw/iptv/U3PFTYPG76MSLWDDT2ZW8A6H/16042/index.m3u8"
 biznes_tv_link = "http://str.yodacdn.net/biznestv/index.m3u8"
+sehiyye_tv_link = "http://51.210.110.78/11447/index.m3u8?token=2BA6E49CC7B2"
 
 # 1. GRUP: YodaCDN & Sabit Yayınlar
 aztv_link = f"http://str.yodacdn.net/azertv/tracks-v3a1/mono.ts.m3u8?token={guncel_token}"
@@ -164,6 +165,12 @@ m3u_satirlari = [
         ' group-title="Azerbaijan",Dunya TV'
     ),
     f"{dunya_link}",
+    (
+        '#EXTINF:-1 tvg-id="SehiyyeTV"'
+        ' tvg-logo="https://i.ibb.co/G4n6v7fF/sehiyyetv.png"'
+        ' group-title="Azerbaijan",Sehiyye TV'
+    ),
+    f"{sehiyye_tv_link}",
     (
         '#EXTINF:-1 tvg-id="BiznesTV"'
         ' tvg-logo="https://i.ibb.co/jkdWR8m2/biznestv.png"'
@@ -341,4 +348,4 @@ m3u_yapisi = "\n".join(m3u_satirlari)
 with open("listem.m3u", "w", encoding="utf-8") as f:
     f.write(m3u_yapisi)
 
-print("Biznes TV Dunya TV'den sonraya eklendi ve listem.m3u oluşturuldu!")
+print("Səhiyyə TV Dunya TV'den sonraya eklendi ve listem.m3u oluşturuldu!")
