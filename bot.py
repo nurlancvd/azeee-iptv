@@ -55,14 +55,14 @@ apatv_link = f"http://str.yodacdn.net/apatv/tracks-v1a1/mono.ts.m3u8?token={gunc
 arb_link = f"http://str.yodacdn.net/arb/tracks-v1a1/mono.ts.m3u8?token={guncel_token}"
 
 # Sabit M3U Altyapılı Linkler
-itv_link = "http://sewv654wfcsdwfi87fwvgbngh.siauliairsavlt.pw/iptv/ZEEDV4QP6HVZU3YXP49H3ECB/32206/index.m3u8"
+itv_link = "http://str.yodacdn.net/ictimaitele/index.m3u8"
 atv_link = "https://lives.atv.az:5443/ATV_TV_STREAM/streams/atvcanli.m3u8"
 baku_link = "https://rtmp.baku.tv/hls/bakutv_1080p.m3u8"
 kanals_link = "https://lives.atv.az:5443/KANAL-S/streams/kanals.m3u8"
 dunya_link = "https://stream.dunyatv.az/live/dunyatv.m3u8"
 
 # 2. GRUP: Güncellenmiş Yedek Yayınlar
-ictimaitv2_link = "http://str.yodacdn.net/ictimaitele/tracks-v1a1/mono.ts.m3u8?token=eyJpcCI6Ijg1LjEzMi4yNy4xODIiLCJ1YSI6Ik1vemlsbGEvNS4wIChNYWNpbnRvc2g7IEludGVsIE1hYyBPUyBYIDEwXzE1XzcpIEFwcGxlV2ViS2l0LzYwNS4xLjE1IChLSFRNTCwgbGlrZSBHZWNrbykgVmVyc2lvbi8xNy4zLjEgU2FmYXJpLzYwNS4xLjE1IiwiZXhwIjoxNzg1ODU0Mjc4LCJqdGkiOiI3MjhmZjgzOGE2OWY0YzIyIn0%3D.SVGB8xCW60QQlO23gP25hBeDJoHeJspZk7HfLMk2OBw%3D"
+ictimaitv2_link = "http://sewv654wfcsdwfi87fwvgbngh.siauliairsavlt.pw/iptv/ZEEDV4QP6HVZU3YXP49H3ECB/32206/index.m3u8"
 aztv2_link = "https://empty-fire-e7df.ipx2026.workers.dev/aztv"
 medeniyyet2_link = "https://empty-fire-e7df.ipx2026.workers.dev/medeniyyet"
 atv2_link = "https://empty-fire-e7df.ipx2026.workers.dev/atv"
