@@ -44,9 +44,9 @@ biznes_tv_link = "http://str.yodacdn.net/biznestv/index.m3u8"
 sehiyye_tv_link = "http://51.210.110.78/11447/index.m3u8?token=2BA6E49CC7B2"
 
 # 1. GRUP: YodaCDN & Sabit Yayınlar
-aztv_link = f"http://str.yodacdn.net/azertv/tracks-v3a1/mono.ts.m3u8?token={guncel_token}"
-medeniyyet_link = f"http://str2.yodacdn.net/medeniyyettele/tracks-v3a1/mono.ts.m3u8?token={guncel_token}"
-idman_link = f"http://str2.yodacdn.net/idmantele/tracks-v3a1/mono.ts.m3u8?token={guncel_token}"
+aztv_link = f"http://str.yodacdn.net/azertv/tracks-v1a1/mono.ts.m3u8?token={guncel_token}"
+medeniyyet_link = f"http://str.yodacdn.net/medeniyyettele/tracks-v1a1/mono.ts.m3u8?token={guncel_token}"
+idman_link = f"http://str.yodacdn.net/idmantele/tracks-v1a1/mono.ts.m3u8?token={guncel_token}"
 real_link = f"http://str.yodacdn.net/real/tracks-v1a1/mono.ts.m3u8?token={guncel_token}"
 xezer_link = f"http://str.yodacdn.net/xazartv/tracks-v1a1/mono.ts.m3u8?token={guncel_token}"
 space_link = f"http://str.yodacdn.net/space/tracks-v1a1/mono.ts.m3u8?token={guncel_token}"
@@ -56,7 +56,7 @@ apatv_link = f"http://str.yodacdn.net/apatv/tracks-v1a1/mono.ts.m3u8?token={gunc
 arb_link = f"http://str.yodacdn.net/arb/tracks-v1a1/mono.ts.m3u8?token={guncel_token}"
 
 # Sabit M3U Altyapılı Linkler
-itv_link = "http://str.yodacdn.net/ictimaitele/index.m3u8"
+itv_link = "http://str.yodacdn.net/ictimaitele/tracks-v1a1/mono.ts.m3u8"
 atv_link = "https://lives.atv.az:5443/ATV_TV_STREAM/streams/atvcanli.m3u8"
 baku_link = "https://rtmp.baku.tv/hls/bakutv_1080p.m3u8"
 kanals_link = "https://lives.atv.az:5443/KANAL-S/streams/kanals.m3u8"
