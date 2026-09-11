@@ -11,7 +11,7 @@ headers = {
 # --- KANAL LİNKLERİ ---
 
 # CBC Sport Güncellenmiş Yayın Bağlantısı (https://cbcsport.tvstream.az/ kaynaklı)
-cbc_link = "https://cbcsport.tvstream.az/hls/stream3/stream.m3u8|Referer=https://cbcsport.tvstream.az/"
+cbc_link = "https://cbcsport.tvstream.az/hls/stream3/index.m3u8"
 
 # En Güncel YodaCDN Token'ı (Ana Kanallar İçin)
 guncel_token = "eyJpcCI6IjkyLjM5Ljk0LjIwMyIsInVhIjoiTW96aWxsYS81LjAgKExpbnV4OyBBbmRyb2lkIDEwOyBLKSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvNTUwLjAuMC4wIE1vYmlsZSBTYWZhcmkvNTM3MzYiLCJleHAiOjE3ODUzMjg0MzAsImp0aSI6ImZiZDg5YzU3YWFiNTU4NzcifQ%3D%3D.jhtyuuhYTshosf67e+loVyrtIMrjc7az%2F0gAb9BzjmY%3D"
@@ -37,16 +37,18 @@ ftv_link = "https://stream.ftv.az/live/ftv.m3u8"
 diginet_link = "https://a8.radyotelekom.com.tr:3276/stream/play.m3u8"
 stv_az_link = "http://51.158.144.33:2021/zvezda/index.m3u8"
 sport_tv_az_link = "http://sewv654wfcsdwfi87fwvgbngh.siauliairsavlt.pw/iptv/ZEEDV4QP6HVZU3YXP49H3ECB/31926/index.m3u8"
+sport_tv2_az_link = "https://goo.su/URjSvd"
+tvnet_sport_link = "https://goo.su/JOntLOi"
 el_tv_link = "http://str.yodacdn.net/eltv/tracks-v1a1/mono.ts.m3u8?token=eyJpcCI6IjE4NS4xNDYuMTE1LjIyMCIsInVhIjoiTW96aWxsYS81LjAgKExpbnV4OyBBbmRyb2lkIDE0OyBDVk02MzNBMTRUKSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvOTguMC40NzU4Ljg3IE1vYmlsZSBTYWZhcmkvNTM3IiwiZXhwIjoxNzg3MDg1ODE1LCJqdGkiOiIyZjVkZjI1MjdkMWUwOWI4In0%3D.R0FWS%2FtJTn4pMPtLjKFvAYVlLFdJtqPzXHHJ8xRXj+M%3D"
 vip_hd_link = "http://str.yodacdn.net/vip/tracks-v1a1/mono.ts.m3u8?token=eyJpcCI6IjE4NS4xNDYuMTEyLjIyNSIsInVhIjoiTW96aWxsYS81LjAgKExpbnV4OyBBbmRyb2lkIDEwOyBLKSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvMTUxLjAuMC4wIE1vYmlsZSBTYWZhcmkvNTM3LjM2IiwiZXhwIjoxNzg2MDEwNTU3LCJqdGkiOiI5Y2U3NDg5Zjk2MzRjNjJiIn0%3D.xwF8SuCFm335A5dAHY4C8jXAOR4K2fR0XApZggAR1l4%3D"
-katv1_az_link = "http://sewv654wfcsdwfi87fwvgbngh.siauliairsavlt.pw/iptv/ZEEDV4QP6HVZU3YXP49H3ECB/16042/index.m3u8"
+katv1_az_link = "http://sewv654wfcsdwfi87fwvgbngh.siauliairsavlt.pw/iptv/U3PFTYPG76MSLWDDT2ZW8A6H/16042/index.m3u8"
 biznes_tv_link = "http://str.yodacdn.net/biznestv/index.m3u8"
 sehiyye_tv_link = "http://51.210.110.78/11447/index.m3u8?token=2BA6E49CC7B2"
 
 # 1. GRUP: YodaCDN & Sabit Yayınlar
-aztv_link = f"http://str.yodacdn.net/azertv/tracks-v1a1/mono.ts.m3u8?token={guncel_token}"
-medeniyyet_link = f"http://str.yodacdn.net/medeniyyettele/tracks-v1a1/mono.ts.m3u8?token={guncel_token}"
-idman_link = f"http://str.yodacdn.net/idmantele/tracks-v1a1/mono.ts.m3u8?token={guncel_token}"
+aztv_link = f"http://str.yodacdn.net/azertv/tracks-v3a1/mono.ts.m3u8?token={guncel_token}"
+medeniyyet_link = f"http://str2.yodacdn.net/medeniyyettele/tracks-v3a1/mono.ts.m3u8?token={guncel_token}"
+idman_link = f"http://str2.yodacdn.net/idmantele/tracks-v3a1/mono.ts.m3u8?token={guncel_token}"
 real_link = f"http://str.yodacdn.net/real/tracks-v1a1/mono.ts.m3u8?token={guncel_token}"
 xezer_link = f"http://str.yodacdn.net/xazartv/tracks-v1a1/mono.ts.m3u8?token={guncel_token}"
 space_link = f"http://str.yodacdn.net/space/tracks-v1a1/mono.ts.m3u8?token={guncel_token}"
@@ -56,7 +58,7 @@ apatv_link = f"http://str.yodacdn.net/apatv/tracks-v1a1/mono.ts.m3u8?token={gunc
 arb_link = f"http://str.yodacdn.net/arb/tracks-v1a1/mono.ts.m3u8?token={guncel_token}"
 
 # Sabit M3U Altyapılı Linkler
-itv_link = "http://str.yodacdn.net/ictimaitele/tracks-v1a1/mono.ts.m3u8"
+itv_link = "http://str.yodacdn.net/ictimaitele/index.m3u8"
 atv_link = "https://lives.atv.az:5443/ATV_TV_STREAM/streams/atvcanli.m3u8"
 baku_link = "https://rtmp.baku.tv/hls/bakutv_1080p.m3u8"
 kanals_link = "https://lives.atv.az:5443/KANAL-S/streams/kanals.m3u8"
@@ -93,6 +95,18 @@ m3u_satirlari = [
         ' group-title="Azerbaijan",Sport TV AZ'
     ),
     f"{sport_tv_az_link}",
+    (
+        '#EXTINF:-1 tvg-id="SportTV2AZ"'
+        ' tvg-logo="https://i.ibb.co/1YbC2PhM/sporttv2.png"'
+        ' group-title="Azerbaijan",Sport TV 2 AZ'
+    ),
+    f"{sport_tv2_az_link}",
+    (
+        '#EXTINF:-1 tvg-id="TVNETSport"'
+        ' tvg-logo="https://i.ibb.co/ynjGYy7b/tvnetsport.png"'
+        ' group-title="Azerbaijan",TVNET Sport'
+    ),
+    f"{tvnet_sport_link}",
     (
         '#EXTINF:-1 tvg-id="AzTV"'
         ' tvg-logo="https://i.ibb.co/dwNh0pyg/aztv.jpg"'
@@ -348,4 +362,4 @@ m3u_yapisi = "\n".join(m3u_satirlari)
 with open("listem.m3u", "w", encoding="utf-8") as f:
     f.write(m3u_yapisi)
 
-print("Səhiyyə TV Dunya TV'den sonraya eklendi ve listem.m3u oluşturuldu!")
+print("Sport TV 2 AZ ve TVNET Sport kanalları eklendi ve listem.m3u oluşturuldu!")
