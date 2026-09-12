@@ -86,8 +86,10 @@ https://empty-fire-e7df.ipx2026.workers.dev/realtv.m3u8
 #EXTINF:-1 tvg-id="XezerTV2" tvg-logo="https://i.ibb.co/q3BGCK8n/xezer.png" group-title="Azerbaijan",Xezer TV 2
 https://empty-fire-e7df.ipx2026.workers.dev/xezertv.m3u8
 #EXTINF:-1 tvg-id="BakuTV2" tvg-logo="https://i.ibb.co/zWSLHdDt/bakutv.jpg" group-title="Azerbaijan",Baku TV 2
-http://str.yodacdn.net/bakutv/tracks-v1a1/mono.ts.m3u8?token=eyJpcCI6Ijg1LjEzMi4yNy4xODIiLCJ1YSI6Ik1vemlsbGEvNS4wIChNYWNpbnRvc2g7IEludGVsIE1hYyBPUyBYIDEwXzE1XzcpIEFwcGxlV2ViS2l0LzYwNS4xLjE1IChLSFRNTCwgbGlrZSBHZWNrbykgVmVyc2lvbi8xNy4zLjEgU2FmYXJpLzYwNS4xLjE1IiwiZXhwIjoxNzg1ODU0Mjc4LCJqdGkiOiI3MjhmZjgzOGE2OWY0YzIyIn0%3D.SVGB8xCW60QQlO23gP25hBeDJoHeJspZk7HfLMk2OBw%3D
+http://str.yodacdn.net/bakutv/tracks-v1a1/mono.ts.m3u8?token=eyJpcCI6Ijg5LjEzMi4yNy4xODIiLCJ1YSI6Ik1vemlsbGEvNS4wIChNYWNpbnRvc2g7IEludGVsIE1hYyBPUyBYIDEwXzE1XzcpIEFwcGxlV2ViS2l0LzYwNS4xLjE1IChLSFRNTCwgbGlrZSBHZWNrbykgVmVyc2lvbi8xNy4zLjEgU2FmYXJpLzYwNS4xLjE1IiwiZXhwIjoxNzg1ODU0Mjc4LCJqdGkiOiI3MjhmZjgzOGE2OWY0YzIyIn0%3D.SVGB8xCW60QQlO23gP25hBeDJoHeJspZk7HfLMk2OBw%3D
 #EXTINF:-1 tvg-id="SpaceTV2" tvg-logo="https://i.ibb.co/jpX0Z9v/spacetvv.png" group-title="Azerbaijan",Space TV 2
 https://empty-fire-e7df.ipx2026.workers.dev/spacetv.m3u8
 #EXTINF:-1 tvg-id="ARBHD2" tvg-logo="https://i.ibb.co/fY05FcdF/arbhd.jpg" group-title="Azerbaijan",ARB HD 2
 https://empty-fire-e7df.ipx2026.workers.dev/arb.m3u8
+#EXTINF:-1 tvg-id="CBCSport2" tvg-logo="https://i.ibb.co/pBpdbm2j/cbcs.png" group-title="Azerbaijan",CBC Sport 2
+http://sewv654wfcsdwfi87fwvgbngh.siauliairsavlt.pw/iptv/ZEEDV4QP6HVZU3YXP49H3ECB/2193/index.m3u8
