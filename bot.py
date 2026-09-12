@@ -41,7 +41,7 @@ sport_tv2_az_link = "https://goo.su/URjSvd"
 tvnet_sport_link = "https://goo.su/JOntLOi"
 el_tv_link = "http://str.yodacdn.net/eltv/tracks-v1a1/mono.ts.m3u8?token=eyJpcCI6IjE4NS4xNDYuMTE1LjIyMCIsInVhIjoiTW96aWxsYS81LjAgKExpbnV4OyBBbmRyb2lkIDE0OyBDVk02MzNBMTRUKSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvOTguMC40NzU4Ljg3IE1vYmlsZSBTYWZhcmkvNTM3IiwiZXhwIjoxNzg3MDg1ODE1LCJqdGkiOiIyZjVkZjI1MjdkMWUwOWI4In0%3D.R0FWS%2FtJTn4pMPtLjKFvAYVlLFdJtqPzXHHJ8xRXj+M%3D"
 vip_hd_link = "http://str.yodacdn.net/vip/tracks-v1a1/mono.ts.m3u8?token=eyJpcCI6IjE4NS4xNDYuMTEyLjIyNSIsInVhIjoiTW96aWxsYS81LjAgKExpbnV4OyBBbmRyb2lkIDEwOyBLKSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvMTUxLjAuMC4wIE1vYmlsZSBTYWZhcmkvNTM3LjM2IiwiZXhwIjoxNzg2MDEwNTU3LCJqdGkiOiI5Y2U3NDg5Zjk2MzRjNjJiIn0%3D.xwF8SuCFm335A5dAHY4C8jXAOR4K2fR0XApZggAR1l4%3D"
-katv1_az_link = "http://sewv654wfcsdwfi87fwvgbngh.siauliairsavlt.pw/iptv/U3PFTYPG76MSLWDDT2ZW8A6H/16042/index.m3u8"
+katv1_az_link = "http://sewv654wfcsdwfi87fwvgbngh.siauliairsavlt.pw/iptv/ZEEDV4QP6HVZU3YXP49H3ECB/16042/index.m3u8"
 biznes_tv_link = "http://str.yodacdn.net/biznestv/index.m3u8"
 sehiyye_tv_link = "http://51.210.110.78/11447/index.m3u8?token=2BA6E49CC7B2"
 
