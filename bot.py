@@ -35,7 +35,7 @@ showplus_link = "https://rtmp.showplus.tv/hls/myshow.m3u8"
 ktv_link = "https://cdn-konultvazerbaijan.yayin.com.tr/konultvazerbaijan/konultvazerbaijan/playlist.m3u8"
 ftv_link = "https://stream.ftv.az/live/ftv.m3u8"
 diginet_link = "https://a8.radyotelekom.com.tr:3276/stream/play.m3u8"
-stv_az_link = "http://51.158.144.33:2021/zvezda/index.m3u8"
+stv_az_link = "https://ip100.radyotelekomtv.com:3274/hybrid/play.m3u8"
 sport_tv_az_link = "http://sewv654wfcsdwfi87fwvgbngh.siauliairsavlt.pw/iptv/ZEEDV4QP6HVZU3YXP49H3ECB/31926/index.m3u8"
 sport_tv2_az_link = "https://goo.su/URjSvd"
 tvnet_sport_link = "https://goo.su/JOntLOi"
@@ -289,9 +289,9 @@ m3u_satirlari = [
     ),
     f"{diginet_link}",
     (
-        '#EXTINF:-1 tvg-id="STVAZ"'
-        ' tvg-logo="https://i.ibb.co/7dNDq4Sx/stvhd.png"'
-        ' group-title="Azerbaijan",STV AZ'
+        '#EXTINF:-1 tvg-id="Simvol TV"'
+        ' tvg-logo="https://i.ibb.co/Pzww8wtT/simvoltv.png"'
+        ' group-title="Azerbaijan",Simvol TV'
     ),
     f"{stv_az_link}",
     (
