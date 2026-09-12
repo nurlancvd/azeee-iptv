@@ -11,7 +11,7 @@ headers = {
 # --- KANAL LİNKLERİ ---
 
 # CBC Sport Güncellenmiş Yayın Bağlantısı (https://cbcsport.tvstream.az/ kaynaklı)
-cbc_link = "https://cbcsports-live.lg.mncdn.com/cbcsports_live/cbcsports/chunklist.m3u8"
+cbc_link = "https://cbcsport.tvstream.az/hls/stream3/stream.m3u8|Referer=https://cbcsport.tvstream.az/"
 
 # En Güncel YodaCDN Token'ı (Ana Kanallar İçin)
 guncel_token = "eyJpcCI6IjkyLjM5Ljk0LjIwMyIsInVhIjoiTW96aWxsYS81LjAgKExpbnV4OyBBbmRyb2lkIDEwOyBLKSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvNTUwLjAuMC4wIE1vYmlsZSBTYWZhcmkvNTM3MzYiLCJleHAiOjE3ODUzMjg0MzAsImp0aSI6ImZiZDg5YzU3YWFiNTU4NzcifQ%3D%3D.jhtyuuhYTshosf67e+loVyrtIMrjc7az%2F0gAb9BzjmY%3D"
