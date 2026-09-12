@@ -69,7 +69,8 @@ ictimaitv2_link = "http://sewv654wfcsdwfi87fwvgbngh.siauliairsavlt.pw/iptv/ZEEDV
 aztv2_link = "https://empty-fire-e7df.ipx2026.workers.dev/aztv"
 medeniyyet2_link = "https://empty-fire-e7df.ipx2026.workers.dev/medeniyyet"
 atv2_link = "https://empty-fire-e7df.ipx2026.workers.dev/atv"
-bakutv2_link = "http://str.yodacdn.net/bakutv/tracks-v1a1/mono.ts.m3u8?token=eyJpcCI6Ijg1LjEzMi4yNy4xODIiLCJ1YSI6Ik1vemlsbGEvNS4wIChNYWNpbnRvc2g7IEludGVsIE1hYyBPUyBYIDEwXzE1XzcpIEFwcGxlV2ViS2l0LzYwNS4xLjE1IChLSFRNTCwgbGlrZSBHZWNrbykgVmVyc2lvbi8xNy4zLjEgU2FmYXJpLzYwNS4xLjE1IiwiZXhwIjoxNzg1ODU0Mjc4LCJqdGkiOiI3MjhmZjgzOGE2OWY0YzIyIn0%3D.SVGB8xCW60QQlO23gP25hBeDJoHeJspZk7HfLMk2OBw%3D"
+bakutv2_link = "http://str.yodacdn.net/bakutv/tracks-v1a1/mono.ts.m3u8?token=eyJpcCI6Ijg5LjEzMi4yNy4xODIiLCJ1YSI6Ik1vemlsbGEvNS4wIChNYWNpbnRvc2g7IEludGVsIE1hYyBPUyBYIDEwXzE1XzcpIEFwcGxlV2ViS2l0LzYwNS4xLjE1IChLSFRNTCwgbGlrZSBHZWNrbykgVmVyc2lvbi8xNy4zLjEgU2FmYXJpLzYwNS4xLjE1IiwiZXhwIjoxNzg1ODU0Mjc4LCJqdGkiOiI3MjhmZjgzOGE2OWY0YzIyIn0%3D.SVGB8xCW60QQlO23gP25hBeDJoHeJspZk7HfLMk2OBw%3D"
+cbc_sport2_link = "http://sewv654wfcsdwfi87fwvgbngh.siauliairsavlt.pw/iptv/ZEEDV4QP6HVZU3YXP49H3ECB/2193/index.m3u8"
 
 
 # --- M3U LİSTESİ OLUŞTURMA ---
@@ -355,6 +356,12 @@ m3u_satirlari = [
         ' group-title="Azerbaijan",ARB HD 2'
     ),
     f"{arbhd2_link}",
+    (
+        '#EXTINF:-1 tvg-id="CBCSport2"'
+        ' tvg-logo="https://i.ibb.co/pBpdbm2j/cbcs.png"'
+        ' group-title="Azerbaijan",CBC Sport 2'
+    ),
+    f"{cbc_sport2_link}",
 ]
 
 m3u_yapisi = "\n".join(m3u_satirlari)
@@ -362,4 +369,4 @@ m3u_yapisi = "\n".join(m3u_satirlari)
 with open("listem.m3u", "w", encoding="utf-8") as f:
     f.write(m3u_yapisi)
 
-print("Sport TV 2 AZ ve TVNET Sport kanalları eklendi ve listem.m3u oluşturuldu!")
+print("CBC Sport 2 yedek kanallara en sona eklendi ve listem.m3u oluşturuldu!")
